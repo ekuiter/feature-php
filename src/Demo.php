@@ -3,19 +3,20 @@
 namespace FeaturePhp;
 
 class Demo {
+    private $configuration;
+    
     public function __construct($configuration) {            
-        echo "<html><head><title>feature-php</title></head><body>";
+        $this->configuration = $configuration;
+    }
+
+    public function render() {
         echo "<table><tr><td valign='top'>";
-        
         echo "<h2>Model Analysis</h2>";
-        $this->analyzeModel($configuration->getModel());
-        
+        $this->analyzeModel($this->configuration->getModel());
         echo "</td><td valign='top'>";
-        
         echo "<h2>Configuration Analysis</h2>";
-        $this->analyzeConfiguration($configuration);
-        
-        echo "</td></tr></table></body>";
+        $this->analyzeConfiguration($this->configuration);
+        echo "</td></tr></table>";
     }
 
     private function getStyle() {

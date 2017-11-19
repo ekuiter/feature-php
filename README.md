@@ -1,3 +1,8 @@
+## feature-php
+
+### Example
+
+```php
 <?
 
 /*
@@ -16,7 +21,7 @@ require "vendor/autoload.php"; // include classes from Composer
 // We just output an exception if we get one.
 try {
 
-    new Demo( // just output some information on the model and configuration
+    (new Demo( // just output some information on the model and configuration
         new Configuration(
 
             // load the model from a file on the server, we could also use XmlModel::fromString(...)
@@ -27,10 +32,11 @@ try {
             // true means it's allowed to not supply a configuration at all (implying an empty configuration)
             XmlConfiguration::fromRequest("configuration", true)
         )
-    );
+    ))->render();
     
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
 
 ?>
+```
