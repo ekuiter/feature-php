@@ -1,6 +1,6 @@
 <?
 
-namespace FeaturePhp;
+namespace FeaturePhp\Model;
 
 class Logic {
     public static function is($feature) {

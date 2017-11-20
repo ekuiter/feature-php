@@ -1,6 +1,6 @@
 <?
 
-namespace FeaturePhp;
+namespace FeaturePhp\Model;
 
 class Model {
     private $xmlModel;

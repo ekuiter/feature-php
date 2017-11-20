@@ -1,6 +1,6 @@
 <?
 
-namespace FeaturePhp;
+namespace FeaturePhp\Model;
 
 class XmlParserException extends \Exception {}
 
@@ -29,7 +29,7 @@ class XmlParser {
     public static function get($node, $tagName, $count = 1) {
         $node = $node->{$tagName};
         if ($node->count() !== $count)
-            throw new ModelException("xml does not have exactly $count $tagName's");
+            throw new XmlParserException("xml does not have exactly $count $tagName's");
         return $node[0];
     }
 }

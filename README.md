@@ -21,18 +21,29 @@ require "vendor/autoload.php"; // include classes from Composer
 // We just output an exception if we get one.
 try {
 
-    (new Demo( // just output some information on the model and configuration
-        new Configuration(
+    // read a product line settings file, containing the model and the default configuration
+    $productLine = new ProductLine\ProductLine(ProductLine\Settings::fromFile("config.json"));
 
-            // load the model from a file on the server, we could also use XmlModel::fromString(...)
-            new Model(XmlModel::fromFile("model.xml")),
-
-            // the configuration is user-supplied with the GET or POST parameter "configuration"
-            // we could also use XmlConfiguration::fromString(...) or XmlConfiguration::fromFile(...)
-            // true means it's allowed to not supply a configuration at all (implying an empty configuration)
-            XmlConfiguration::fromRequest("configuration", true)
+    // alternatively you can supply the settings directly as an array
+    $productLine = new ProductLine\ProductLine(ProductLine\Settings::fromArray(array(
+        "model" => "model.xml",
+        "defaultConfiguration" => array(
+            "data" => "<configuration></configuration>"
         )
-    ))->render();
+    )));
+
+    // the configuration is user-supplied with the GET or POST parameter "configuration"
+    // we could also use XmlConfiguration::fromString(...) or XmlConfiguration::fromFile(...)
+    if (isset($_REQUEST["configuration"]))
+        $configuration = new Model\Configuration(
+            $productLine->getModel(),
+            Model\XmlConfiguration::fromRequest("configuration")
+        );
+    else
+        $configuration = null; // if not supplied, use the default configuration
+
+    // just output some information on the model and configuration
+    $productLine->renderAnalysis($configuration);
     
 } catch (\Exception $e) {
     echo $e->getMessage();

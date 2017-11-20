@@ -1,6 +1,6 @@
 <?
 
-namespace FeaturePhp;
+namespace FeaturePhp\Model;
 
 class XmlConfigurationException extends \Exception {}
 
@@ -29,10 +29,14 @@ class XmlConfiguration {
         if (empty($_REQUEST[$key]) && !$allowEmpty)
             throw new XmlConfigurationException("no configuration in request");
         else if (empty($_REQUEST[$key]))
-            $str = "<configuration></configuration>";
+            return self::emptyInstance();
         else
             $str = $_REQUEST[$key];
         return new self(XmlParser::parseString($str));
+    }
+
+    public static function emptyInstance() {
+        return new self(XmlParser::parseString("<configuration></configuration>"));
     }
 
     public function getXml() {

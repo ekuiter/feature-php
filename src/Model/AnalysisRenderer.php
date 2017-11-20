@@ -1,8 +1,8 @@
 <?
 
-namespace FeaturePhp;
+namespace FeaturePhp\Model;
 
-class Demo {
+class AnalysisRenderer {
     private $configuration;
     
     public function __construct($configuration) {            
