@@ -19,7 +19,7 @@ class Feature {
         $this->parent = $parent ? new self($parent) : null;
 
         if ($children && ($this->alternative || $this->or)) {
-            $this->children = [];
+            $this->children = array();
             foreach ($children as $child) {
                 if (in_array($child->getName(), array("feature", "and", "or", "alt")))
                     $this->children[] = new self($child);

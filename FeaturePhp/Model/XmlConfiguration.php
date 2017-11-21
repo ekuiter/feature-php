@@ -10,7 +10,7 @@ class XmlConfiguration {
 
     public function __construct($xml) {
         $this->xml = $xml;
-        $this->selectedFeatureNames = [];
+        $this->selectedFeatureNames = array();
 
         foreach ($xml->children() as $child)
             if ((string) $child["automatic"] === "selected" || (string) $child["manual"] === "selected")

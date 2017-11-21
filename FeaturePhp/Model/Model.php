@@ -10,7 +10,7 @@ class Model {
 
     public function __construct($xmlModel) {
         $this->xmlModel = $xmlModel;
-        $this->features = [];
+        $this->features = array();
         $xmlModel->traverse(array($this, "addFeature"));
         $this->rootFeature = $this->features[0];
         $this->constraintSolver = new ConstraintSolver($this);

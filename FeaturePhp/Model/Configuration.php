@@ -12,7 +12,7 @@ class Configuration {
     public function __construct($model, $xmlConfiguration) {
         $this->model = $model;
         $this->xmlConfiguration = $xmlConfiguration;
-        $this->selectedFeatures = [];
+        $this->selectedFeatures = array();
 
         foreach ($xmlConfiguration->getSelectedFeatureNames() as $featureName) {
             $feature = $this->model->getFeature($featureName);

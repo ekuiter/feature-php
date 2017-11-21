@@ -2,7 +2,7 @@
 
 namespace FeaturePhp\Model;
 
-class AnalysisRenderer {
+class ConfigurationRenderer extends \FeaturePhp\AbstractRenderer {
     private $configuration;
     
     public function __construct($configuration) {            
@@ -17,15 +17,6 @@ class AnalysisRenderer {
         echo "<h2>Configuration Analysis</h2>";
         $this->analyzeConfiguration($this->configuration);
         echo "</td></tr></table>";
-    }
-
-    private function getStyle() {
-        return "<style>
-                    body { font-family: monospace; }
-                    .feature { color: blue; font-weight: bold; }
-                    .feature.selected { color: darkgreen; }
-                    .feature.deselected { color: darkred; }
-                </style>";
     }
 
     public function analyzeModel($model) {

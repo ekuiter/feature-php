@@ -29,10 +29,24 @@ class ProductLine {
         return $this->settings->get("artifacts", $feature->getName());
     }
 
+    public function getGeneratorSettings($generator) {
+        try {
+            return $this->settings->get("generators", $generator);
+        } catch (\FeaturePhp\NotFoundSettingsException $e) {
+            return \FeaturePhp\Generator\Settings::emptyInstance();
+        }
+    }
+
+    public function getProduct($configuration = null) {
+        if (!$configuration)
+            $configuration = $this->defaultConfiguration;
+        return new Product($this, $configuration);
+    }
+
     public function renderAnalysis($configuration = null) {
         if (!$configuration)
             $configuration = $this->defaultConfiguration;
-        (new Model\AnalysisRenderer($configuration))->render();
+        (new Model\ConfigurationRenderer($configuration))->render();
     }
 }
 

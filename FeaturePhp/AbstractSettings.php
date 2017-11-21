@@ -10,6 +10,12 @@ class InvalidSettingsException extends SettingsException {
     }
 }
 
+class NotFoundSettingsException extends SettingsException {
+    public function __construct($key) {
+        parent::__construct("no settings found for \"$key\"");
+    }
+}
+
 abstract class AbstractSettings {
     protected $cfg;
     
@@ -41,6 +47,10 @@ abstract class AbstractSettings {
         return rtrim($leftHandSide, '/') .'/'. ltrim($rightHandSide, '/'); 
     }
 
+    public function getDirectory() {
+        return $this->cfg["directory"];
+    }
+
     protected function getInstance($key, $klass, $cfg = null) {
         if (!$cfg)
             $cfg = $this->cfg;
@@ -63,7 +73,7 @@ abstract class AbstractSettings {
             return $cfg;
         else {
             if (!is_array($cfg) || !array_key_exists($args[0], $cfg))
-                throw new SettingsException("no settings found for \"$args[0]\"");
+                throw new NotFoundSettingsException($args[0]);
             $args[0] = $cfg[$args[0]];
             return call_user_func_array(array($this, "_get"), $args);
         }

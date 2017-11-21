@@ -18,7 +18,7 @@ class XmlModel {
             throw new XmlModelException("model does not have exactly one root");
         $this->root = $struct->children()[0];
 
-        $this->rules = [];
+        $this->rules = array();
         foreach (XmlParser::get($xml, "constraints") as $constraint) {
             if ($constraint->getName() !== "rule" || $constraint->count() !== 1)
                 throw new XmlModelException("model has invalid constraint");

@@ -11,7 +11,7 @@ class ConstraintSolver {
     
     public function __construct($model) {
         $this->model = $model;
-        $this->constraints = [];
+        $this->constraints = array();
         
         $featureConstraintSemantics = array(
             array("self", "root"), array("self", "mandatory"), array("self", "optional"),
@@ -60,11 +60,11 @@ class ConstraintSolver {
 
     private static function alternative($feature) {
         if ($feature->getAlternative()) {
-            $children = [];
+            $children = array();
             foreach ($feature->getChildren() as $child)
                 $children[] = Logic::is($child);
 
-            $alternativeConstraints = [];
+            $alternativeConstraints = array();
             for ($i = 0; $i < count($children); $i++)
                 for ($j = 0; $j < $i; $j++)
                     $alternativeConstraints[] = Logic::not(Logic::_and($children[$i], $children[$j]));
@@ -76,7 +76,7 @@ class ConstraintSolver {
 
     private static function _or($feature) {
         if ($feature->getOr()) {
-            $children = [];
+            $children = array();
             foreach ($feature->getChildren() as $child)
                 $children[] = Logic::is($child);
             return Logic::equiv(Logic::is($feature), call_user_func_array(__NAMESPACE__ . "\Logic::_or", $children));
