@@ -21,7 +21,7 @@ class XmlConfiguration {
         return new self(XmlParser::parseFile($fileName));
     }
 
-    public static function fromString($str) {        
+    public static function fromString($str, $directory = null) {        
         return new self(XmlParser::parseString($str));
     }
 

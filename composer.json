@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "FeaturePhp\\": "src/"
+            "FeaturePhp\\": "FeaturePhp/"
         }
     }
 }

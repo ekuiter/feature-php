@@ -25,6 +25,10 @@ class ProductLine {
         return $this->defaultConfiguration;
     }
 
+    public function getArtifact($feature) {
+        return $this->settings->get("artifacts", $feature->getName());
+    }
+
     public function renderAnalysis($configuration = null) {
         if (!$configuration)
             $configuration = $this->defaultConfiguration;
