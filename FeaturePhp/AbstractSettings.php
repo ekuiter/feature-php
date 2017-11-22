@@ -84,6 +84,15 @@ abstract class AbstractSettings {
         array_unshift($args, $this->cfg);
         return call_user_func_array(array($this, "_get"), $args);
     }
+
+    public function getOptional() {
+        $args = func_get_args();
+        try {
+            return call_user_func_array(array($this, "get"), array_slice($args, 0, -1));
+        } catch (\FeaturePhp\NotFoundSettingsException $e) {
+            return $args[count($args) - 1];
+        }
+    }
 }
 
 ?>

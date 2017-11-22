@@ -10,7 +10,7 @@ class File {
     
     public function __construct($fileName, $contents = null) {
         $this->fileName = $fileName;
-        $this->contents = $contents || "";
+        $this->contents = $contents ? $contents : "";
     }
 
     public function getFileName() {

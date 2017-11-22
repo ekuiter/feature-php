@@ -12,12 +12,12 @@ class EmptyGenerator extends AbstractGenerator {
     }
 
     public function generateFiles() {
-        $file = new File("empty.log");
+        $logFile = new File("logs/empty.log");
 
         foreach ($this->artifacts as $artifact)
-            $file->append("nothing generated for \"{$artifact->getFeature()->getName()}\"\n");
+            $logFile->append("nothing generated for \"{$artifact->getFeature()->getName()}\"\n");
 
-        return array($file);
+        return array($logFile);
     }
 }
 

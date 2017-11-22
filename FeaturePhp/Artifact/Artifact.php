@@ -24,11 +24,7 @@ class Artifact {
     }
 
     public function getGeneratorSettings($generator) {
-        try {
-            return $this->settings->get("generators", $generator);
-        } catch (\FeaturePhp\NotFoundSettingsException $e) {
-            return \FeaturePhp\Generator\Settings::emptyInstance();
-        }
+        return $this->settings->getOptional("generators", $generator, \FeaturePhp\Generator\Settings::emptyInstance());
     }
 }
 

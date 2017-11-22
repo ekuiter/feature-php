@@ -1,0 +1,33 @@
+<?
+
+/**
+ * {{class}} contains information about selected runtime features.
+ */
+class {{class}} {
+    protected static $instance = null;
+    protected $features;
+    
+    protected function __construct() {
+        $this->features = json_decode('{{features}}');
+    }
+        
+    protected function __clone() {}
+
+    /**
+     * Returns the global instance of {{class}}.
+     */
+    public static function getInstance() {
+        if (self::$instance === null)
+            self::$instance = new self();
+        return self::$instance;
+    }
+
+    /**
+     * Returns whether the given feature has been selected.
+     */
+    public function {{getter}}($feature) {
+        return in_array($feature, $this->features);
+    }
+}
+
+?>

@@ -26,7 +26,8 @@ class Product {
 
     private static function getGeneratorMap() {
         return array(
-            \FeaturePhp\Generator\EmptyGenerator::getKey() => "\FeaturePhp\Generator\EmptyGenerator"
+            \FeaturePhp\Generator\EmptyGenerator::getKey() => "\FeaturePhp\Generator\EmptyGenerator",
+            \FeaturePhp\Generator\RuntimeGenerator::getKey() => "\FeaturePhp\Generator\RuntimeGenerator"
         );
     }
 
