@@ -46,7 +46,7 @@ class Settings extends \FeaturePhp\AbstractSettings {
         
         if (array_key_exists("artifactDirectory", $this->cfg)) {
             $artifactDirectory = $this->cfg["artifactDirectory"];
-            if (!is_string($artifactDirectory) || !is_dir($artifactDirectory = self::joinPaths($this->cfg["directory"], $artifactDirectory)))
+            if (!is_string($artifactDirectory) || !is_dir($artifactDirectory = $this->getPath($artifactDirectory)))
                 throw new \FeaturePhp\InvalidSettingsException($artifactDirectory, "artifactDirectory");
 
             foreach (scandir($artifactDirectory) as $entry) {

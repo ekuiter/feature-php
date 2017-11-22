@@ -42,9 +42,24 @@ abstract class AbstractSettings {
         return new static($cfg, $directory);
     }
 
+    public static function stripBasePath($path, $base = null) {
+        if ($base === null)
+            $base = getcwd();
+        if (substr($path, 0, strlen($base)) === $base)
+            return ltrim(substr($path, strlen($base) + 1), "/");
+        else
+            throw new SettingsException("\"$path\" does not contain base path \"$base\"");
+    }
+    
     // https://stackoverflow.com/q/1091107
-    protected static function joinPaths($leftHandSide, $rightHandSide) { 
-        return rtrim($leftHandSide, '/') .'/'. ltrim($rightHandSide, '/'); 
+    public static function joinPaths($lhs, $rhs) {
+        if ($lhs === null)
+            return $rhs;
+        return rtrim($lhs, '/') .'/'. ltrim($rhs, '/');
+    }
+
+    public function getPath($fileName) {
+        return self::joinPaths($this->cfg["directory"], $fileName);
     }
 
     public function getDirectory() {
@@ -57,6 +72,8 @@ abstract class AbstractSettings {
         if (!array_key_exists($key, $cfg))
             throw new SettingsException("no settings found for \"$key\"");
         $object = $cfg[$key];
+        if ($object === true)
+            $object = array();
         if (is_string($object) && method_exists($klass, "fromFile"))
             return $klass::fromFile(self::joinPaths($this->cfg["directory"], $object));
         else if (is_array($object) && array_key_exists("data", $object) && method_exists($klass, "fromString"))

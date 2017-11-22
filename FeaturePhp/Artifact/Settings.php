@@ -10,6 +10,11 @@ class Settings extends \FeaturePhp\AbstractSettings {
             $generators = $this->cfg["generators"];
             if (!is_array($generators))
                 throw new \FeaturePhp\InvalidSettingsException($generators, "generators");
+
+            foreach ($generators as $key => $generator) {                
+                $this->cfg["generators"][$key] = self::getInstance(
+                    $key, "\FeaturePhp\Generator\Settings", $generators);
+            }
         } else
             $this->cfg["generators"] = array();
 

@@ -9,9 +9,9 @@ class RuntimeGenerator extends AbstractGenerator {
     
     public function __construct($settings) {
         parent::__construct($settings);
-        $this->class = $this->getSettings()->getOptional("class", "RuntimeConfig");
-        $this->target = $this->getSettings()->getOptional("target", "{$this->class}.php");
-        $this->getter = $this->getSettings()->getOptional("getter", "hasFeature");
+        $this->class = $settings->getOptional("class", "RuntimeConfig");
+        $this->target = $settings->getOptional("target", "{$this->class}.php");
+        $this->getter = $settings->getOptional("getter", "hasFeature");
     }
 
     public static function getKey() {
@@ -29,7 +29,7 @@ class RuntimeGenerator extends AbstractGenerator {
         foreach ($this->artifacts as $artifact) {
             $featureName = $artifact->getFeature()->getName();
             $featureNames[] = $featureName;
-            $logFile->append("added runtime information for \"$featureName\"\n");
+            $logFile->append("added runtime information in \"$this->target\" for \"$featureName\"\n");
         }
 
         $template = file_get_contents(__DIR__ . "/Runtime.php.template");

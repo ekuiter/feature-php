@@ -3,7 +3,7 @@
 namespace FeaturePhp\Generator;
 
 abstract class AbstractGenerator {
-    private $settings;
+    protected $settings;
     protected $artifacts;
     
     public function __construct($settings) {

@@ -9,7 +9,7 @@ class File {
     private $contents;
     
     public function __construct($fileName, $contents = null) {
-        $this->fileName = $fileName;
+        $this->fileName = $this->resolveRelativePath($fileName);
         $this->contents = $contents ? $contents : "";
     }
 
@@ -41,6 +41,21 @@ class File {
                 throw new FileException("\"{$file->getFileName()}\" has been generated twice");
         }
         return $_files;
+    }
+
+    // https://stackoverflow.com/q/20522605
+    private function resolveRelativePath($fileName) {
+        $path = array();
+        foreach(explode('/', $fileName) as $part) {
+            if (empty($part) || $part === '.') continue;
+            if ($part !== '..')
+                array_push($path, $part);
+            else if (count($path) > 0)
+                array_pop($path);
+            else
+                throw new FileException("invalid path \"$fileName\"");
+        }
+        return implode('/', $path);
     }
 }
 

@@ -22,10 +22,12 @@ class ProductRenderer extends \FeaturePhp\AbstractRenderer {
         echo "<ul>";
 
         foreach ($this->files as $file) {
-            echo "<li><span class='fileName'>"
+            $contents = $file->getContents();
+            echo "<li><span class='fileName' onclick='var style = this.parentElement.children[1].style;
+                                                      style.display = style.display === \"block\" ? \"none\" : \"block\";'>"
                 . $file->getFileName()
-                . "</span><pre style='font-size: 0.8em'>"
-                . str_replace("\n", "<br />", htmlspecialchars($file->getContents())) . "</pre>"
+                . "</span><pre style='font-size: 0.8em; display: none'>"
+                . str_replace("\n", "<br />", htmlspecialchars($contents)) . "</pre>"
                 . "</li>";
         }
 
