@@ -4,6 +4,7 @@ namespace FeaturePhp\Generator;
 
 class RuntimeGenerator extends AbstractGenerator {
     private $class;
+    private $target;
     private $getter;
     
     public function __construct($settings) {

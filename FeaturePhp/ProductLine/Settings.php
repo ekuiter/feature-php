@@ -37,6 +37,33 @@ class Settings extends \FeaturePhp\AbstractSettings {
         } else
             $this->cfg["artifacts"] = array();
 
+        if (array_key_exists("artifactFile", $this->cfg)) {
+            $artifactFile = $this->cfg["artifactFile"];
+            if (!is_string($artifactFile))
+                throw new \FeaturePhp\InvalidSettingsException($artifactFile, "artifactFile");
+        } else
+            $this->cfg["artifactFile"] = "artifact.json";
+        
+        if (array_key_exists("artifactDirectory", $this->cfg)) {
+            $artifactDirectory = $this->cfg["artifactDirectory"];
+            if (!is_string($artifactDirectory) || !is_dir($artifactDirectory = self::joinPaths($this->cfg["directory"], $artifactDirectory)))
+                throw new \FeaturePhp\InvalidSettingsException($artifactDirectory, "artifactDirectory");
+
+            foreach (scandir($artifactDirectory) as $entry) {
+                if (is_dir($directory = self::joinPaths($artifactDirectory, $entry)) && $entry !== "." && $entry !== "..")
+                    if (in_array($this->cfg["artifactFile"], scandir($directory))) {
+                        $feature = $model->getFeature($entry);
+                        if (!$feature)
+                            throw new \FeaturePhp\SettingsException("the model has no feature named \"$entry\"");
+                        if (array_key_exists($entry, $this->cfg["artifacts"]))
+                            throw new \FeaturePhp\SettingsException("there are multiple settings for \"$entry\"");
+                        
+                        $this->cfg["artifacts"][$entry] = new Artifact\Artifact(
+                            $feature, Artifact\Settings::fromFile(self::joinPaths($directory, $this->cfg["artifactFile"])));
+                    }
+            }
+        }
+
         foreach ($model->getFeatures() as $feature) {
             $key = $feature->getName();
             if (!array_key_exists($key, $this->cfg["artifacts"]))

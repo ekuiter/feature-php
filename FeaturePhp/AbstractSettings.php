@@ -43,7 +43,7 @@ abstract class AbstractSettings {
     }
 
     // https://stackoverflow.com/q/1091107
-    private static function joinPaths($leftHandSide, $rightHandSide) { 
+    protected static function joinPaths($leftHandSide, $rightHandSide) { 
         return rtrim($leftHandSide, '/') .'/'. ltrim($rightHandSide, '/'); 
     }
 
