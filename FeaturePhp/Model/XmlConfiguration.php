@@ -1,6 +1,7 @@
 <?
 
 namespace FeaturePhp\Model;
+use \FeaturePhp as fphp;
 
 class XmlConfigurationException extends \Exception {}
 

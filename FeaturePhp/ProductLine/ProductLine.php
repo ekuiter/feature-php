@@ -1,8 +1,7 @@
 <?
 
 namespace FeaturePhp\ProductLine;
-
-use \FeaturePhp\Model;
+use \FeaturePhp as fphp;
 
 class ProductLine {
     private $settings;
@@ -30,7 +29,7 @@ class ProductLine {
     }
 
     public function getGeneratorSettings($generator) {
-        return $this->settings->getOptional("generators", $generator, \FeaturePhp\Generator\Settings::emptyInstance());
+        return $this->settings->getOptional("generators", $generator, fphp\Generator\Settings::emptyInstance());
     }
 
     public function getProduct($configuration = null) {
@@ -42,7 +41,7 @@ class ProductLine {
     public function renderAnalysis($configuration = null) {
         if (!$configuration)
             $configuration = $this->defaultConfiguration;
-        (new Model\ConfigurationRenderer($configuration))->render();
+        (new fphp\Model\ConfigurationRenderer($configuration))->render();
     }
 }
 

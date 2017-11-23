@@ -1,6 +1,7 @@
 <?
 
 namespace FeaturePhp\Artifact;
+use \FeaturePhp as fphp;
 
 class Artifact {
     private $feature;
@@ -24,7 +25,7 @@ class Artifact {
     }
 
     public function getGeneratorSettings($generator) {
-        return $this->settings->getOptional("generators", $generator, \FeaturePhp\Generator\Settings::emptyInstance());
+        return $this->settings->getOptional("generators", $generator, fphp\Generator\Settings::emptyInstance());
     }
 }
 

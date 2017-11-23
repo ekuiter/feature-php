@@ -1,8 +1,9 @@
 <?
 
 namespace FeaturePhp\ProductLine;
+use \FeaturePhp as fphp;
 
-class ProductRenderer extends \FeaturePhp\AbstractRenderer {
+class ProductRenderer extends fphp\AbstractRenderer {
     private $product;
     
     public function __construct($product) {            

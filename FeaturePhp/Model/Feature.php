@@ -1,6 +1,7 @@
 <?
 
 namespace FeaturePhp\Model;
+use \FeaturePhp as fphp;
 
 class Feature {
     private $name;
@@ -56,10 +57,7 @@ class Feature {
     }
 
     public static function findByName($features, $featureName) {
-        foreach ($features as $feature)
-            if ($feature->getName() === $featureName)
-                return $feature;
-        return null;
+        return fphp\Helper\_Array::findByKey($features, "getName", $featureName);
     }
 
     public static function has($features, $feature) {

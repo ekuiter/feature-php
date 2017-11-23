@@ -1,6 +1,7 @@
 <?
 
 namespace FeaturePhp\Generator;
+use \FeaturePhp as fphp;
 
 class FileGeneratorException extends \Exception {}
 
@@ -14,7 +15,7 @@ class FileGenerator extends AbstractGenerator {
     }
 
     public function generateFiles() {
-        $logFile = new File("logs/file.log");
+        $logFile = new LogFile("file");
         $files = array($logFile);
 
         foreach ($this->selectedArtifacts as $artifact) {
@@ -33,9 +34,9 @@ class FileGenerator extends AbstractGenerator {
                 if (!file_exists($fileSource))
                     throw new FileGeneratorException("file \"$fileSource\" does not exist");
 
-                $fileTarget = \FeaturePhp\AbstractSettings::joinPaths($target, $file["target"]);
+                $fileTarget = fphp\Helper\Path::join($target, $file["target"]);
                 $files[] = new File($fileTarget, file_get_contents($fileSource));
-                $logFile->append("added file \"$fileTarget\" for \"$featureName\"\n");
+                $logFile->log($artifact, "added file \"$fileTarget\"");
             }
 
             foreach ($settings->getOptional("directories", array()) as $directory) {
@@ -57,15 +58,15 @@ class FileGenerator extends AbstractGenerator {
                 foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directorySource)) as $entry)
                     if ($entry->getFileName() !== "." && $entry->getFileName() !== "..") {
                         $fileSource = $entry->getPathName();
-                        $relativeFileTarget = \FeaturePhp\AbstractSettings::stripBasePath(
+                        $relativeFileTarget = fphp\Helper\Path::stripBase(
                             realpath($fileSource), realpath($directorySource));
                         if (in_array($relativeFileTarget, $directory["exclude"]))
                             continue;
                         
-                        $fileTarget = \FeaturePhp\AbstractSettings::joinPaths(
-                            $target, \FeaturePhp\AbstractSettings::joinPaths($directory["target"], $relativeFileTarget));
+                        $fileTarget = fphp\Helper\Path::join(
+                            $target, fphp\Helper\Path::join($directory["target"], $relativeFileTarget));
                         $files[] = new File($fileTarget, file_get_contents($fileSource));
-                        $logFile->append("added file \"$fileTarget\" for \"$featureName\"\n");
+                        $logFile->log($artifact, "added file \"$fileTarget\"");
                     }
             }
         }

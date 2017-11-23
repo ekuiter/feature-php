@@ -1,6 +1,7 @@
 <?
 
 namespace FeaturePhp\Generator;
+use \FeaturePhp as fphp;
 
 class RuntimeGenerator extends AbstractGenerator {
     private $class;
@@ -27,15 +28,14 @@ class RuntimeGenerator extends AbstractGenerator {
         foreach ($artifacts as $artifact) {
             $featureName = $artifact->getFeature()->getName();
             $featureNames[] = $featureName;
-            $logFile->append("added runtime information in \"$this->target\" for \"$featureName\"\n");
+            $logFile->log($artifact, "added runtime information in \"$this->target\"");
         }
         return str_replace("'", "\'", json_encode($featureNames));
     }
 
     public function generateFiles() {        
-        $logFile = new File("logs/runtime.log");
-
-
+        $logFile = new LogFile("runtime");
+        
         $template = file_get_contents(__DIR__ . "/Runtime.php.template");
         $template = $this->assign($template, "class", $this->class);
         $template = $this->assign($template, "getter", $this->getter);

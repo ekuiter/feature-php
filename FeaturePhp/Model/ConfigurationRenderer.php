@@ -1,8 +1,9 @@
 <?
 
 namespace FeaturePhp\Model;
+use \FeaturePhp as fphp;
 
-class ConfigurationRenderer extends \FeaturePhp\AbstractRenderer {
+class ConfigurationRenderer extends fphp\AbstractRenderer {
     private $configuration;
     
     public function __construct($configuration) {            

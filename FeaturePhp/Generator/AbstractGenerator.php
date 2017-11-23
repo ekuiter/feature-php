@@ -1,11 +1,27 @@
 <?
 
 namespace FeaturePhp\Generator;
+use \FeaturePhp as fphp;
 
 abstract class AbstractGenerator {
     protected $settings;
     protected $selectedArtifacts;
     protected $deselectedArtifacts;
+
+    private static function getGenerators() {
+        return array(
+            "\FeaturePhp\Generator\EmptyGenerator",
+            "\FeaturePhp\Generator\FileGenerator",
+            "\FeaturePhp\Generator\RuntimeGenerator"
+        );
+    }
+
+    public static function getGeneratorMap() {
+        $generatorMap = array();
+        foreach (self::getGenerators() as $generator)
+            $generatorMap[call_user_func(array($generator, "getKey"))] = $generator;
+        return $generatorMap;
+    }
     
     public function __construct($settings) {
         $this->settings = $settings;

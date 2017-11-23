@@ -1,6 +1,7 @@
 <?
 
 namespace FeaturePhp;
+use \FeaturePhp as fphp;
 
 abstract class AbstractRenderer {
     abstract public function render();

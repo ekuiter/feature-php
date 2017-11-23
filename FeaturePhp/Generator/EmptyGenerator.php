@@ -1,6 +1,7 @@
 <?
 
 namespace FeaturePhp\Generator;
+use \FeaturePhp as fphp;
 
 class EmptyGenerator extends AbstractGenerator {        
     public function __construct($settings) {
@@ -12,10 +13,10 @@ class EmptyGenerator extends AbstractGenerator {
     }
 
     public function generateFiles() {
-        $logFile = new File("logs/empty.log");
+        $logFile = new LogFile("empty");
 
         foreach ($this->selectedArtifacts as $artifact)
-            $logFile->append("nothing generated for \"{$artifact->getFeature()->getName()}\"\n");
+            $logFile->log($artifact, "nothing generated");
 
         return array($logFile);
     }

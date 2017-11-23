@@ -1,6 +1,7 @@
 <?
 
 namespace FeaturePhp;
+use \FeaturePhp as fphp;
 
 class SettingsException extends \Exception {}
 
@@ -41,25 +42,9 @@ abstract class AbstractSettings {
     public static function fromArray($cfg, $directory = ".") {
         return new static($cfg, $directory);
     }
-
-    public static function stripBasePath($path, $base = null) {
-        if ($base === null)
-            $base = getcwd();
-        if (substr($path, 0, strlen($base)) === $base)
-            return ltrim(substr($path, strlen($base) + 1), "/");
-        else
-            throw new SettingsException("\"$path\" does not contain base path \"$base\"");
-    }
     
-    // https://stackoverflow.com/q/1091107
-    public static function joinPaths($lhs, $rhs) {
-        if ($lhs === null)
-            return $rhs;
-        return rtrim($lhs, '/') .'/'. ltrim($rhs, '/');
-    }
-
     public function getPath($fileName) {
-        return self::joinPaths($this->cfg["directory"], $fileName);
+        return fphp\Helper\Path::join($this->cfg["directory"], $fileName);
     }
 
     public function getDirectory() {
@@ -75,7 +60,7 @@ abstract class AbstractSettings {
         if ($object === true)
             $object = array();
         if (is_string($object) && method_exists($klass, "fromFile"))
-            return $klass::fromFile(self::joinPaths($this->cfg["directory"], $object));
+            return $klass::fromFile(fphp\Helper\Path::join($this->cfg["directory"], $object));
         else if (is_array($object) && array_key_exists("data", $object) && method_exists($klass, "fromString"))
             return $klass::fromString($object["data"], $this->cfg["directory"]);
         else if (is_array($object) && method_exists($klass, "fromArray"))
@@ -106,7 +91,7 @@ abstract class AbstractSettings {
         $args = func_get_args();
         try {
             return call_user_func_array(array($this, "get"), array_slice($args, 0, -1));
-        } catch (\FeaturePhp\NotFoundSettingsException $e) {
+        } catch (fphp\NotFoundSettingsException $e) {
             return $args[count($args) - 1];
         }
     }
