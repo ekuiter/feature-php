@@ -17,7 +17,7 @@ class FileGenerator extends AbstractGenerator {
         $logFile = new File("logs/file.log");
         $files = array($logFile);
 
-        foreach ($this->artifacts as $artifact) {
+        foreach ($this->selectedArtifacts as $artifact) {
             $featureName = $artifact->getFeature()->getName();
             $settings = $artifact->getGeneratorSettings(self::getKey());
             $target = $settings->getOptional("target", null);

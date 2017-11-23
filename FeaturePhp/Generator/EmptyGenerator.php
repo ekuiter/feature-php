@@ -14,7 +14,7 @@ class EmptyGenerator extends AbstractGenerator {
     public function generateFiles() {
         $logFile = new File("logs/empty.log");
 
-        foreach ($this->artifacts as $artifact)
+        foreach ($this->selectedArtifacts as $artifact)
             $logFile->append("nothing generated for \"{$artifact->getFeature()->getName()}\"\n");
 
         return array($logFile);

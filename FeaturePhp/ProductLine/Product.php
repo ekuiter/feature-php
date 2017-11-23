@@ -32,31 +32,36 @@ class Product {
         );
     }
 
-    private function getInstance(&$generators, $key) {
-        if (!array_key_exists($key, self::getGeneratorMap()))
-            throw new ProductException("\"$key\" is not a valid generator");
-        $klass = self::getGeneratorMap()[$key];
-        
-        if (!array_key_exists($key, $generators))
-            $generators[$key] = new $klass(
+    private function getAllGenerators() {
+        $allGenerators = array();
+        foreach (self::getGeneratorMap() as $key => $klass)            
+            $allGenerators[$key] = new $klass(
                 $this->productLine->getGeneratorSettings($key));
+        return $allGenerators;
+    }
 
-        return $generators[$key];
+    private function addArtifactToUsedGenerators($allGenerators, $feature, $func) {
+        $artifact = $this->productLine->getArtifact($feature);
+        foreach ($artifact->getGenerators() as $key => $cfg) {
+            if (!array_key_exists($key, self::getGeneratorMap()))
+                throw new ProductException("\"$key\" is not a valid generator");
+            call_user_func(array($allGenerators[$key], $func), $artifact);
+        }
     }
 
     public function generateFiles() {
-        $allGenerators = array();
+        $allGenerators = $this->getAllGenerators();
 
-        foreach ($this->configuration->getSelectedFeatures() as $feature) {
-            $artifact = $this->productLine->getArtifact($feature);
-            $usedGenerators = $artifact->getGenerators();
-            foreach ($usedGenerators as $key => $cfg)
-                $this->getInstance($allGenerators, $key)->addArtifact($artifact);
-        }
+        foreach ($this->configuration->getSelectedFeatures() as $feature)
+            $this->addArtifactToUsedGenerators($allGenerators, $feature, "addSelectedArtifact");
+
+        foreach ($this->configuration->getDeselectedFeatures() as $feature)
+            $this->addArtifactToUsedGenerators($allGenerators, $feature, "addDeselectedArtifact");
 
         $files = array();
         foreach ($allGenerators as $generator)
-            $files = array_merge($files, $generator->generateFiles());        
+            if ($generator->hasArtifacts())
+                $files = array_merge($files, $generator->generateFiles());        
 
         return \FeaturePhp\Generator\File::checkForDuplicates($files);
     }
