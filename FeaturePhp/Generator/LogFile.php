@@ -3,13 +3,11 @@
 namespace FeaturePhp\Generator;
 use \FeaturePhp as fphp;
 
-class LogFileException extends \Exception {}
-
-class LogFile extends File {
+class LogFile extends TextFile {
     private $logs;
     
-    public function __construct($fileName, $contents = null) {
-        parent::__construct("logs/$fileName.log", $contents);
+    public function __construct($fileName) {
+        parent::__construct("logs/$fileName.log");
         $this->logs = array();
     }
 
@@ -31,10 +29,6 @@ class LogFile extends File {
             $contents .= sprintf("%-{$maxLen}s | $log[1]\n", $log[0] ? $log[0]->getFeature()->getName() : "");
         
         return $contents;
-    }
-
-    public function append($contents) {
-        $this->log(null, $contents);
     }
 }
 

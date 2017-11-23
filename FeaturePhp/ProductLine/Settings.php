@@ -6,81 +6,66 @@ use \FeaturePhp as fphp;
 class Settings extends fphp\AbstractSettings {    
     public function __construct($cfg, $directory = ".") {
         parent::__construct($cfg, $directory);
-
+        
         // instantiate model
-        $this->cfg["model"] = $model = new fphp\Model\Model(self::getInstance("model", "\FeaturePhp\Model\XmlModel"));
+        $this->set("model", new fphp\Model\Model(self::getInstance($this->get("model"), "\FeaturePhp\Model\XmlModel")));
 
         // instantiate default configuration
-        $this->cfg["defaultConfiguration"] = new fphp\Model\Configuration(
-            $this->cfg["model"],
-            array_key_exists("defaultConfiguration", $this->cfg) ?
-            self::getInstance("defaultConfiguration", "\FeaturePhp\Model\XmlConfiguration") :
+        $this->set("defaultConfiguration", new fphp\Model\Configuration(
+            $this->get("model"),
+            $this->has("defaultConfiguration") ?
+            self::getInstance($this->get("defaultConfiguration"), "\FeaturePhp\Model\XmlConfiguration") :
             fphp\Model\XmlConfiguration::emptyInstance()
-        );
+        ));
 
         // instantiate artifacts
-        if (array_key_exists("artifacts", $this->cfg)) {
-            $artifacts = $this->cfg["artifacts"];
-            if (!is_array($artifacts))
-                throw new fphp\InvalidSettingsException($artifacts, "artifacts");
+        $this->setOptional("artifacts", array());
+        $artifacts = $this->getWith("artifacts", "is_array");
 
-            foreach ($artifacts as $key => $artifact) {
-                $feature = $model->getFeature($key);
-                if (!$feature)
-                    throw new fphp\SettingsException("the model has no feature named \"$key\"");
-                
-                $this->cfg["artifacts"][$key] = new fphp\Artifact\Artifact(
-                    $feature, self::getInstance($key, "\FeaturePhp\Artifact\Settings", $artifacts));
-            }
-        } else
-            $this->cfg["artifacts"] = array();
+        foreach ($artifacts as $key => $artifact)                
+            $this->set("artifacts", $key, new fphp\Artifact\Artifact(
+                $this->get("model")->getFeature($key),
+                self::getInstance($this->getIn($artifacts, $key), "\FeaturePhp\Artifact\Settings")
+            ));
 
-        if (array_key_exists("artifactFile", $this->cfg)) {
-            $artifactFile = $this->cfg["artifactFile"];
-            if (!is_string($artifactFile))
-                throw new fphp\InvalidSettingsException($artifactFile, "artifactFile");
-        } else
-            $this->cfg["artifactFile"] = "artifact.json";
+        $this->setOptional("artifactFile", "artifact.json");
+        $this->getWith("artifactFile", "is_string");
         
-        if (array_key_exists("artifactDirectory", $this->cfg)) {
-            $artifactDirectory = $this->cfg["artifactDirectory"];
-            if (!is_string($artifactDirectory) || !is_dir($artifactDirectory = $this->getPath($artifactDirectory)))
-                throw new fphp\InvalidSettingsException($artifactDirectory, "artifactDirectory");
+        if ($this->has("artifactDirectory")) {
+            $artifactDirectory = $this->getPath(
+                $this->getWith("artifactDirectory", function($dir) {
+                    return is_string($dir) && is_dir($this->getPath($dir));
+                }));
 
             foreach (scandir($artifactDirectory) as $entry) {
-                if (is_dir($directory = fphp\Helper\Path::join($artifactDirectory, $entry)) && $entry !== "." && $entry !== "..")
-                    if (in_array($this->cfg["artifactFile"], scandir($directory))) {
-                        $feature = $model->getFeature($entry);
-                        if (!$feature)
-                            throw new fphp\SettingsException("the model has no feature named \"$entry\"");
-                        if (array_key_exists($entry, $this->cfg["artifacts"]))
+                $directory = fphp\Helper\Path::join($artifactDirectory, $entry);
+                if (is_dir($directory) && !fphp\Helper\Path::isDot($entry) && in_array($this->get("artifactFile"), scandir($directory))) {
+                        if ($this->has($entry, $this->get("artifacts")))
                             throw new fphp\SettingsException("there are multiple settings for \"$entry\"");
                         
-                        $this->cfg["artifacts"][$entry] = new fphp\Artifact\Artifact(
-                            $feature, fphp\Artifact\Settings::fromFile(fphp\Helper\Path::join($directory, $this->cfg["artifactFile"])));
+                        $this->set("artifacts", $entry, new fphp\Artifact\Artifact(
+                            $this->get("model")->getFeature($entry),
+                            fphp\Artifact\Settings::fromFile(
+                                fphp\Helper\Path::join($directory, $this->get("artifactFile")))
+                        ));
                     }
             }
         }
 
-        foreach ($model->getFeatures() as $feature) {
+        foreach ($this->get("model")->getFeatures() as $feature) {
             $key = $feature->getName();
-            if (!array_key_exists($key, $this->cfg["artifacts"]))
-                $this->cfg["artifacts"][$key] = new fphp\Artifact\Artifact(
-                    $feature, new fphp\Artifact\Settings(array(), $directory));
+            if (!$this->has($key, $this->get("artifacts")))
+                $this->set("artifacts", $key, new fphp\Artifact\Artifact(
+                    $feature, new fphp\Artifact\Settings(array(), $this->getDirectory())));
         }
 
         // instantiate generator settings
-        if (array_key_exists("generators", $this->cfg)) {
-            $generators = $this->cfg["generators"];
-            if (!is_array($generators))
-                throw new fphp\InvalidSettingsException($generators, "generators");
-
-            foreach ($generators as $key => $generator) {                
-                $this->cfg["generators"][$key] = self::getInstance(
-                    $key, "\FeaturePhp\Generator\Settings", $generators);
-            }
-        } else
-            $this->cfg["generators"] = array();
+        $this->setOptional("generators", array());
+        $generators = $this->getWith("generators", "is_array");
+        
+        foreach ($generators as $key => $generator)
+            $this->set("generators", $key, self::getInstance(
+                $this->getIn($generators, $key), "\FeaturePhp\Generator\Settings"));
     }
 }
 

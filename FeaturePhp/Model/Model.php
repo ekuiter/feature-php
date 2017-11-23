@@ -3,6 +3,8 @@
 namespace FeaturePhp\Model;
 use \FeaturePhp as fphp;
 
+class ModelException extends \Exception {}
+
 class Model {
     private $xmlModel;
     private $features;
@@ -22,7 +24,10 @@ class Model {
     }
 
     public function getFeature($featureName) {
-        return Feature::findByName($this->features, $featureName);
+        $feature = Feature::findByName($this->features, $featureName);
+        if (!$feature)
+            throw new ModelException("the model has no feature named \"$featureName\"");
+        return $feature;
     }
 
     public function getXmlModel() {

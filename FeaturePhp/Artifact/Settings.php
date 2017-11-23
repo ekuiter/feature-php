@@ -7,20 +7,15 @@ class Settings extends fphp\AbstractSettings {
     public function __construct($cfg, $directory = ".") {
         parent::__construct($cfg, $directory);
 
-        if (array_key_exists("generators", $this->cfg)) {
-            $generators = $this->cfg["generators"];
-            if (!is_array($generators))
-                throw new fphp\InvalidSettingsException($generators, "generators");
+        $this->setOptional("generators", array());
+        $generators = $this->getWith("generators", "is_array");
 
-            foreach ($generators as $key => $generator) {                
-                $this->cfg["generators"][$key] = self::getInstance(
-                    $key, "\FeaturePhp\Generator\Settings", $generators);
-            }
-        } else
-            $this->cfg["generators"] = array();
+        foreach ($generators as $key => $generator)
+            $this->set("generators", $key, self::getInstance(
+                $this->getIn($generators, $key), "\FeaturePhp\Generator\Settings"));
 
-        if (count($this->cfg["generators"]) === 0)
-            $this->cfg["generators"]["empty"] = fphp\Generator\Settings::emptyInstance();
+        if (count($this->get("generators")) === 0)
+            $this->set("generators", "empty", fphp\Generator\Settings::emptyInstance());
     }
 }
 

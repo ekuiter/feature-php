@@ -12,7 +12,7 @@ class Path {
         if (substr($path, 0, strlen($base)) === $base)
             return ltrim(substr($path, strlen($base) + 1), "/");
         else
-            throw new SettingsException("\"$path\" does not contain base path \"$base\"");
+            throw new PathException("\"$path\" does not contain base path \"$base\"");
     }
     
     // https://stackoverflow.com/q/1091107
@@ -35,6 +35,12 @@ class Path {
                 throw new PathException("invalid path \"$fileName\"");
         }
         return implode('/', $path);
+    }
+
+    public static function isDot($fileName) {
+        if (!is_string($fileName))
+            $fileName = $fileName->getFileName();
+        return $fileName === "." || $fileName === "..";
     }
 }
 

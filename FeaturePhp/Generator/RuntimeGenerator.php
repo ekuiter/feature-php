@@ -44,7 +44,7 @@ class RuntimeGenerator extends AbstractGenerator {
         $template = $this->assign($template, "deselectedFeatures",
                                   $this->encodeFeatureNames($logFile, $this->deselectedArtifacts));
 
-        return array($logFile, new File($this->target, $template));
+        return array($logFile, new TextFile($this->target, $template));
     }
 }
 

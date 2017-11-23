@@ -35,7 +35,7 @@ class FileGenerator extends AbstractGenerator {
                     throw new FileGeneratorException("file \"$fileSource\" does not exist");
 
                 $fileTarget = fphp\Helper\Path::join($target, $file["target"]);
-                $files[] = new File($fileTarget, file_get_contents($fileSource));
+                $files[] = new StoredFile($fileTarget, $fileSource);
                 $logFile->log($artifact, "added file \"$fileTarget\"");
             }
 
@@ -56,7 +56,7 @@ class FileGenerator extends AbstractGenerator {
                     $directory["exclude"] = array();
 
                 foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directorySource)) as $entry)
-                    if ($entry->getFileName() !== "." && $entry->getFileName() !== "..") {
+                    if (!fphp\Helper\Path::isDot($entry)) {
                         $fileSource = $entry->getPathName();
                         $relativeFileTarget = fphp\Helper\Path::stripBase(
                             realpath($fileSource), realpath($directorySource));
@@ -65,7 +65,7 @@ class FileGenerator extends AbstractGenerator {
                         
                         $fileTarget = fphp\Helper\Path::join(
                             $target, fphp\Helper\Path::join($directory["target"], $relativeFileTarget));
-                        $files[] = new File($fileTarget, file_get_contents($fileSource));
+                        $files[] = new StoredFile($fileTarget, $fileSource);
                         $logFile->log($artifact, "added file \"$fileTarget\"");
                     }
             }

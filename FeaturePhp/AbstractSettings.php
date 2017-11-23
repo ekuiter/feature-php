@@ -18,15 +18,13 @@ class NotFoundSettingsException extends SettingsException {
 }
 
 abstract class AbstractSettings {
-    protected $cfg;
+    private $cfg;
     
     public function __construct($cfg, $directory = ".") {
         if (!is_array($cfg))
             throw new SettingsException("not a valid settings array");
         $this->cfg = $cfg;
-
-        if (!array_key_exists("directory", $cfg))
-            $this->cfg["directory"] = $directory;
+        $this->setOptional("directory", $directory);
     }
 
     public static function fromString($json, $directory = ".") {
@@ -51,17 +49,13 @@ abstract class AbstractSettings {
         return $this->cfg["directory"];
     }
 
-    protected function getInstance($key, $klass, $cfg = null) {
-        if (!$cfg)
-            $cfg = $this->cfg;
-        if (!array_key_exists($key, $cfg))
-            throw new SettingsException("no settings found for \"$key\"");
-        $object = $cfg[$key];
+    protected function getInstance($object, $klass) {
         if ($object === true)
             $object = array();
+        
         if (is_string($object) && method_exists($klass, "fromFile"))
             return $klass::fromFile(fphp\Helper\Path::join($this->cfg["directory"], $object));
-        else if (is_array($object) && array_key_exists("data", $object) && method_exists($klass, "fromString"))
+        else if (is_array($object) && $this->has("data", $object) && method_exists($klass, "fromString"))
             return $klass::fromString($object["data"], $this->cfg["directory"]);
         else if (is_array($object) && method_exists($klass, "fromArray"))
             return $klass::fromArray($object, $this->cfg["directory"]);
@@ -69,31 +63,72 @@ abstract class AbstractSettings {
             throw new InvalidSettingsException($object, $klass);
     }
 
-    private function _get($cfg) {
+    protected function has($key, $cfg = null) {
+        if (!$cfg)
+            $cfg = $this->cfg;
+        return array_key_exists($key, $cfg);
+    }
+
+    private function _get($cfg/*, ... */) {
         $args = array_slice(func_get_args(), 1);
         if (count($args) === 0)
             return $cfg;
         else {
-            if (!is_array($cfg) || !array_key_exists($args[0], $cfg))
+            if (!is_array($cfg) || !$this->has($args[0], $cfg))
                 throw new NotFoundSettingsException($args[0]);
             $args[0] = $cfg[$args[0]];
             return call_user_func_array(array($this, "_get"), $args);
         }
     }
 
-    public function get() {
+    public function get(/* ... */) {
         $args = func_get_args();
         array_unshift($args, $this->cfg);
         return call_user_func_array(array($this, "_get"), $args);
     }
 
-    public function getOptional() {
+    public function getIn($cfg/*, ... */) {
+        $args = func_get_args();
+        return call_user_func_array(array($this, "_get"), $args);
+    }
+
+    public function getWith($key, $predicate) {
+        $object = $this->get($key);
+        if (!call_user_func($predicate, $object))
+            throw new fphp\InvalidSettingsException($object, $key);
+        return $object;
+    }
+
+    public function getOptional(/* ..., */$defaultValue) {
         $args = func_get_args();
         try {
             return call_user_func_array(array($this, "get"), array_slice($args, 0, -1));
         } catch (fphp\NotFoundSettingsException $e) {
             return $args[count($args) - 1];
         }
+    }
+
+    private function _set(&$cfg, $args) {
+        if (count($args) === 2) {
+            $key = $args[count($args) - 2];
+            $value = $args[count($args) - 1];
+            $cfg[$key] = $value;
+        } else {
+            if (!is_array($cfg) || !$this->has($args[0], $cfg))
+                throw new NotFoundSettingsException($args[0]);
+            // Evil, but I found no other way to pass $cfg as reference via call_user_func_array.
+            eval('$this->_set($cfg[$args[0]], array_slice($args, 1));');
+        }
+    }
+
+    protected function set(/* ..., */$key, $value) {
+        $args = func_get_args();
+        eval('$this->_set($this->cfg, $args);');
+    }
+
+    protected function setOptional($key, $value) {
+        if (!$this->has($key))
+            $this->set($key, $value);
     }
 }
 

@@ -3,8 +3,6 @@
 namespace FeaturePhp\Model;
 use \FeaturePhp as fphp;
 
-class ConfigurationException extends \Exception {}
-
 class Configuration {
     private $model;
     private $xmlConfiguration;
@@ -15,14 +13,10 @@ class Configuration {
         $this->model = $model;
         $this->xmlConfiguration = $xmlConfiguration;
         $this->selectedFeatures = array();
-        $deselectedFeatures = array();
+        $this->deselectedFeatures = array();
 
-        foreach ($xmlConfiguration->getSelectedFeatureNames() as $featureName) {
-            $feature = $this->model->getFeature($featureName);
-            if (!$feature)
-                throw new ConfigurationException("invalid feature $featureName");
-            $this->selectedFeatures[] = $feature;
-        }
+        foreach ($xmlConfiguration->getSelectedFeatureNames() as $featureName)
+            $this->selectedFeatures[] = $this->model->getFeature($featureName);
 
         foreach ($this->model->getFeatures() as $feature)
             if (!Feature::has($this->selectedFeatures, $feature))

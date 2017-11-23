@@ -16,7 +16,7 @@ class Logic {
         };
     }
 
-    public static function _and() {
+    public static function _and(/* ... */) {
         $args = func_get_args();
         return function ($features) use ($args) {
             $acc = true;
@@ -26,7 +26,7 @@ class Logic {
         };
     }
 
-    public static function _or() {
+    public static function _or(/* ... */) {
         $args = func_get_args();
         return function ($features) use ($args) {
             $acc = false;
