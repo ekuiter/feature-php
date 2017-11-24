@@ -5,13 +5,50 @@ use \FeaturePhp as fphp;
 
 class FileGeneratorException extends \Exception {}
 
-class FileGenerator extends AbstractGenerator {    
+class SpecificationSettings extends fphp\Settings {    
+    public function __construct($cfg, $directory = ".") {
+        parent::__construct($cfg, $directory);
+    }
+
+    public function getSource() {
+        return $this->get("source");
+    }
+
+    public function getTarget() {
+        return $this->get("target");
+    }
+
+    public function setTarget($target) {
+        $this->set("target", $target);
+    }
+
+    public function getExclude() {
+        $this->setOptional("exclude", array());
+        return $this->getWith("exclude", "is_array");
+    }
+}
+
+class FileGenerator extends Generator {    
     public function __construct($settings) {
         parent::__construct($settings);
     }
 
     public static function getKey() {
         return "file";
+    }
+
+    private function getSpecificationSettings($settings, $spec, $type) {
+        if (is_string($spec))
+            $spec = array("source" => $spec);
+        if (!is_array($spec))
+            throw new FileGeneratorException("invalid $type specification");
+        if (!array_key_exists("target", $spec))
+            $spec["target"] = $spec["source"];
+        $spec["source"] = $settings->getPath($spec["source"]);
+        if (($type === "file" && !file_exists($spec["source"])) ||
+            ($type === "directory" && !is_dir($spec["source"])))
+            throw new FileGeneratorException("$type \"$spec[source]\" does not exist");
+        return new SpecificationSettings($spec, $settings->getDirectory());
     }
 
     public function generateFiles() {
@@ -24,47 +61,25 @@ class FileGenerator extends AbstractGenerator {
             $target = $settings->getOptional("target", null);
 
             foreach ($settings->getOptional("files", array()) as $file) {
-                if (is_string($file))
-                    $file = array("source" => $file);
-                if (!is_array($file))
-                    throw new FileGeneratorException("invalid file specification");
-                if (!array_key_exists("target", $file))
-                    $file["target"] = $file["source"];
-                $fileSource = $settings->getPath($file["source"]);
-                if (!file_exists($fileSource))
-                    throw new FileGeneratorException("file \"$fileSource\" does not exist");
-
-                $fileTarget = fphp\Helper\Path::join($target, $file["target"]);
-                $files[] = new StoredFile($fileTarget, $fileSource);
-                $logFile->log($artifact, "added file \"$fileTarget\"");
+                $fileSettings = $this->getSpecificationSettings($settings, $file, "file");
+                $fileSettings->setTarget(fphp\Helper\Path::join($target, $fileSettings->getTarget()));
+                $files[] = new StoredFile($fileSettings->getTarget(), $fileSettings->getSource());
+                $logFile->log($artifact, "added file \"{$fileSettings->getTarget()}\"");
             }
 
             foreach ($settings->getOptional("directories", array()) as $directory) {
-                if (is_string($directory))
-                    $directory = array("source" => $directory);
-                if (!is_array($directory))
-                    throw new FileGeneratorException("invalid directory specification");
-                if (!array_key_exists("target", $directory))
-                    $directory["target"] = $directory["source"];
-                $directorySource = $settings->getPath($directory["source"]);
-                if (!is_dir($directorySource))
-                    throw new FileGeneratorException("directory \"$directorySource\" does not exist");
-                if (array_key_exists("exclude", $directory)) {
-                    if (!is_array($directory["exclude"]))
-                        throw new FileGeneratorException("invalid exclude specification");
-                } else
-                    $directory["exclude"] = array();
-
-                foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directorySource)) as $entry)
+                $directorySettings = $this->getSpecificationSettings($settings, $directory, "directory");
+                
+                foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directorySettings->getSource())) as $entry)
                     if (!fphp\Helper\Path::isDot($entry)) {
                         $fileSource = $entry->getPathName();
                         $relativeFileTarget = fphp\Helper\Path::stripBase(
-                            realpath($fileSource), realpath($directorySource));
-                        if (in_array($relativeFileTarget, $directory["exclude"]))
+                            realpath($fileSource), realpath($directorySettings->getSource()));
+                        if (in_array($relativeFileTarget, $directorySettings->getExclude()))
                             continue;
                         
                         $fileTarget = fphp\Helper\Path::join(
-                            $target, fphp\Helper\Path::join($directory["target"], $relativeFileTarget));
+                            $target, fphp\Helper\Path::join($directorySettings->getTarget(), $relativeFileTarget));
                         $files[] = new StoredFile($fileTarget, $fileSource);
                         $logFile->log($artifact, "added file \"$fileTarget\"");
                     }

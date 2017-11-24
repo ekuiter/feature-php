@@ -17,7 +17,7 @@ class NotFoundSettingsException extends SettingsException {
     }
 }
 
-abstract class AbstractSettings {
+class Settings {
     private $cfg;
     
     public function __construct($cfg, $directory = ".") {

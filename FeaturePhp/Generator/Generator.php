@@ -3,7 +3,7 @@
 namespace FeaturePhp\Generator;
 use \FeaturePhp as fphp;
 
-abstract class AbstractGenerator {
+abstract class Generator {
     protected $settings;
     protected $selectedArtifacts;
     protected $deselectedArtifacts;

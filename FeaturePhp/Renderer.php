@@ -3,7 +3,7 @@
 namespace FeaturePhp;
 use \FeaturePhp as fphp;
 
-abstract class AbstractRenderer {
+abstract class Renderer {
     abstract public function render();
 
     protected function getStyle() {

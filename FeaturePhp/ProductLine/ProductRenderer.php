@@ -3,7 +3,7 @@
 namespace FeaturePhp\ProductLine;
 use \FeaturePhp as fphp;
 
-class ProductRenderer extends fphp\AbstractRenderer {
+class ProductRenderer extends fphp\Renderer {
     private $product;
     
     public function __construct($product) {            

@@ -3,7 +3,7 @@
 namespace FeaturePhp\ProductLine;
 use \FeaturePhp as fphp;
 
-class Settings extends fphp\AbstractSettings {    
+class Settings extends fphp\Settings {    
     public function __construct($cfg, $directory = ".") {
         parent::__construct($cfg, $directory);
         

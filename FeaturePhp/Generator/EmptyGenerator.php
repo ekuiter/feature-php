@@ -3,7 +3,7 @@
 namespace FeaturePhp\Generator;
 use \FeaturePhp as fphp;
 
-class EmptyGenerator extends AbstractGenerator {        
+class EmptyGenerator extends Generator {        
     public function __construct($settings) {
         parent::__construct($settings);
     }

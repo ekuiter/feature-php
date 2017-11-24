@@ -3,7 +3,7 @@
 namespace FeaturePhp\Generator;
 use \FeaturePhp as fphp;
 
-class RuntimeGenerator extends AbstractGenerator {
+class RuntimeGenerator extends Generator {
     private $class;
     private $target;
     private $getter;

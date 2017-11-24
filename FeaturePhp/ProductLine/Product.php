@@ -27,7 +27,7 @@ class Product {
 
     private function getAllGenerators() {
         $allGenerators = array();
-        foreach (fphp\Generator\AbstractGenerator::getGeneratorMap() as $key => $klass)            
+        foreach (fphp\Generator\Generator::getGeneratorMap() as $key => $klass)            
             $allGenerators[$key] = new $klass($this->productLine->getGeneratorSettings($key));
         return $allGenerators;
     }
