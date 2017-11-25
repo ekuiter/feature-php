@@ -14,6 +14,10 @@ class StoredFile extends File {
     public function getContents() {
         return "stored file at \"$this->fileSource\"";
     }
+
+    public static function fromFileSpecification($fileSpecification) {        
+        return new self($fileSpecification->getTarget(), $fileSpecification->getSource());
+    }
 }
 
 ?>
