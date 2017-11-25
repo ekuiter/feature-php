@@ -3,7 +3,7 @@
 namespace FeaturePhp\Generator;
 use \FeaturePhp as fphp;
 
-class FileGeneratorException extends \Exception {}
+class CopyGeneratorException extends \Exception {}
 
 class SpecificationSettings extends fphp\Settings {    
     public function __construct($cfg, $directory = ".") {
@@ -28,26 +28,26 @@ class SpecificationSettings extends fphp\Settings {
     }
 }
 
-class FileGenerator extends Generator {    
+class CopyGenerator extends Generator {    
     public function __construct($settings) {
         parent::__construct($settings);
     }
 
     public static function getKey() {
-        return "file";
+        return "copy";
     }
 
     private function getSpecificationSettings($settings, $spec, $type) {
         if (is_string($spec))
             $spec = array("source" => $spec);
         if (!is_array($spec))
-            throw new FileGeneratorException("invalid $type specification");
+            throw new CopyGeneratorException("invalid $type specification");
         if (!array_key_exists("target", $spec))
             $spec["target"] = $spec["source"];
         $spec["source"] = $settings->getPath($spec["source"]);
         if (($type === "file" && !file_exists($spec["source"])) ||
             ($type === "directory" && !is_dir($spec["source"])))
-            throw new FileGeneratorException("$type \"$spec[source]\" does not exist");
+            throw new CopyGeneratorException("$type \"$spec[source]\" does not exist");
         return new SpecificationSettings($spec, $settings->getDirectory());
     }
 

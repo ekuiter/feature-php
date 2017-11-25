@@ -37,12 +37,6 @@ class ProductLine {
             $configuration = $this->defaultConfiguration;
         return new Product($this, $configuration);
     }
-
-    public function renderAnalysis($configuration = null) {
-        if (!$configuration)
-            $configuration = $this->defaultConfiguration;
-        (new fphp\Model\ConfigurationRenderer($configuration))->render();
-    }
 }
 
 ?>

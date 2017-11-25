@@ -7,7 +7,7 @@ class Settings extends fphp\Settings {
     public function __construct($cfg, $directory = ".") {
         parent::__construct($cfg, $directory);
 
-        $this->setOptional("generators", array());
+        $this->setOptional("generators", $cfg);
         $generators = $this->getWith("generators", "is_array");
 
         foreach ($generators as $key => $generator)

@@ -42,4 +42,8 @@ class Configuration {
     public function isValid() {
         return $this->model->getConstraintSolver()->isValid($this);
     }
+
+    public function renderAnalysis() {
+        (new ConfigurationRenderer($this))->render();
+    }
 }

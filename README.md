@@ -1,5 +1,13 @@
 ## feature-php
 
+This is a work-in-progress Composer package for analyzing FeaturePHP feature models and
+generating tailored variants of software product lines.
+
+[Here](https://github.com/ekuiter/feature-example) you can find an example of its usage
+as well as below.
+
+(Documentation will be expanded when the package is stable.)
+
 ### Example
 
 ```php
@@ -39,11 +47,11 @@ try {
             $productLine->getModel(),
             Model\XmlConfiguration::fromRequest("configuration")
         );
-    else
-        $configuration = null; // if not supplied, use the default configuration
+    else // if not supplied, use the default configuration
+        $configuration = $productLine->getDefaultConfiguration();
 
     // just output some information on the model and configuration
-    $productLine->renderAnalysis($configuration);
+    $configuration->renderAnalysis();
     
 } catch (\Exception $e) {
     echo $e->getMessage();
