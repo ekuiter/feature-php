@@ -19,9 +19,9 @@ class TemplateGenerator extends Generator {
             $settings = $artifact->getGeneratorSettings(self::getKey());
 
             foreach ($settings->getOptional("files", array()) as $file) {
-                $fileSpecification = fphp\Specification\FileSpecification::fromArray($file, $settings);
-                $files[] = fphp\File\TemplateFile::fromFileSpecification($fileSpecification);
-                $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
+                $templateSpecification = fphp\Specification\TemplateSpecification::fromArray($file, $settings);
+                $files[] = fphp\File\TemplateFile::fromSpecification($templateSpecification);
+                $this->logFile->log($artifact, "added file \"{$templateSpecification->getTarget()}\"");
             }
         }
 

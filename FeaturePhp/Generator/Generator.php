@@ -14,7 +14,8 @@ abstract class Generator {
             "\FeaturePhp\Generator\EmptyGenerator",
             "\FeaturePhp\Generator\CopyGenerator",
             "\FeaturePhp\Generator\RuntimeGenerator",
-            "\FeaturePhp\Generator\TemplateGenerator"
+            "\FeaturePhp\Generator\TemplateGenerator",
+            "\FeaturePhp\Generator\ChunkGenerator"
         );
     }
 

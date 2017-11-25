@@ -18,7 +18,7 @@ class TemplateFile extends StoredFile {
         return $contents;
     }
 
-    public static function fromFileSpecification($templateSpecification) {        
+    public static function fromSpecification($templateSpecification) {        
         return new self($templateSpecification->getTarget(),
                         $templateSpecification->getSource(),
                         $templateSpecification->getRules());

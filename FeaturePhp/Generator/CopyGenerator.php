@@ -20,7 +20,7 @@ class CopyGenerator extends Generator {
 
             foreach ($settings->getOptional("files", array()) as $file) {
                 $fileSpecification = fphp\Specification\FileSpecification::fromArray($file, $settings);
-                $files[] = fphp\File\StoredFile::fromFileSpecification($fileSpecification);
+                $files[] = fphp\File\StoredFile::fromSpecification($fileSpecification);
                 $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
             }
 
@@ -28,7 +28,7 @@ class CopyGenerator extends Generator {
                 $directorySpecification = fphp\Specification\DirectorySpecification::fromArray($directory, $settings);
                 
                 foreach ($directorySpecification->getFileSpecifications() as $fileSpecification) {
-                    $files[] = fphp\File\StoredFile::fromFileSpecification($fileSpecification);
+                    $files[] = fphp\File\StoredFile::fromSpecification($fileSpecification);
                     $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
                 }
             }

@@ -6,8 +6,8 @@ use \FeaturePhp as fphp;
 class TextFile extends File {
     private $contents;
     
-    public function __construct($fileName, $contents = null) {
-        parent::__construct($fileName);
+    public function __construct($fileTarget, $contents = null) {
+        parent::__construct($fileTarget);
         $this->contents = $contents ? $contents : "";
     }
 
