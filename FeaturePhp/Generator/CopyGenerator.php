@@ -12,17 +12,16 @@ class CopyGenerator extends Generator {
         return "copy";
     }
 
-    public function generateFiles() {
-        $logFile = new fphp\File\LogFile("file");
-        $files = array($logFile);
-
+    public function _generateFiles() {
+        $files = array();
+        
         foreach ($this->selectedArtifacts as $artifact) {
             $settings = $artifact->getGeneratorSettings(self::getKey());
 
             foreach ($settings->getOptional("files", array()) as $file) {
                 $fileSpecification = fphp\Specification\FileSpecification::fromArray($file, $settings);
                 $files[] = fphp\File\StoredFile::fromFileSpecification($fileSpecification);
-                $logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
+                $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
             }
 
             foreach ($settings->getOptional("directories", array()) as $directory) {
@@ -30,7 +29,7 @@ class CopyGenerator extends Generator {
                 
                 foreach ($directorySpecification->getFileSpecifications() as $fileSpecification) {
                     $files[] = fphp\File\StoredFile::fromFileSpecification($fileSpecification);
-                    $logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
+                    $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
                 }
             }
         }

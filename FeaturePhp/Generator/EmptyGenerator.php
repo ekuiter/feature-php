@@ -12,13 +12,11 @@ class EmptyGenerator extends Generator {
         return "empty";
     }
 
-    public function generateFiles() {
-        $logFile = new fphp\File\LogFile("empty");
-
+    public function _generateFiles() {
         foreach ($this->selectedArtifacts as $artifact)
-            $logFile->log($artifact, "nothing generated");
+            $this->logFile->log($artifact, "nothing generated");
 
-        return array($logFile);
+        return array();
     }
 }
 

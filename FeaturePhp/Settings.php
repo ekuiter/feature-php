@@ -40,6 +40,10 @@ class Settings {
     public static function fromArray($cfg, $directory = ".") {
         return new static($cfg, $directory);
     }
+
+    public static function inDirectory($directory) {
+        return new static(array(), $directory);
+    }
     
     public function getPath($fileName) {
         return fphp\Helper\Path::join($this->cfg["directory"], $fileName);

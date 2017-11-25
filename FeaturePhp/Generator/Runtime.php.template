@@ -36,8 +36,12 @@ class {{class}} {
             throw new InvalidArgumentException("\"$feature\" is not a valid feature");
     }
 
-    public static function hasFeature($feature) {
-        return self::getInstance()->_hasFeature($feature);
+    /**
+     * Returns whether the given feature has been selected
+     * using the global instance of {{class}}.
+     */
+    public static function {{getter}}($feature) {
+        return self::getInstance()->_{{getter}}($feature);
     }
 }
 

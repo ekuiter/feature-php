@@ -19,32 +19,32 @@ class RuntimeGenerator extends Generator {
         return "runtime";
     }
 
-    private function assign($template, $replace, $replacement) {
-        return str_replace("{{{$replace}}}", $replacement, $template);
-    }
-
-    private function encodeFeatureNames($logFile, $artifacts) {
+    private function encodeFeatureNames($artifacts) {
         $featureNames = array();
         foreach ($artifacts as $artifact) {
             $featureName = $artifact->getFeature()->getName();
             $featureNames[] = $featureName;
-            $logFile->log($artifact, "added runtime information in \"$this->target\"");
+            $this->logFile->log($artifact, "added runtime information in \"$this->target\"");
         }
         return str_replace("'", "\'", json_encode($featureNames));
     }
 
-    public function generateFiles() {        
-        $logFile = new fphp\File\LogFile("runtime");
-        
-        $template = file_get_contents(__DIR__ . "/Runtime.php.template");
-        $template = $this->assign($template, "class", $this->class);
-        $template = $this->assign($template, "getter", $this->getter);
-        $template = $this->assign($template, "selectedFeatures",
-                                  $this->encodeFeatureNames($logFile, $this->selectedArtifacts));
-        $template = $this->assign($template, "deselectedFeatures",
-                                  $this->encodeFeatureNames($logFile, $this->deselectedArtifacts));
-
-        return array($logFile, new fphp\File\TextFile($this->target, $template));
+    public function _generateFiles() {
+        return array(
+            fphp\File\TemplateFile::fromFileSpecification(
+                fphp\Specification\FileSpecification::fromArray(
+                    array(
+                        "source" => "Runtime.php.template",
+                        "target" => $this->target,
+                        "rules" => array(
+                            array("assign" => "class", "to" => $this->class),
+                            array("assign" => "getter", "to" => $this->getter),
+                            array("assign" => "selectedFeatures", "to" => $this->encodeFeatureNames($this->selectedArtifacts)),
+                            array("assign" => "deselectedFeatures", "to" => $this->encodeFeatureNames($this->deselectedArtifacts))
+                        )
+                    ), Settings::inDirectory(__DIR__))
+            )
+        );
     }
 }
 
