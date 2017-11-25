@@ -34,7 +34,7 @@ class RuntimeGenerator extends Generator {
     }
 
     public function generateFiles() {        
-        $logFile = new LogFile("runtime");
+        $logFile = new fphp\File\LogFile("runtime");
         
         $template = file_get_contents(__DIR__ . "/Runtime.php.template");
         $template = $this->assign($template, "class", $this->class);
@@ -44,7 +44,7 @@ class RuntimeGenerator extends Generator {
         $template = $this->assign($template, "deselectedFeatures",
                                   $this->encodeFeatureNames($logFile, $this->deselectedArtifacts));
 
-        return array($logFile, new TextFile($this->target, $template));
+        return array($logFile, new fphp\File\TextFile($this->target, $template));
     }
 }
 

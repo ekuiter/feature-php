@@ -12,7 +12,7 @@ class Settings extends fphp\Settings {
 
         foreach ($generators as $key => $generator)
             $this->set("generators", $key, self::getInstance(
-                $this->getIn($generators, $key), "\FeaturePhp\Generator\Settings"));
+                $generator, "\FeaturePhp\Generator\Settings"));
 
         if (count($this->get("generators")) === 0)
             $this->set("generators", "empty", fphp\Generator\Settings::emptyInstance());

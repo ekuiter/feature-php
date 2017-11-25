@@ -1,6 +1,6 @@
 <?
 
-namespace FeaturePhp\Generator;
+namespace FeaturePhp\Specification;
 use \FeaturePhp as fphp;
 
 class FileSpecificationException extends \Exception {}
@@ -8,6 +8,13 @@ class FileSpecificationException extends \Exception {}
 class FileSpecification extends Specification {
     public function __construct($cfg, $directory = ".") {
         parent::__construct($cfg, $directory);
+
+        $this->setOptional("rules", array());
+        $rules = $this->getWith("rules", "is_array");
+        $newRules = array();
+        foreach ($rules as $rule)
+            $newRules[] = self::getInstance($rule, "\FeaturePhp\Specification\ReplacementRule");
+        $this->set("rules", $newRules);
     }
 
     public static function fromArray($cfg, $settings) {
@@ -20,6 +27,10 @@ class FileSpecification extends Specification {
             throw new FileSpecificationException("file \"{$fileSpecification->getSource()}\" does not exist");
 
         return $fileSpecification;
+    }
+
+    public function getRules() {
+        return $this->get("rules");
     }
 }
 

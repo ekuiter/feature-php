@@ -1,6 +1,6 @@
 <?
 
-namespace FeaturePhp\Generator;
+namespace FeaturePhp\Specification;
 use \FeaturePhp as fphp;
 
 class DirectorySpecificationException extends \Exception {}

@@ -12,7 +12,8 @@ abstract class Generator {
         return array(
             "\FeaturePhp\Generator\EmptyGenerator",
             "\FeaturePhp\Generator\CopyGenerator",
-            "\FeaturePhp\Generator\RuntimeGenerator"
+            "\FeaturePhp\Generator\RuntimeGenerator",
+            "\FeaturePhp\Generator\TemplateGenerator"
         );
     }
 

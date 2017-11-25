@@ -1,13 +1,13 @@
 <?
 
-namespace FeaturePhp\Generator;
+namespace FeaturePhp\File;
 use \FeaturePhp as fphp;
 
 class LogFile extends TextFile {
     private $logs;
     
-    public function __construct($fileName) {
-        parent::__construct("logs/$fileName.log");
+    public function __construct($fileTarget) {
+        parent::__construct("logs/$fileTarget.log");
         $this->logs = array();
     }
 

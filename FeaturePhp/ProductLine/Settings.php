@@ -25,7 +25,7 @@ class Settings extends fphp\Settings {
         foreach ($artifacts as $key => $artifact)                
             $this->set("artifacts", $key, new fphp\Artifact\Artifact(
                 $this->get("model")->getFeature($key),
-                self::getInstance($this->getIn($artifacts, $key), "\FeaturePhp\Artifact\Settings")
+                self::getInstance($artifact, "\FeaturePhp\Artifact\Settings")
             ));
 
         $this->setOptional("artifactFile", "artifact.json");
@@ -64,8 +64,7 @@ class Settings extends fphp\Settings {
         $generators = $this->getWith("generators", "is_array");
         
         foreach ($generators as $key => $generator)
-            $this->set("generators", $key, self::getInstance(
-                $this->getIn($generators, $key), "\FeaturePhp\Generator\Settings"));
+            $this->set("generators", $key, self::getInstance($generator, "\FeaturePhp\Generator\Settings"));
     }
 }
 

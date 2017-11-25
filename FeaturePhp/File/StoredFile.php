@@ -1,13 +1,13 @@
 <?
 
-namespace FeaturePhp\Generator;
+namespace FeaturePhp\File;
 use \FeaturePhp as fphp;
 
 class StoredFile extends File {
-    private $fileSource;
+    protected $fileSource;
     
-    public function __construct($fileName, $fileSource) {
-        parent::__construct($fileName);
+    public function __construct($fileTarget, $fileSource) {
+        parent::__construct($fileTarget);
         $this->fileSource = $fileSource;
     }
 

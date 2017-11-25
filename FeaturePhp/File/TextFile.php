@@ -1,6 +1,6 @@
 <?
 
-namespace FeaturePhp\Generator;
+namespace FeaturePhp\File;
 use \FeaturePhp as fphp;
 
 class TextFile extends File {

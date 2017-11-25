@@ -13,7 +13,7 @@ class EmptyGenerator extends Generator {
     }
 
     public function generateFiles() {
-        $logFile = new LogFile("empty");
+        $logFile = new fphp\File\LogFile("empty");
 
         foreach ($this->selectedArtifacts as $artifact)
             $logFile->log($artifact, "nothing generated");
