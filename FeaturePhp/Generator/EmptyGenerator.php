@@ -15,8 +15,6 @@ class EmptyGenerator extends Generator {
     public function _generateFiles() {
         foreach ($this->selectedArtifacts as $artifact)
             $this->logFile->log($artifact, "nothing generated");
-
-        return array();
     }
 }
 

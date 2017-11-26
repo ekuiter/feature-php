@@ -23,12 +23,12 @@ class ProductRenderer extends fphp\Renderer {
         echo "<ul>";
 
         foreach ($this->files as $file) {
-            $contents = $file->getContents();
+            $summary = $file->getContent()->getSummary();
             echo "<li><span class='fileName' onclick='var style = this.parentElement.children[1].style;
                                                       style.display = style.display === \"block\" ? \"none\" : \"block\";'>"
-                . $file->getFileTarget()
+                . $file->getTarget()
                 . "</span><pre style='font-size: 0.8em; display: none'>"
-                . str_replace("\n", "<br />", htmlspecialchars($contents)) . "</pre>"
+                . str_replace("\n", "<br />", htmlspecialchars($summary)) . "</pre>"
                 . "</li>";
         }
 

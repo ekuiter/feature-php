@@ -10,11 +10,11 @@ abstract class File {
         $this->fileTarget = fphp\Helper\Path::resolve($fileTarget);
     }
 
-    public function getFileTarget() {
+    public function getTarget() {
         return $this->fileTarget;
     }
 
-    abstract public function getContents();
+    abstract public function getContent();
 }
 
 ?>

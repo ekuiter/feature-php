@@ -55,8 +55,8 @@ class Product {
             if ($generator->hasArtifacts())
                 $files = array_merge($files, $generator->generateFiles());
 
-        $files = fphp\Helper\_Array::assertNoDuplicates($files, "getFileTarget");
-        $files = fphp\Helper\_Array::sortByKey($files, "getFileTarget");
+        $files = fphp\Helper\_Array::assertNoDuplicates($files, "getTarget");
+        $files = fphp\Helper\_Array::sortByKey($files, "getTarget");
         return $files;
     }
 

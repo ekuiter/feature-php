@@ -12,15 +12,13 @@ class CopyGenerator extends Generator {
         return "copy";
     }
 
-    public function _generateFiles() {
-        $files = array();
-        
+    public function _generateFiles() {        
         foreach ($this->selectedArtifacts as $artifact) {
             $settings = $artifact->getGeneratorSettings(self::getKey());
 
             foreach ($settings->getOptional("files", array()) as $file) {
                 $fileSpecification = fphp\Specification\FileSpecification::fromArray($file, $settings);
-                $files[] = fphp\File\StoredFile::fromSpecification($fileSpecification);
+                $this->files[] = fphp\File\StoredFile::fromSpecification($fileSpecification);
                 $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
             }
 
@@ -28,13 +26,11 @@ class CopyGenerator extends Generator {
                 $directorySpecification = fphp\Specification\DirectorySpecification::fromArray($directory, $settings);
                 
                 foreach ($directorySpecification->getFileSpecifications() as $fileSpecification) {
-                    $files[] = fphp\File\StoredFile::fromSpecification($fileSpecification);
+                    $this->files[] = fphp\File\StoredFile::fromSpecification($fileSpecification);
                     $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
                 }
             }
         }
-
-        return $files;
     }
 }
 

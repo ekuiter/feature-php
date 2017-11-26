@@ -13,19 +13,15 @@ class TemplateGenerator extends Generator {
     }
 
     public function _generateFiles() {
-        $files = array();
-
         foreach ($this->selectedArtifacts as $artifact) {
             $settings = $artifact->getGeneratorSettings(self::getKey());
 
             foreach ($settings->getOptional("files", array()) as $file) {
                 $templateSpecification = fphp\Specification\TemplateSpecification::fromArray($file, $settings);
-                $files[] = fphp\File\TemplateFile::fromSpecification($templateSpecification);
+                $this->files[] = fphp\File\TemplateFile::fromSpecification($templateSpecification);
                 $this->logFile->log($artifact, "added file \"{$templateSpecification->getTarget()}\"");
             }
         }
-
-        return $files;
     }
 }
 

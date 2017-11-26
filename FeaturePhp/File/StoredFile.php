@@ -11,8 +11,8 @@ class StoredFile extends File {
         $this->fileSource = $fileSource;
     }
 
-    public function getContents() {
-        return "stored file at \"$this->fileSource\"";
+    public function getContent() {
+        return new StoredFileContent($this->fileSource);
     }
 
     public static function fromSpecification($fileSpecification) {        

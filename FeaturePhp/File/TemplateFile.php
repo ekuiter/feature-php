@@ -11,11 +11,11 @@ class TemplateFile extends StoredFile {
         $this->rules = $rules;
     }
 
-    public function getContents() {
-        $contents = file_get_contents($this->fileSource);
+    public function getContent() {
+        $content = file_get_contents($this->fileSource);
         foreach ($this->rules as $rule)
-            $contents = $rule->apply($contents);
-        return $contents;
+            $content = $rule->apply($content);
+        return new TextFileContent($content);
     }
 
     public static function fromSpecification($templateSpecification) {        

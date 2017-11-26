@@ -25,8 +25,9 @@ class ChunkFile extends TextFile {
         $this->append($chunkSpecification->getText() . $this->newline);
     }
 
-    public function getContents() {
-        return parent::getContents() . ($this->footer === "" ? "" : $this->footer . $this->newline);
+    public function getContent() {
+        return new TextFileContent(
+            $this->content . ($this->footer === "" ? "" : $this->footer . $this->newline));
     }
 }
 

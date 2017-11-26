@@ -8,6 +8,7 @@ abstract class Generator {
     protected $selectedArtifacts;
     protected $deselectedArtifacts;
     protected $logFile;
+    protected $files;
 
     private static function getGenerators() {
         return array(
@@ -30,6 +31,7 @@ abstract class Generator {
         $this->settings = $settings;
         $this->selectedArtifacts = array();
         $this->deselectedArtifacts = array();
+        $this->files = null;
         $this->logFile = new fphp\File\LogFile(static::getKey());
     }
 
@@ -50,7 +52,11 @@ abstract class Generator {
     }
 
     public function generateFiles() {
-        return array_merge(array($this->logFile), $this->_generateFiles());
+        if ($this->files === null) {
+            $this->files = array();
+            $this->_generateFiles();
+        }
+        return array_merge(array($this->logFile), $this->files);
     }
 
     abstract public static function getKey();

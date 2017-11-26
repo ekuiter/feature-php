@@ -4,19 +4,19 @@ namespace FeaturePhp\File;
 use \FeaturePhp as fphp;
 
 class TextFile extends File {
-    private $contents;
+    protected $content;
     
-    public function __construct($fileTarget, $contents = null) {
+    public function __construct($fileTarget, $content = null) {
         parent::__construct($fileTarget);
-        $this->contents = $contents ? $contents : "";
+        $this->content = $content ? $content : "";
     }
 
-    public function getContents() {
-        return $this->contents;
+    public function getContent() {
+        return new TextFileContent($this->content);
     }
 
-    public function append($contents) {
-        $this->contents .= $contents;
+    public function append($content) {
+        $this->content .= $content;
     }
 }
 

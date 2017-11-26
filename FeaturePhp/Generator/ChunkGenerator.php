@@ -20,8 +20,10 @@ class ChunkGenerator extends Generator {
 
     private function getChunkFile($chunkSpecification) {
         $target = $chunkSpecification->getTarget();
-        if (!array_key_exists($target, $this->chunkFiles))
+        if (!array_key_exists($target, $this->chunkFiles)) {
             $this->chunkFiles[$target] = fphp\File\ChunkFile::fromSpecification($chunkSpecification);
+            $this->logFile->log(null, "added file \"{$chunkSpecification->getTarget()}\"");
+        }
         return $this->chunkFiles[$target];
     }
 
@@ -36,10 +38,8 @@ class ChunkGenerator extends Generator {
             }
         }
 
-        $files = array();
         foreach ($this->chunkFiles as $chunkFile)
-            $files[] = $chunkFile;
-        return $files;
+            $this->files[] = $chunkFile;
     }
 }
 

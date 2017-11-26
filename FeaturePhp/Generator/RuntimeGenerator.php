@@ -30,20 +30,18 @@ class RuntimeGenerator extends Generator {
     }
 
     public function _generateFiles() {
-        return array(
-            fphp\File\TemplateFile::fromSpecification(
-                fphp\Specification\TemplateSpecification::fromArray(
-                    array(
-                        "source" => "Runtime.php.template",
-                        "target" => $this->target,
-                        "rules" => array(
-                            array("assign" => "class", "to" => $this->class),
-                            array("assign" => "getter", "to" => $this->getter),
-                            array("assign" => "selectedFeatures", "to" => $this->encodeFeatureNames($this->selectedArtifacts)),
-                            array("assign" => "deselectedFeatures", "to" => $this->encodeFeatureNames($this->deselectedArtifacts))
-                        )
-                    ), Settings::inDirectory(__DIR__))
-            )
+        $this->files[] = fphp\File\TemplateFile::fromSpecification(
+            fphp\Specification\TemplateSpecification::fromArray(
+                array(
+                    "source" => "Runtime.php.template",
+                    "target" => $this->target,
+                    "rules" => array(
+                        array("assign" => "class", "to" => $this->class),
+                        array("assign" => "getter", "to" => $this->getter),
+                        array("assign" => "selectedFeatures", "to" => $this->encodeFeatureNames($this->selectedArtifacts)),
+                        array("assign" => "deselectedFeatures", "to" => $this->encodeFeatureNames($this->deselectedArtifacts))
+                    )
+                ), Settings::inDirectory(__DIR__))
         );
     }
 }

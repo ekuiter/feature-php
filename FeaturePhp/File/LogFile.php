@@ -11,12 +11,12 @@ class LogFile extends TextFile {
         $this->logs = array();
     }
 
-    public function log($artifact, $contents) {
-        $this->logs[] = array($artifact, $contents);
+    public function log($artifact, $content) {
+        $this->logs[] = array($artifact, $content);
     }
 
-    public function getContents() {
-        $contents = "";
+    public function getContent() {
+        $content = "";
         $maxLen = 0;
 
         foreach ($this->logs as $log)
@@ -26,9 +26,9 @@ class LogFile extends TextFile {
             }
         
         foreach ($this->logs as $log)
-            $contents .= sprintf("%-{$maxLen}s | $log[1]\n", $log[0] ? $log[0]->getFeature()->getName() : "");
+            $content .= sprintf("%-{$maxLen}s | $log[1]\n", $log[0] ? $log[0]->getFeature()->getName() : "");
         
-        return $contents;
+        return new TextFileContent($content);
     }
 }
 
