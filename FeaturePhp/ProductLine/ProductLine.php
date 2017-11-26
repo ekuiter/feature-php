@@ -8,8 +8,6 @@ class ProductLine {
     
     public function __construct($settings) {
         $this->settings = $settings;
-        $this->model = $settings->get("model");
-        $this->defaultConfiguration = $settings->get("defaultConfiguration");
     }
 
     public function getSettings() {
@@ -17,11 +15,15 @@ class ProductLine {
     }
 
     public function getModel() {
-        return $this->model;
+        return $this->settings->get("model");
+    }
+
+    public function getName() {
+        return $this->settings->get("name");
     }
 
     public function getDefaultConfiguration() {
-        return $this->defaultConfiguration;
+        return $this->settings->get("defaultConfiguration");
     }
 
     public function getArtifact($feature) {

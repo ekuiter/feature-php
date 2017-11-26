@@ -10,23 +10,20 @@ class ConfigurationRenderer extends fphp\Renderer {
         $this->configuration = $configuration;
     }
 
-    public function render() {
-        echo "<table><tr><td valign='top'>";
+    public function _render() {
         echo "<h2>Model Analysis</h2>";
         $this->analyzeModel($this->configuration->getModel());
         echo "</td><td valign='top'>";
         echo "<h2>Configuration Analysis</h2>";
         $this->analyzeConfiguration($this->configuration);
-        echo "</td></tr></table>";
     }
 
-    public function analyzeModel($model) {
+    private function analyzeModel($model) {
         $featureNum = count($model->getFeatures());
         $rootFeatureName = $model->getRootFeature()->getName();
         $constraintNum = count($model->getConstraintSolver()->getConstraints());
         $ruleNum = count($model->getXmlModel()->getRules());
 
-        echo $this->getStyle();
         echo "<div>";
         echo "<p>The given feature model with the root feature <span class='feature'>$rootFeatureName</span> "
             . "has the following $featureNum features:</p>";
@@ -46,10 +43,9 @@ class ConfigurationRenderer extends fphp\Renderer {
         echo "</div>";
     }
 
-    public function analyzeConfiguration($configuration) {
+    private function analyzeConfiguration($configuration) {
         $validity = $configuration->isValid() ? "valid" : "invalid";
         
-        echo $this->getStyle();
         echo "<div style='font-family: monospace'>";
         echo "<p>The given configuration has the following feature selection:</p>";
         echo "<ul>";

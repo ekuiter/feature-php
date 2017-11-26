@@ -10,6 +10,9 @@ class Settings extends fphp\Settings {
         // instantiate model
         $this->set("model", new fphp\Model\Model(self::getInstance($this->get("model"), "\FeaturePhp\Model\XmlModel")));
 
+        $this->setOptional("name", $this->get("model")->getRootFeature()->getName());
+        $this->getWith("name", "is_string");
+
         // instantiate default configuration
         $this->set("defaultConfiguration", new fphp\Model\Configuration(
             $this->get("model"),

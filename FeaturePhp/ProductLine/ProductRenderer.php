@@ -11,12 +11,10 @@ class ProductRenderer extends fphp\Renderer {
         $this->files = $this->product->generateFiles();
     }
 
-    public function render() {
+    public function _render() {
         $featureNum = count($this->product->getConfiguration()->getSelectedFeatures());
         $fileNum = count($this->files);
         
-        echo $this->getStyle();
-        echo "<table><tr><td valign='top'>";
         echo "<h2>Product Analysis</h2>";
         echo "<div>";
         echo "<p>For the given product, $featureNum features were selected and the following $fileNum files were generated:</p>";
@@ -34,6 +32,5 @@ class ProductRenderer extends fphp\Renderer {
 
         echo "</ul>";
         echo "</div>";
-        echo "</td></tr></table>";
     }
 }

@@ -4,8 +4,6 @@ namespace FeaturePhp;
 use \FeaturePhp as fphp;
 
 abstract class Renderer {
-    abstract public function render();
-
     protected function getStyle() {
         return "<style>
                     body { font-family: monospace; }
@@ -15,6 +13,15 @@ abstract class Renderer {
                     .fileName { cursor: pointer; }
                 </style>";
     }
+
+    public function render() {
+        echo $this->getStyle();
+        echo "<table><tr><td valign='top'>";
+        $this->_render();
+        echo "</td></tr></table>";
+    }
+
+    abstract protected function _render();
 }
 
 ?>

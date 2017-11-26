@@ -60,6 +60,10 @@ class Product {
         return $files;
     }
 
+    public function export($exporter) {
+        $exporter->export($this);
+    }
+
     public function renderAnalysis() {
         (new ProductRenderer($this))->render();
     }
