@@ -1,0 +1,647 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>feature-php » FeaturePhp</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">feature-php</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/FeaturePhp.html"><i class="icon-th"></i> FeaturePhp</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Namespaces</li>
+<li>
+<a href="../namespaces/FeaturePhp.html" title="FeaturePhp"><i class="icon-th"></i>FeaturePhp</a><ul class="nav nav-list nav-namespaces">
+<li>
+<a href="../namespaces/FeaturePhp.Artifact.html" title="Artifact"><i class="icon-th"></i>Artifact</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/FeaturePhp.Exporter.html" title="Exporter"><i class="icon-th"></i>Exporter</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/FeaturePhp.File.html" title="File"><i class="icon-th"></i>File</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/FeaturePhp.Generator.html" title="Generator"><i class="icon-th"></i>Generator</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/FeaturePhp.Helper.html" title="Helper"><i class="icon-th"></i>Helper</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/FeaturePhp.Model.html" title="Model"><i class="icon-th"></i>Model</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/FeaturePhp.ProductLine.html" title="ProductLine"><i class="icon-th"></i>ProductLine</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li>
+<a href="../namespaces/FeaturePhp.Specification.html" title="Specification"><i class="icon-th"></i>Specification</a><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Classes" class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#SettingsException" title="Exception thrown from the Settings class.">SettingsException</a></li>
+<li><a href="#InvalidSettingsException" title="Exception thrown from the Settings class regarding invalid settings arrays.">InvalidSettingsException</a></li>
+<li><a href="#NotFoundSettingsException" title="Exception thrown from the Settings class regarding settings that are not present.">NotFoundSettingsException</a></li>
+<li><a href="#Settings" title="A general key-value store for user-supplied settings.">Settings</a></li>
+<li><a href="#Renderer" title="A minimalistic renderer for a web page.">Renderer</a></li>
+</ul>
+</div>
+<div class="span8 namespace-contents">
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li class="active"><a href="../namespaces/FeaturePhp.html">FeaturePhp</a></li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i title="Class" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="InvalidSettingsException" class="element ajax clickable class">
+<h1>InvalidSettingsException<a href="../classes/FeaturePhp.InvalidSettingsException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the Settings class regarding invalid settings arrays.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.InvalidSettingsException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="NotFoundSettingsException" class="element ajax clickable class">
+<h1>NotFoundSettingsException<a href="../classes/FeaturePhp.NotFoundSettingsException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the Settings class regarding settings that are not present.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.NotFoundSettingsException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Renderer" class="element ajax clickable class">
+<h1>Renderer<a href="../classes/FeaturePhp.Renderer.html">¶</a>
+</h1>
+<p class="short_description">A minimalistic renderer for a web page.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Renderer.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Settings" class="element ajax clickable class">
+<h1>Settings<a href="../classes/FeaturePhp.Settings.html">¶</a>
+</h1>
+<p class="short_description">A general key-value store for user-supplied settings.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Settings.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="SettingsException" class="element ajax clickable class">
+<h1>SettingsException<a href="../classes/FeaturePhp.SettingsException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the Settings class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.SettingsException.html" class="more">« More »</a>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/FeaturePhp.html">FeaturePhp</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/FeaturePhp.Artifact.html">Artifact</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i title="Class" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="Artifact" class="element ajax clickable class">
+<h1>Artifact<a href="../classes/FeaturePhp.Artifact.Artifact.html">¶</a>
+</h1>
+<p class="short_description">An artifact associated with a feature.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Artifact.Artifact.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Settings" class="element ajax clickable class">
+<h1>Settings<a href="../classes/FeaturePhp.Artifact.Settings.html">¶</a>
+</h1>
+<p class="short_description">Settings for an artifact.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Artifact.Settings.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/FeaturePhp.html">FeaturePhp</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/FeaturePhp.Exporter.html">Exporter</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i title="Class" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="DownloadZipExporter" class="element ajax clickable class">
+<h1>DownloadZipExporter<a href="../classes/FeaturePhp.Exporter.DownloadZipExporter.html">¶</a>
+</h1>
+<p class="short_description">Exports products as ZIP archives and offers them for downloading.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Exporter.DownloadZipExporter.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="DownloadZipExporterException" class="element ajax clickable class">
+<h1>DownloadZipExporterException<a href="../classes/FeaturePhp.Exporter.DownloadZipExporterException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the DownloadZipExporter class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Exporter.DownloadZipExporterException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Exporter" class="element ajax clickable class">
+<h1>Exporter<a href="../classes/FeaturePhp.Exporter.Exporter.html">¶</a>
+</h1>
+<p class="short_description">An exporter for a product.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Exporter.Exporter.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ZipExporter" class="element ajax clickable class">
+<h1>ZipExporter<a href="../classes/FeaturePhp.Exporter.ZipExporter.html">¶</a>
+</h1>
+<p class="short_description">Exports products as ZIP archives.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Exporter.ZipExporter.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ZipExporterException" class="element ajax clickable class">
+<h1>ZipExporterException<a href="../classes/FeaturePhp.Exporter.ZipExporterException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the ZipExporter class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Exporter.ZipExporterException.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/FeaturePhp.html">FeaturePhp</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/FeaturePhp.File.html">File</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i title="Class" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="ChunkFile" class="element ajax clickable class">
+<h1>ChunkFile<a href="../classes/FeaturePhp.File.ChunkFile.html">¶</a>
+</h1>
+<p class="short_description">A text file generated from multiple chunks.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.File.ChunkFile.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="File" class="element ajax clickable class">
+<h1>File<a href="../classes/FeaturePhp.File.File.html">¶</a>
+</h1>
+<p class="short_description">A file generated for a product.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.File.File.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="FileContent" class="element ajax clickable class">
+<h1>FileContent<a href="../classes/FeaturePhp.File.FileContent.html">¶</a>
+</h1>
+<p class="short_description">A file's content.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.File.FileContent.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="LogFile" class="element ajax clickable class">
+<h1>LogFile<a href="../classes/FeaturePhp.File.LogFile.html">¶</a>
+</h1>
+<p class="short_description">A text file containing generator logs.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.File.LogFile.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="StoredFile" class="element ajax clickable class">
+<h1>StoredFile<a href="../classes/FeaturePhp.File.StoredFile.html">¶</a>
+</h1>
+<p class="short_description">A file stored on the server.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.File.StoredFile.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="StoredFileContent" class="element ajax clickable class">
+<h1>StoredFileContent<a href="../classes/FeaturePhp.File.StoredFileContent.html">¶</a>
+</h1>
+<p class="short_description">A stored file's content.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.File.StoredFileContent.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="TemplateFile" class="element ajax clickable class">
+<h1>TemplateFile<a href="../classes/FeaturePhp.File.TemplateFile.html">¶</a>
+</h1>
+<p class="short_description">A text file in which specific parts may be replaced.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.File.TemplateFile.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="TextFile" class="element ajax clickable class">
+<h1>TextFile<a href="../classes/FeaturePhp.File.TextFile.html">¶</a>
+</h1>
+<p class="short_description">A file containing arbitrary text.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.File.TextFile.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="TextFileContent" class="element ajax clickable class">
+<h1>TextFileContent<a href="../classes/FeaturePhp.File.TextFileContent.html">¶</a>
+</h1>
+<p class="short_description">A text file's content.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.File.TextFileContent.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/FeaturePhp.html">FeaturePhp</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/FeaturePhp.Generator.html">Generator</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i title="Class" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="ChunkGenerator" class="element ajax clickable class">
+<h1>ChunkGenerator<a href="../classes/FeaturePhp.Generator.ChunkGenerator.html">¶</a>
+</h1>
+<p class="short_description">Generates text files from multiple chunks.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Generator.ChunkGenerator.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="CopyGenerator" class="element ajax clickable class">
+<h1>CopyGenerator<a href="../classes/FeaturePhp.Generator.CopyGenerator.html">¶</a>
+</h1>
+<p class="short_description">Copies files and directories.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Generator.CopyGenerator.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="EmptyGenerator" class="element ajax clickable class">
+<h1>EmptyGenerator<a href="../classes/FeaturePhp.Generator.EmptyGenerator.html">¶</a>
+</h1>
+<p class="short_description">Generates no files.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Generator.EmptyGenerator.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Generator" class="element ajax clickable class">
+<h1>Generator<a href="../classes/FeaturePhp.Generator.Generator.html">¶</a>
+</h1>
+<p class="short_description">Generates a product's files.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Generator.Generator.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="RuntimeGenerator" class="element ajax clickable class">
+<h1>RuntimeGenerator<a href="../classes/FeaturePhp.Generator.RuntimeGenerator.html">¶</a>
+</h1>
+<p class="short_description">Generates a file with runtime information.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Generator.RuntimeGenerator.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Settings" class="element ajax clickable class">
+<h1>Settings<a href="../classes/FeaturePhp.Generator.Settings.html">¶</a>
+</h1>
+<p class="short_description">Settings for a generator.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Generator.Settings.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="TemplateGenerator" class="element ajax clickable class">
+<h1>TemplateGenerator<a href="../classes/FeaturePhp.Generator.TemplateGenerator.html">¶</a>
+</h1>
+<p class="short_description">Generates text files by replacing parts of template files.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Generator.TemplateGenerator.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/FeaturePhp.html">FeaturePhp</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/FeaturePhp.Helper.html">Helper</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i title="Class" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="ArrayException" class="element ajax clickable class">
+<h1>ArrayException<a href="../classes/FeaturePhp.Helper.ArrayException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the _Array class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Helper.ArrayException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Logic" class="element ajax clickable class">
+<h1>Logic<a href="../classes/FeaturePhp.Helper.Logic.html">¶</a>
+</h1>
+<p class="short_description">Helper class for propositional logic.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Helper.Logic.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Path" class="element ajax clickable class">
+<h1>Path<a href="../classes/FeaturePhp.Helper.Path.html">¶</a>
+</h1>
+<p class="short_description">Helper class for handling file and directory paths.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Helper.Path.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="PathException" class="element ajax clickable class">
+<h1>PathException<a href="../classes/FeaturePhp.Helper.PathException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the Path class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Helper.PathException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="XmlParser" class="element ajax clickable class">
+<h1>XmlParser<a href="../classes/FeaturePhp.Helper.XmlParser.html">¶</a>
+</h1>
+<p class="short_description">Helper class for parsing XML files.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Helper.XmlParser.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="XmlParserException" class="element ajax clickable class">
+<h1>XmlParserException<a href="../classes/FeaturePhp.Helper.XmlParserException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the XmlParser class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Helper.XmlParserException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="_Array" class="element ajax clickable class">
+<h1>_Array<a href="../classes/FeaturePhp.Helper._Array.html">¶</a>
+</h1>
+<p class="short_description">Helper class for working with arrays.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Helper._Array.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/FeaturePhp.html">FeaturePhp</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/FeaturePhp.Model.html">Model</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i title="Class" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="Configuration" class="element ajax clickable class">
+<h1>Configuration<a href="../classes/FeaturePhp.Model.Configuration.html">¶</a>
+</h1>
+<p class="short_description">A configuration of a software product line.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.Configuration.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ConfigurationRenderer" class="element ajax clickable class">
+<h1>ConfigurationRenderer<a href="../classes/FeaturePhp.Model.ConfigurationRenderer.html">¶</a>
+</h1>
+<p class="short_description">A renderer for a configuration and its model.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.ConfigurationRenderer.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ConstraintSolver" class="element ajax clickable class">
+<h1>ConstraintSolver<a href="../classes/FeaturePhp.Model.ConstraintSolver.html">¶</a>
+</h1>
+<p class="short_description">A solver for feature constraints.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.ConstraintSolver.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ConstraintSolverException" class="element ajax clickable class">
+<h1>ConstraintSolverException<a href="../classes/FeaturePhp.Model.ConstraintSolverException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the ConstraintSolver class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.ConstraintSolverException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Feature" class="element ajax clickable class">
+<h1>Feature<a href="../classes/FeaturePhp.Model.Feature.html">¶</a>
+</h1>
+<p class="short_description">A feature of a feature model.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.Feature.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Model" class="element ajax clickable class">
+<h1>Model<a href="../classes/FeaturePhp.Model.Model.html">¶</a>
+</h1>
+<p class="short_description">A feature model for a software product line.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.Model.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ModelException" class="element ajax clickable class">
+<h1>ModelException<a href="../classes/FeaturePhp.Model.ModelException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the Model class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.ModelException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="XmlConfiguration" class="element ajax clickable class">
+<h1>XmlConfiguration<a href="../classes/FeaturePhp.Model.XmlConfiguration.html">¶</a>
+</h1>
+<p class="short_description">A configuration represented in XML.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.XmlConfiguration.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="XmlConfigurationException" class="element ajax clickable class">
+<h1>XmlConfigurationException<a href="../classes/FeaturePhp.Model.XmlConfigurationException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the XmlConfiguration class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.XmlConfigurationException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="XmlModel" class="element ajax clickable class">
+<h1>XmlModel<a href="../classes/FeaturePhp.Model.XmlModel.html">¶</a>
+</h1>
+<p class="short_description">A feature model represented in XML.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.XmlModel.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="XmlModelException" class="element ajax clickable class">
+<h1>XmlModelException<a href="../classes/FeaturePhp.Model.XmlModelException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the XmlModel class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.XmlModelException.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/FeaturePhp.html">FeaturePhp</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/FeaturePhp.ProductLine.html">ProductLine</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i title="Class" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="Product" class="element ajax clickable class">
+<h1>Product<a href="../classes/FeaturePhp.ProductLine.Product.html">¶</a>
+</h1>
+<p class="short_description">A product of a software product line.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.ProductLine.Product.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ProductException" class="element ajax clickable class">
+<h1>ProductException<a href="../classes/FeaturePhp.ProductLine.ProductException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the Product class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.ProductLine.ProductException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ProductLine" class="element ajax clickable class">
+<h1>ProductLine<a href="../classes/FeaturePhp.ProductLine.ProductLine.html">¶</a>
+</h1>
+<p class="short_description">A feature-oriented software product line.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.ProductLine.ProductLine.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ProductRenderer" class="element ajax clickable class">
+<h1>ProductRenderer<a href="../classes/FeaturePhp.ProductLine.ProductRenderer.html">¶</a>
+</h1>
+<p class="short_description">A renderer for a product.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.ProductLine.ProductRenderer.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Settings" class="element ajax clickable class">
+<h1>Settings<a href="../classes/FeaturePhp.ProductLine.Settings.html">¶</a>
+</h1>
+<p class="short_description">Settings for a product line.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.ProductLine.Settings.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-th"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/FeaturePhp.html">FeaturePhp</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../namespaces/FeaturePhp.Specification.html">Specification</a>
+</li>
+</ul>
+<div class="namespace-indent">
+<h3>
+<i title="Class" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="ChunkSpecification" class="element ajax clickable class">
+<h1>ChunkSpecification<a href="../classes/FeaturePhp.Specification.ChunkSpecification.html">¶</a>
+</h1>
+<p class="short_description">Settings for specifying a chunk of a text file.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Specification.ChunkSpecification.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="DirectorySpecification" class="element ajax clickable class">
+<h1>DirectorySpecification<a href="../classes/FeaturePhp.Specification.DirectorySpecification.html">¶</a>
+</h1>
+<p class="short_description">Settings for specifying a directory recursively.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Specification.DirectorySpecification.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="DirectorySpecificationException" class="element ajax clickable class">
+<h1>DirectorySpecificationException<a href="../classes/FeaturePhp.Specification.DirectorySpecificationException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the DirectorySpecification class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Specification.DirectorySpecificationException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="FileSpecification" class="element ajax clickable class">
+<h1>FileSpecification<a href="../classes/FeaturePhp.Specification.FileSpecification.html">¶</a>
+</h1>
+<p class="short_description">Settings for specifying a single file.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Specification.FileSpecification.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="FileSpecificationException" class="element ajax clickable class">
+<h1>FileSpecificationException<a href="../classes/FeaturePhp.Specification.FileSpecificationException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the FileSpecification class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Specification.FileSpecificationException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ReplacementRule" class="element ajax clickable class">
+<h1>ReplacementRule<a href="../classes/FeaturePhp.Specification.ReplacementRule.html">¶</a>
+</h1>
+<p class="short_description">Settings for specifying a replacement rule in a template specification.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Specification.ReplacementRule.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ReplacementRuleException" class="element ajax clickable class">
+<h1>ReplacementRuleException<a href="../classes/FeaturePhp.Specification.ReplacementRuleException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the ReplacementRule class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Specification.ReplacementRuleException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Specification" class="element ajax clickable class">
+<h1>Specification<a href="../classes/FeaturePhp.Specification.Specification.html">¶</a>
+</h1>
+<p class="short_description">Settings for specifying an entity relevant to a generated file.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Specification.Specification.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="SpecificationException" class="element ajax clickable class">
+<h1>SpecificationException<a href="../classes/FeaturePhp.Specification.SpecificationException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the Specification class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Specification.SpecificationException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="TemplateSpecification" class="element ajax clickable class">
+<h1>TemplateSpecification<a href="../classes/FeaturePhp.Specification.TemplateSpecification.html">¶</a>
+</h1>
+<p class="short_description">Settings for specifying a text file in which specific parts may be replaced.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Specification.TemplateSpecification.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
+            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+</div>
+</body>
+</html>
