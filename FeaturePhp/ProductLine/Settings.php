@@ -1,9 +1,34 @@
 <?
 
+/**
+ * The FeaturePhp\ProductLine\Settings class.
+ */
+
 namespace FeaturePhp\ProductLine;
 use \FeaturePhp as fphp;
 
-class Settings extends fphp\Settings {    
+/**
+ * Settings for a product line.
+ * The {@see ProductLine} settings follow the structure:
+ * - root (object)
+ *   - model (mixed*) - a FeatureIDE feature model (see {@see \FeaturePhp\Model\XmlModel})
+ *   - name (string) - the name of the product line
+ *   - defaultConfiguration (mixed*) - a FeatureIDE configuration used by default (see {@see \FeaturePhp\Model\XmlConfiguration})
+ *   - artifactDirectory (string) - a directory with directories that are named
+ *     after features and contain an artifact file
+ *   - artifactFile (string) - artifact file used when an artifact directory is specified
+ *   - artifacts (mixed*) - an object from artifact keys to {@see \FeaturePhp\Artifact\Settings}
+ *   - generators (mixed*) - an object from generator keys to {@see \FeaturePhp\Generator\Settings}
+ *
+ * mixed* means that a string, object or bool can be given according
+ * to {@see \FeaturePhp\Settings::getInstance()}.
+ */
+class Settings extends fphp\Settings {
+    /**
+     * Creates settings.
+     * @param array $cfg a plain settings array
+     * @param string $directory the directory the settings apply to
+     */
     public function __construct($cfg, $directory = ".") {
         parent::__construct($cfg, $directory);
         

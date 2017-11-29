@@ -1,15 +1,36 @@
 <?
 
+/**
+ * The FeaturePhp\Model\ConfigurationRenderer class.
+ */
+
 namespace FeaturePhp\Model;
 use \FeaturePhp as fphp;
 
+/**
+ * A renderer for a configuration and its model.
+ * This renders a {@see Configuration} and its {@see Model} analysis as a web page.
+ * The model analysis includes a list of features and descriptions.
+ * The configuration analysis lists selected and deselected features and evaluates
+ * the configuration's validity.
+ */
 class ConfigurationRenderer extends fphp\Renderer {
+    /**
+     * @var Configuration $configuration the configuration that will be analyzed
+     */
     private $configuration;
-    
+
+    /**
+     * Creates a configuration renderer.
+     * @param Configuration $configuration
+     */
     public function __construct($configuration) {            
         $this->configuration = $configuration;
     }
 
+    /**
+     * Echoes the model and configuration analysis.
+     */
     public function _render() {
         echo "<h2>Model Analysis</h2>";
         $this->analyzeModel($this->configuration->getModel());
@@ -18,6 +39,10 @@ class ConfigurationRenderer extends fphp\Renderer {
         $this->analyzeConfiguration($this->configuration);
     }
 
+    /**
+     * Echoes a model analysis.
+     * @param Model $model
+     */
     private function analyzeModel($model) {
         $featureNum = count($model->getFeatures());
         $rootFeatureName = $model->getRootFeature()->getName();
@@ -43,6 +68,10 @@ class ConfigurationRenderer extends fphp\Renderer {
         echo "</div>";
     }
 
+    /**
+     * Echoes a configuration analysis.
+     * @param Configuration $configuration
+     */
     private function analyzeConfiguration($configuration) {
         $validity = $configuration->isValid() ? "valid" : "invalid";
         

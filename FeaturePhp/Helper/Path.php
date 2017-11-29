@@ -1,11 +1,28 @@
 <?
 
+/**
+ * The FeaturePhp\Helper\Path class.
+ */
+
 namespace FeaturePhp\Helper;
 use \FeaturePhp as fphp;
 
+/**
+ * Exception thrown from the Path class.
+ */
 class PathException extends \Exception {}
 
+/**
+ * Helper class for handling file and directory paths.
+ */
 class Path {
+    /**
+     * Strips a base from a file or directory path.
+     * If no base is supplied, the working directory is used.
+     * @param string $path
+     * @param string $base
+     * @return string
+     */
     public static function stripBase($path, $base = null) {
         if ($base === null)
             $base = getcwd();
@@ -15,14 +32,28 @@ class Path {
             throw new PathException("\"$path\" does not contain base path \"$base\"");
     }
     
-    // https://stackoverflow.com/q/1091107
+    /**
+     * Joins two file or directory paths.
+     * If the left path is null, returns the right path, making the
+     * left path optional (see {@see https://stackoverflow.com/q/1091107}).
+     * @param string|null $lhs
+     * @param string $rhs
+     * @return string
+     */
     public static function join($lhs, $rhs) {
         if ($lhs === null)
             return $rhs;
-        return rtrim($lhs, '/') .'/'. ltrim($rhs, '/');
+        return rtrim($lhs, '/') . '/' . ltrim($rhs, '/');
     }
 
-    // https://stackoverflow.com/q/20522605
+    /**
+     * Resolves a relative file or directory path.
+     * This only works for unambiguous paths not depending on the
+     * working directory (e.g. ../test can not be resolved)
+     * (see {@see https://stackoverflow.com/q/20522605}).
+     * @param string $fileName
+     * @return string
+     */
     public static function resolve($fileName) {
         $path = array();
         foreach(explode('/', $fileName) as $part) {
@@ -32,11 +63,16 @@ class Path {
             else if (count($path) > 0)
                 array_pop($path);
             else
-                throw new PathException("invalid path \"$fileName\"");
+                throw new PathException("can not resolve path \"$fileName\"");
         }
         return implode('/', $path);
     }
 
+    /**
+     * Returns whether a file path refers to the current or parent directory.
+     * @param string|SplFileInfo $fileName
+     * @return bool
+     */
     public static function isDot($fileName) {
         if (!is_string($fileName))
             $fileName = $fileName->getFileName();

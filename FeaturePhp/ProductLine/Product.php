@@ -1,14 +1,41 @@
 <?
 
+/**
+ * The FeaturePhp\ProductLine\Product class.
+ */
+
 namespace FeaturePhp\ProductLine;
 use \FeaturePhp as fphp;
 
+/**
+ * Exception thrown from the Product class.
+ */
 class ProductException extends \Exception {}
 
+/**
+ * A product of a software product line.
+ * A product is a concrete variant of a {@see ProductLine}.
+ * Its {@see \FeaturePhp\Model\Configuration} defines which features
+ * are selected and deselected.
+ * A product can be analyzed, generated (or derived) and exported automatically.
+ */
 class Product {
+    /**
+     * @var ProductLine $productLine the product line that this product derives
+     */
     private $productLine;
+
+    /**
+     * @var \FeaturePhp\Model\Configuration $configuration the product's configuration
+     */
     private $configuration;
-    
+
+    /**
+     * Creates a product.
+     * Throws {@see \FeaturePhp\ProductLine\ProductException} if the configuration is invalid.
+     * @param ProductLine $productLine
+     * @param \FeaturePhp\Model\Configuration $configuration
+     */
     public function __construct($productLine, $configuration) {
         $this->productLine = $productLine;
         $this->configuration = $configuration;
@@ -17,14 +44,27 @@ class Product {
             throw new ProductException("the given configuration is not valid");
     }
 
+    /**
+     * Returns the product's product line.
+     * @return ProductLine
+     */
     public function getProductLine() {
         return $this->productLine;
     }
 
+    /**
+     * Returns the product's configuration.
+     * @return \FeaturePhp\Model\Configuration
+     */
     public function getConfiguration() {
         return $this->configuration;
     }
 
+    /**
+     * Returns all generators.
+     * The generators are instantiated with their respective generator settings.
+     * @return \FeaturePhp\Generator\Generator[]
+     */
     private function getAllGenerators() {
         $allGenerators = array();
         foreach (fphp\Generator\Generator::getGeneratorMap() as $key => $klass)            
@@ -32,6 +72,14 @@ class Product {
         return $allGenerators;
     }
 
+    /**
+     * Adds a feature's artifact to all generators it specifies.
+     * This is done independently from whether the corresponding feature is
+     * selected or deselected to support generating code for both cases.
+     * @param \FeaturePhp\Generator\Generator[] $allGenerators
+     * @param \FeaturePhp\Model\Feature $feature
+     * @param callable $func whether to add a selected or deselected artifact
+     */
     private function addArtifactToUsedGenerators($allGenerators, $feature, $func) {
         $artifact = $this->productLine->getArtifact($feature);
         foreach ($artifact->getGenerators() as $key => $cfg) {
@@ -41,6 +89,12 @@ class Product {
         }
     }
 
+    /**
+     * Generates the product's files.
+     * To do this, every artifact is registered with the generators it specifies.
+     * Then every generator generates some files. Finally all the files are merged.
+     * @return \FeaturePhp\File\File[]
+     */
     public function generateFiles() {
         $allGenerators = $this->getAllGenerators();
 
@@ -60,10 +114,18 @@ class Product {
         return $files;
     }
 
+    /**
+     * Exports the product using an exporter.
+     * Depending on the exporter, this has a side effect, e.g. downloading a file.
+     * @param \FeaturePhp\Exporter\Exporter $exporter
+     */
     public function export($exporter) {
         $exporter->export($this);
     }
 
+    /**
+     * Analyzes the product by echoing a web page.
+     */
     public function renderAnalysis() {
         (new ProductRenderer($this))->render();
     }

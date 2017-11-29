@@ -1,16 +1,36 @@
 <?
 
+/**
+ * The FeaturePhp\ProductLine\ProductRenderer class.
+ */
+
 namespace FeaturePhp\ProductLine;
 use \FeaturePhp as fphp;
 
+/**
+ * A renderer for a product.
+ * This renders a {@see Product} analysis as a web page.
+ * In particular, a list of generated files and file content
+ * summaries is included.
+ */
 class ProductRenderer extends fphp\Renderer {
+    /**
+     * @var Product $product the product that will be analyzed
+     */
     private $product;
-    
+
+    /**
+     * Creates a product renderer.
+     * @param Product $product
+     */
     public function __construct($product) {            
         $this->product = $product;
         $this->files = $this->product->generateFiles();
     }
 
+    /**
+     * Echoes the product analysis.
+     */
     public function _render() {
         $featureNum = count($this->product->getConfiguration()->getSelectedFeatures());
         $fileNum = count($this->files);
