@@ -12,7 +12,7 @@ as well as below.
 
 ### Requirements
 
-PHP 5.3 is required with the SimpleXML extension. The zip extension is need for exporting products as ZIP files.
+PHP 5.3 is required with the SimpleXML extension. The zip extension is needed for exporting products as ZIP files.
 
 ### Getting started
 

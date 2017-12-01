@@ -15,15 +15,7 @@ use \FeaturePhp as fphp;
  * The rules are applied to the template files to generate new, configuration-specific
  * files.
  */
-class TemplateGenerator extends Generator {
-    /**
-     * Creates a template generator.
-     * @param Settings $settings
-     */
-    public function __construct($settings) {
-        parent::__construct($settings);
-    }
-
+class TemplateGenerator extends ExtendGenerator {
     /**
      * Returns the template generator's key.
      * @return string
@@ -33,19 +25,22 @@ class TemplateGenerator extends Generator {
     }
 
     /**
-     * Generates the template files.
-     * Only template specifications from selected artifacts are considered.
+     * Returns a template specification from a plain settings array.
+     * @param $file a plain settings array
+     * @param $settings the generator's settings
+     * @return \FeaturePhp\Specification\TemplateSpecification
      */
-    public function _generateFiles() {
-        foreach ($this->selectedArtifacts as $artifact) {
-            $settings = $artifact->getGeneratorSettings(self::getKey());
+    protected function getSpecification($file, $settings) {
+        return fphp\Specification\TemplateSpecification::fromArray($file, $settings);
+    }
 
-            foreach ($settings->getOptional("files", array()) as $file) {
-                $templateSpecification = fphp\Specification\TemplateSpecification::fromArray($file, $settings);
-                $this->files[] = fphp\File\TemplateFile::fromSpecification($templateSpecification);
-                $this->logFile->log($artifact, "added file \"{$templateSpecification->getTarget()}\"");
-            }
-        }
+    /**
+     * Returns a template file from a template specification.
+     * @param \FeaturePhp\Specification\TemplateSpecification $templateSpecification
+     * @return \FeaturePhp\File\TemplateFile
+     */
+    protected function getExtendableFileFromSpecification($templateSpecification) {
+        return fphp\File\TemplateFile::fromSpecification($templateSpecification);
     }
 }
 

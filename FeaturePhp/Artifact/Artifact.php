@@ -61,11 +61,19 @@ class Artifact {
     /**
      * Returns the artifact's settings for a given generator.
      * Returns empty settings if no settings are specified for the generator.
-     * @param \FeaturePhp\Generator\Generator $generator
+     * @param string $generator
      * @return \FeaturePhp\Generator\Settings
      */
     public function getGeneratorSettings($generator) {
         return $this->settings->getOptional("generators", $generator, fphp\Generator\Settings::emptyInstance());
+    }
+
+    /**
+     * Returns whether the artifact is registered with at least one generator.
+     * @return bool
+     */
+    public function isGenerated() {
+        return is_null($this->settings->getOptional("generators", "empty", null));
     }
 }
 

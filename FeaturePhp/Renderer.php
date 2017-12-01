@@ -23,6 +23,7 @@ abstract class Renderer {
                     .feature, .fileName { color: blue; font-weight: bold; }
                     .feature.selected { color: darkgreen; }
                     .feature.deselected { color: darkred; }
+                    .feature.unimplemented { color: black; }
                     .fileName { cursor: pointer; }
                 </style>";
     }

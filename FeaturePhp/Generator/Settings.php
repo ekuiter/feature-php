@@ -13,6 +13,11 @@ use \FeaturePhp as fphp;
  * - root (object)
  *   - files (array) - see {@see \FeaturePhp\Specification\ChunkSpecification}
  *
+ * or, alternatively:
+ * - root (object)
+ *   - filesIfSelected (array) - chunks to add if the artifact's feature is selected
+ *   - filesIfDeselected (array) - chunks to add if the artifact's feature is deselected
+ *
  * The {@see CopyGenerator} settings inside an artifact's generator settings
  * follow the structure:
  * - root (object)
@@ -30,6 +35,11 @@ use \FeaturePhp as fphp;
  * follow the structure:
  * - root (object)
  *   - files (array) - see {@see \FeaturePhp\Specification\TemplateSpecification}
+ *
+ * or, alternatively:
+ * - root (object)
+ *   - filesIfSelected (array) - rules to add if the artifact's feature is selected
+ *   - filesIfDeselected (array) - rules to add if the artifact's feature is deselected
  */
 class Settings extends fphp\Settings {
     /**

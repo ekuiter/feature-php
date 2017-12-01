@@ -13,7 +13,7 @@ use \FeaturePhp as fphp;
  * It has rules (see {@see \FeaturePhp\Specification\ReplacementRule}) which specify
  * parts of the file to be replaced, enabling simple feature-based templating systems.
  */
-class TemplateFile extends StoredFile {
+class TemplateFile extends StoredFile implements ExtendFile {
     /**
      * @var \FeaturePhp\Specification\ReplacementRule[] $rules rules to apply to the file content
      */
@@ -31,18 +31,6 @@ class TemplateFile extends StoredFile {
     }
 
     /**
-     * Returns the template file's content.
-     * The content consists of the file content with every rule applied.
-     * @return TextFileContent
-     */
-    public function getContent() {
-        $content = file_get_contents($this->fileSource);
-        foreach ($this->rules as $rule)
-            $content = $rule->apply($content);
-        return new TextFileContent($content);
-    }
-
-    /**
      * Creates a template file from a template specification.
      * See {@see \FeaturePhp\Specification\TemplateSpecification} for details.
      * @param \FeaturePhp\Specification\TemplateSpecification $templateSpecification
@@ -52,6 +40,28 @@ class TemplateFile extends StoredFile {
         return new self($templateSpecification->getTarget(),
                         $templateSpecification->getSource(),
                         $templateSpecification->getRules());
+    }
+
+    /**
+     * Adds rules to the template file.
+     * This is expected to be called only be a {@see \FeaturePhp\Generator\TemplateGenerator}.
+     * Only uses the rules of the template specification.
+     * @param \FeaturePhp\Specification\TemplateSpecification $templateSpecification
+     */
+    public function extend($templateSpecification) {
+        $this->rules = array_merge($this->rules, $templateSpecification->getRules());
+    }
+
+    /**
+     * Returns the template file's content.
+     * The content consists of the file content with every rule applied.
+     * @return TextFileContent
+     */
+    public function getContent() {
+        $content = file_get_contents($this->fileSource);
+        foreach ($this->rules as $rule)
+            $content = $rule->apply($content);
+        return new TextFileContent($content);
     }
 }
 

@@ -21,11 +21,18 @@ class ConfigurationRenderer extends fphp\Renderer {
     private $configuration;
 
     /**
+     * @var \FeaturePhp\ProductLine\ProductLine|null $productLine the associated product line
+     */
+    private $productLine;
+
+    /**
      * Creates a configuration renderer.
      * @param Configuration $configuration
+     * @param \FeaturePhp\ProductLine\ProductLine $productLine
      */
-    public function __construct($configuration) {            
+    public function __construct($configuration, $productLine = null) {            
         $this->configuration = $configuration;
+        $this->productLine = $productLine;
     }
 
     /**
@@ -56,7 +63,11 @@ class ConfigurationRenderer extends fphp\Renderer {
 
         foreach ($model->getFeatures() as $feature) {
             $description = $feature->getDescription();
-            echo "<li><span class='feature'>"
+            if ($this->productLine)
+                $class = $this->productLine->getArtifact($feature)->isGenerated() ? "" : "unimplemented";
+            else
+                $class = "";
+            echo "<li><span class='feature $class'>"
                 . $feature->getName()
                 . ($description ? "</span><br /><span style='font-size: 0.8em'>"
                    . str_replace("\n", "<br />", $description) . "</span>" : "")

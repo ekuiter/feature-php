@@ -10,7 +10,15 @@ use \FeaturePhp as fphp;
 /**
  * Exception thrown from the ReplacementRule class.
  */
-class ReplacementRuleException extends \Exception {}
+class InvalidReplacementRuleException extends \Exception {
+    /**
+     * Creates an invalid replacement rule exception.
+     * @param mixed $cfg
+     */
+    public function __construct($cfg) {
+        parent::__construct("invalid replacement rule \"" . json_encode($cfg) . "\"");
+    }
+}
 
 /**
  * Settings for specifying a replacement rule in a template specification.
@@ -30,6 +38,9 @@ class ReplacementRuleException extends \Exception {}
  * - root (object)
  *   - regex (string) - a regular expression
  *   - to (string) - a replacement string
+
+ * Instead of "to", "eval" can be specified to evaluate arbitrary PHP code
+ * that returns a replacement string.
  */
 class ReplacementRule extends fphp\Settings {
     /**
@@ -48,6 +59,21 @@ class ReplacementRule extends fphp\Settings {
     }
 
     /**
+     * Returns the rule's replacement string.
+     * This may call eval which seems evil, but only the product line
+     * administrator can use this in a configuration file.
+     * @return string
+     */
+    private function getReplacementString() {
+        if ($this->has("to"))
+            return $this->get("to");
+        else if ($this->has("eval"))
+            return eval($this->get("eval"));
+        else
+            throw new InvalidReplacementRuleException($this->cfg);
+    }
+
+    /**
      * Applies a replacement rule to a string.
      * Possible matching mechanisms include exact matches, Handlebars-style
      * template variables and regular expressions.
@@ -55,14 +81,14 @@ class ReplacementRule extends fphp\Settings {
      * @return string
      */
     public function apply($string) {
-        if ($this->has("from") && $this->has("to"))
-            return str_replace($this->get("from"), $this->get("to"), $string);
-        else if ($this->has("assign") && $this->has("to"))
-            return str_replace("{{{$this->get("assign")}}}", $this->get("to"), $string);
-        else if ($this->has("regex") && $this->has("to"))
-            return preg_replace($this->get("regex"), $this->get("to"), $string);
+        if ($this->has("from"))
+            return str_replace($this->get("from"), $this->getReplacementString(), $string);
+        else if ($this->has("assign"))
+            return str_replace("{{{$this->get("assign")}}}", $this->getReplacementString(), $string);
+        else if ($this->has("regex"))
+            return preg_replace($this->get("regex"), $this->getReplacementString(), $string);
         else
-            throw new ReplacementRuleException("invalid replacement rule \"" . json_encode($this->cfg) . "\"");
+            throw new InvalidReplacementRuleException($this->cfg);
     }
 }
 
