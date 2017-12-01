@@ -178,6 +178,9 @@ class ConstraintSolver {
         $op = $rule->getName();
         $num = $rule->count();
 
+        if ($op === "eq" && $num === 2)
+            return Logic::equiv($this->crossTreeConstraint($rule->children()[0]),
+                                $this->crossTreeConstraint($rule->children()[1]));
         if ($op === "imp" && $num === 2)
             return Logic::implies($this->crossTreeConstraint($rule->children()[0]),
                                   $this->crossTreeConstraint($rule->children()[1]));

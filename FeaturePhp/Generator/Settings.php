@@ -24,6 +24,15 @@ use \FeaturePhp as fphp;
  *   - files (array) - see {@see \FeaturePhp\Specification\FileSpecification}
  *   - directories (array) - see {@see \FeaturePhp\Specification\DirectorySpecification}
  *
+ * The {@see CopyGenerator} settings in the product line's generator settings
+ * follow the structure:
+ * - root (object)
+ *   - exclude (array) - file names to exclude globally, useful for files like .gitignore
+ *
+ * The {@see RuntimeGenerator} settings inside an artifact's generator settings
+ * follow the structure:
+ * - root (bool) - true to generate runtime information
+ *
  * The {@see RuntimeGenerator} settings in the product line's generator settings
  * follow the structure:
  * - root (object)
@@ -31,8 +40,7 @@ use \FeaturePhp as fphp;
  *   - target (string) - the runtime class file target in the generated product
  *   - getter (string) - the runtime class method for getting feature information
  *
- * The {@see TemplateGenerator} settings inside an artifact's generator settings
- * follow the structure:
+ * The {@see TemplateGenerator} settings follow the structure:
  * - root (object)
  *   - files (array) - see {@see \FeaturePhp\Specification\TemplateSpecification}
  *

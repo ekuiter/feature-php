@@ -18,11 +18,17 @@ use \FeaturePhp as fphp;
  */
 class CopyGenerator extends Generator {
     /**
+     * @var string[] $exclude list of globally excluded files
+     */
+    private $exclude;
+    
+    /**
      * Creates a copy generator.
      * @param Settings $settings
      */
     public function __construct($settings) {
         parent::__construct($settings);
+        $this->exclude = $settings->getOptional("exclude", array());
     }
 
     /**
@@ -31,6 +37,16 @@ class CopyGenerator extends Generator {
      */
     public static function getKey() {
         return "copy";
+    }
+
+    /**
+     * Adds a stored file from a specification.
+     * Considers globally excluded files. Only exact file names are supported.
+     * @param \FeaturePhp\Specification\FileSpecification $fileSpecification
+     */
+    private function addFileFromSpecification($fileSpecification) {
+        if (!in_array(basename($fileSpecification->getSource()), $this->exclude))
+            $this->files[] = fphp\File\StoredFile::fromSpecification($fileSpecification);
     }
 
     /**
@@ -44,7 +60,7 @@ class CopyGenerator extends Generator {
 
             foreach ($settings->getOptional("files", array()) as $file) {
                 $fileSpecification = fphp\Specification\FileSpecification::fromArray($file, $settings);
-                $this->files[] = fphp\File\StoredFile::fromSpecification($fileSpecification);
+                $this->addFileFromSpecification($fileSpecification);
                 $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
             }
 
@@ -52,7 +68,7 @@ class CopyGenerator extends Generator {
                 $directorySpecification = fphp\Specification\DirectorySpecification::fromArray($directory, $settings);
                 
                 foreach ($directorySpecification->getFileSpecifications() as $fileSpecification) {
-                    $this->files[] = fphp\File\StoredFile::fromSpecification($fileSpecification);
+                    $this->addFileFromSpecification($fileSpecification);
                     $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
                 }
             }
