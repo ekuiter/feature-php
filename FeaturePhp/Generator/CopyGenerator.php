@@ -50,6 +50,19 @@ class CopyGenerator extends Generator {
     }
 
     /**
+     * Returns plain settings arrays with file or directory specifications.
+     * @param Settings $settings
+     * @param string $key
+     * @return array[]
+     */
+    private function getFileOrDirectorySettings($settings, $key) {
+        $filesOrDirectories = $settings->getOptional($key, array());
+        if (!is_array($filesOrDirectories))
+            $filesOrDirectories = array($filesOrDirectories);
+        return $filesOrDirectories;
+    }
+
+    /**
      * Copies the files and directories.
      * Internally, this generates stored files (see {@see \FeaturePhp\File\StoredFile})
      * pointing to the original files on the server.
@@ -58,13 +71,13 @@ class CopyGenerator extends Generator {
         foreach ($this->selectedArtifacts as $artifact) {
             $settings = $artifact->getGeneratorSettings(self::getKey());
 
-            foreach ($settings->getOptional("files", array()) as $file) {
+            foreach ($this->getFileOrDirectorySettings($settings, "files") as $file) {
                 $fileSpecification = fphp\Specification\FileSpecification::fromArray($file, $settings);
                 $this->addFileFromSpecification($fileSpecification);
                 $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
             }
 
-            foreach ($settings->getOptional("directories", array()) as $directory) {
+            foreach ($this->getFileOrDirectorySettings($settings, "directories") as $directory) {
                 $directorySpecification = fphp\Specification\DirectorySpecification::fromArray($directory, $settings);
                 
                 foreach ($directorySpecification->getFileSpecifications() as $fileSpecification) {
