@@ -14,8 +14,8 @@ use \FeaturePhp as fphp;
  *   - model (mixed*) - a FeatureIDE feature model (see {@see \FeaturePhp\Model\XmlModel})
  *   - name (string) - the name of the product line
  *   - defaultConfiguration (mixed*) - a FeatureIDE configuration used by default (see {@see \FeaturePhp\Model\XmlConfiguration})
- *   - artifactDirectory (string) - a directory with directories that are named
- *     after features and contain an artifact file
+ *   - artifactDirectory (string) - a directory with a) directories that are named
+ *     after features and contain an artifact file and b) files that are named after features
  *   - artifactFile (string) - artifact file used when an artifact directory is specified
  *   - artifacts (mixed*) - an object from artifact keys to {@see \FeaturePhp\Artifact\Settings}
  *   - generators (mixed*) - an object from generator keys to {@see \FeaturePhp\Generator\Settings}
@@ -66,17 +66,28 @@ class Settings extends fphp\Settings {
                 }));
 
             foreach (scandir($artifactDirectory) as $entry) {
-                $directory = fphp\Helper\Path::join($artifactDirectory, $entry);
-                if (is_dir($directory) && !fphp\Helper\Path::isDot($entry) && in_array($this->get("artifactFile"), scandir($directory))) {
-                        if ($this->has($entry, $this->get("artifacts")))
-                            throw new fphp\SettingsException("there are multiple settings for \"$entry\"");
-                        
-                        $this->set("artifacts", $entry, new fphp\Artifact\Artifact(
-                            $this->get("model")->getFeature($entry),
-                            fphp\Artifact\Settings::fromFile(
-                                fphp\Helper\Path::join($directory, $this->get("artifactFile")))
+                $entity = fphp\Helper\Path::join($artifactDirectory, $entry);
+                if (is_dir($entity) && !fphp\Helper\Path::isDot($entry) && in_array($this->get("artifactFile"), scandir($entity))) {
+                    $feature = $this->get("model")->getFeature($entry, true);
+                    if ($this->has($feature->getName(), $this->get("artifacts")))
+                        throw new fphp\SettingsException("there are multiple settings for \"{$feature->getName()}\"");
+
+                    $this->set("artifacts", $feature->getName(), new fphp\Artifact\Artifact(
+                        $feature,
+                        fphp\Artifact\Settings::fromFile(
+                            fphp\Helper\Path::join($entity, $this->get("artifactFile")))
+                    ));
+                }
+                if (is_file($entity))
+                    try {
+                        $feature = $this->get("model")->getFeature(pathinfo($entity)["filename"], true);
+                        if ($this->has($feature->getName(), $this->get("artifacts")))
+                            throw new fphp\SettingsException("there are multiple settings for \"{$feature->getName()}\"");
+
+                        $this->set("artifacts", $feature->getName(), new fphp\Artifact\Artifact(
+                            $feature, fphp\Artifact\Settings::fromFile($entity)
                         ));
-                    }
+                    } catch (fphp\Model\ModelException $e) {}
             }
         }
 

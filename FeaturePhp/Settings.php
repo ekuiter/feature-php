@@ -72,7 +72,10 @@ class Settings {
      * @return Settings
      */
     public static function fromString($json, $directory = ".") {
-        return new static(json_decode($json, true), $directory);
+        $json = json_decode($json, true);
+        if (is_null($json))
+            throw new SettingsException("invalid json");
+        return new static($json, $directory);
     }
 
     /**

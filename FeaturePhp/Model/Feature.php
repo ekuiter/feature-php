@@ -89,6 +89,23 @@ class Feature {
     }
 
     /**
+     * Transforms a feature's name to a permissive name.
+     * @param string $name
+     * @return string
+     */
+    private static function _getPermissiveName($name) {
+        return str_replace(" ", "-", strtolower($name));
+    }
+
+    /**
+     * Returns the feature's permissive name.
+     * @return string
+     */
+    public function getPermissiveName() {
+        return self::_getPermissiveName($this->name);
+    }
+
+    /**
      * Returns the feature's description.
      * @return string
      */
@@ -138,12 +155,16 @@ class Feature {
 
     /**
      * Finds a feature by its name in a list of features.
+     * Permissive search ignores case and substitutes hyphens.
      * @param Feature[] $features
      * @param string $featureName
+     * @param bool $permissive
      * @return Feature
      */
-    public static function findByName($features, $featureName) {
-        return fphp\Helper\_Array::findByKey($features, "getName", $featureName);
+    public static function findByName($features, $featureName, $permissive = false) {
+        if ($permissive)
+            $featureName = self::_getPermissiveName($featureName);
+        return fphp\Helper\_Array::findByKey($features, $permissive ? "getPermissiveName" : "getName", $featureName);
     }
 
     /**

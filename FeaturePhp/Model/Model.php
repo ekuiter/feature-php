@@ -66,10 +66,11 @@ class Model {
     /**
      * Returns a feature in the feature model with a given name.
      * @param string $featureName
+     * @param bool $permissive
      * @return Feature
      */
-    public function getFeature($featureName) {
-        $feature = Feature::findByName($this->features, $featureName);
+    public function getFeature($featureName, $permissive = false) {
+        $feature = Feature::findByName($this->features, $featureName, $permissive);
         if (!$feature)
             throw new ModelException("the model has no feature named \"$featureName\"");
         return $feature;
