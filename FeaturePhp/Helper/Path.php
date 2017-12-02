@@ -78,6 +78,28 @@ class Path {
             $fileName = $fileName->getFileName();
         return $fileName === "." || $fileName === "..";
     }
+
+    /**
+     * Removes a directory recursively.
+     * (see {@see https://paulund.co.uk/php-delete-directory-and-files-in-directory})
+     * @param string $path
+     */
+    public static function removeDirectory($path) {
+        if (is_dir($path))
+            $dir = opendir($path);
+        if (!$dir)
+            return false;
+        while ($file = readdir($dir))
+            if (!self::isDot($file)) {
+	            if (!is_dir("$path/$file"))
+                    unlink("$path/$file");
+	            else
+                    self::removeDirectory("$path/$file");
+            }
+        closedir($dir);
+        rmdir($path);
+        return true;
+    }
 }
 
 ?>

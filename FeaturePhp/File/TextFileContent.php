@@ -42,6 +42,16 @@ class TextFileContent extends FileContent {
     public function addToZip($zip, $target) {
         return $zip->addFromString($target, $this->content);
     }
+
+    /**
+     * Copies the text file's content to the local filesystem.
+     * @param string $target the file target in the filesystem
+     */
+    public function copy($target) {
+        if (!parent::copy($target))
+            return false;
+        return file_put_contents($target, $this->content);
+    }
 }
 
 ?>

@@ -28,6 +28,18 @@ abstract class FileContent {
      * @param string $target the file target in the ZIP archive
      */
     abstract public function addToZip($zip, $target);
+
+    /**
+     * Copies file's content to the local filesystem.
+     * This is expected to be called only be a {@see \FeaturePhp\Exporter\LocalExporter}.
+     * @param string $target the file target in the filesystem
+     */
+    public function copy($target) {
+        if (!file_exists(dirname($target)))
+            if (!mkdir(dirname($target), 0777, true))
+                return false;
+        return true;
+    }
 }
 
 ?>

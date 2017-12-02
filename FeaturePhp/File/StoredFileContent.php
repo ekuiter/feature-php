@@ -43,6 +43,16 @@ class StoredFileContent extends FileContent {
     public function addToZip($zip, $target) {
         return $zip->addFile($this->fileSource, $target);
     }
+
+    /**
+     * Copies the stored file's content to the local filesystem.
+     * @param string $target the file target in the filesystem
+     */
+    public function copy($target) {
+        if (!parent::copy($target))
+            return false;
+        return copy($this->fileSource, $target);
+    }
 }
 
 ?>
