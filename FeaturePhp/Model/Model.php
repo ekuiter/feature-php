@@ -60,7 +60,7 @@ class Model {
      * @param \SimpleXMLElement $parent
      */
     public function addFeature($node, $parent) {
-        $this->features[] = new Feature($node, $parent, $node->children());
+        $this->features[] = Feature::fromNode($node, $parent);
     }
 
     /**

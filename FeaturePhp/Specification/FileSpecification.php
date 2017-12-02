@@ -42,10 +42,11 @@ class FileSpecification extends Specification {
      * relative to the settings.
      * @param array $cfg a plain settings array
      * @param \FeaturePhp\Settings $settings the settings context
+     * @param \FeaturePhp\Artifact\Artifact $artifact
      * @return FileSpecification
      */
-    public static function fromArray($cfg, $settings) {
-        $fileSpecification = new static($cfg, $settings->getDirectory());
+    public static function fromArray($cfg, $settings, $artifact = null) {
+        $fileSpecification = new static($cfg, $settings->getDirectory(), $artifact);
         $fileSpecification->set("source", $settings->getPath($fileSpecification->getSource()));
         $fileSpecification->set("target", fphp\Helper\Path::join(
             $settings->getOptional("target", null), $fileSpecification->getTarget()));

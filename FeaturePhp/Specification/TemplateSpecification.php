@@ -25,15 +25,19 @@ class TemplateSpecification extends ExtendSpecification {
      * Creates a template specification.
      * @param array $cfg a plain settings array
      * @param string $directory the directory the settings apply to
+     * @param \FeaturePhp\Artifact\Artifact $artifact
      */
-    public function __construct($cfg, $directory = ".") {
+    public function __construct($cfg, $directory = ".", $artifact = null) {
         parent::__construct($cfg, $directory);
 
         $this->setOptional("rules", array());
         $rules = $this->getWith("rules", "is_array");
         $newRules = array();
-        foreach ($rules as $rule)
-            $newRules[] = self::getInstance($rule, "\FeaturePhp\Specification\ReplacementRule");
+        foreach ($rules as $rule) {
+            $rule = self::getInstance($rule, "\FeaturePhp\Specification\ReplacementRule");
+            $rule->set("artifact", $artifact);
+            $newRules[] = $rule;
+        }
         $this->set("rules", $newRules);
     }
 

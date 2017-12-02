@@ -27,7 +27,7 @@ abstract class ExtendGenerator extends Generator {
         $this->extendableFiles = array();
 
         foreach ($this->getFileSettings($settings) as $file)
-            $this->getExtendableFile($this->getSpecification($file, $settings));
+            $this->getExtendableFile($this->getSpecification($file, $settings, null));
     }
 
     /**
@@ -60,7 +60,7 @@ abstract class ExtendGenerator extends Generator {
             $settings = $artifact->getGeneratorSettings(static::getKey());
 
             foreach (call_user_func(array($this, $fileSettingsGetter), $settings) as $file) {
-                $specification = $this->getSpecification($file, $settings);
+                $specification = $this->getSpecification($file, $settings, $artifact);
                 $extendableFile = $this->getExtendableFile($specification);
                 if ($extendableFile && $extend) {
                     $extendableFile->extend($specification);
@@ -114,11 +114,12 @@ abstract class ExtendGenerator extends Generator {
 
     /**
      * Returns a specification from a plain settings array.
-     * @param $file a plain settings array
-     * @param $settings the generator's settings
+     * @param array $file a plain settings array
+     * @param Settings $settings the generator's settings
+     * @param \FeaturePhp\Artifact\Artifact $artifact the currently processed artifact
      * @return \FeaturePhp\Specification\Specification
      */
-    abstract protected function getSpecification($file, $settings);
+    abstract protected function getSpecification($file, $settings, $artifact);
 
     /**
      * Returns an extendable file from a specification.

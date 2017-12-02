@@ -89,6 +89,21 @@ class Configuration {
     }
 
     /**
+     * Returns the configuration's value for a value feature.
+     * @param ValueFeature $feature
+     * @return string
+     */
+    public function getValue($feature) {
+        // side effect: checks for instanceof ValueFeature
+        $defaultValue = $feature->getDefaultValue();
+        $values = $this->xmlConfiguration->getValues();
+        if (array_key_exists($feature->getName(), $values))
+            return $values[$feature->getName()];
+        else
+            return $defaultValue;
+    }
+
+    /**
      * Returns whether the configuration is valid.
      * @return bool
      */

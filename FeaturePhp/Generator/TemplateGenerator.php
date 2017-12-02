@@ -26,12 +26,13 @@ class TemplateGenerator extends ExtendGenerator {
 
     /**
      * Returns a template specification from a plain settings array.
-     * @param $file a plain settings array
-     * @param $settings the generator's settings
+     * @param array $file a plain settings array
+     * @param Settings $settings the generator's settings
+     * @param \FeaturePhp\Artifact\Artifact $artifact the currently processed artifact
      * @return \FeaturePhp\Specification\TemplateSpecification
      */
-    protected function getSpecification($file, $settings) {
-        return fphp\Specification\TemplateSpecification::fromArray($file, $settings);
+    protected function getSpecification($file, $settings, $artifact) {
+        return fphp\Specification\TemplateSpecification::fromArray($file, $settings, $artifact);
     }
 
     /**

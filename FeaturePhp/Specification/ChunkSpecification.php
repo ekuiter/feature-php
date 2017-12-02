@@ -30,8 +30,9 @@ class ChunkSpecification extends ExtendSpecification {
      * Creates a chunk specification.
      * @param array $cfg a plain settings array
      * @param string $directory the directory the settings apply to
+     * @param \FeaturePhp\Artifact\Artifact $artifact
      */
-    public function __construct($cfg, $directory = ".") {
+    public function __construct($cfg, $directory = ".", $artifact = null) {
         parent::__construct($cfg, $directory);
 
         $this->setOptional("text", "");

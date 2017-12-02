@@ -37,16 +37,26 @@ class XmlConfiguration {
     private $selectedFeatureNames;
 
     /**
+     * @var string[] $values names of value features associated with their values
+     */
+    private $values;
+
+    /**
      * Creates an XML configuration.
      * @param \SimpleXMLElement $xml
      */
     public function __construct($xml) {
         $this->xml = $xml;
         $this->selectedFeatureNames = array();
+        $this->values = array();
 
-        foreach ($xml->children() as $child)
+        foreach ($xml->children() as $child) {
+            $featureName = (string) $child["name"];
             if ((string) $child["automatic"] === "selected" || (string) $child["manual"] === "selected")
-                $this->selectedFeatureNames[] = (string) $child["name"];
+                $this->selectedFeatureNames[] = $featureName;
+            if (!is_null($child["value"]))
+                $this->values[$featureName] = (string) $child["value"];
+        }
     }
 
     /**
@@ -110,5 +120,13 @@ class XmlConfiguration {
      */
     public function getSelectedFeatureNames() {
         return $this->selectedFeatureNames;
+    }
+
+    /**
+     * Returns the XML configuration's values.
+     * @return string[]
+     */
+    public function getValues() {
+        return $this->values;
     }
 }

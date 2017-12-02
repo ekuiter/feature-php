@@ -10,7 +10,12 @@ use \FeaturePhp as fphp;
 /**
  * Exception thrown from the ReplacementRule class.
  */
-class InvalidReplacementRuleException extends \Exception {
+class ReplacementRuleException extends \Exception {}
+
+/**
+ * Exception thrown from the ReplacementRule class regarding invalid settings arrays.
+ */
+class InvalidReplacementRuleException extends ReplacementRuleException {
     /**
      * Creates an invalid replacement rule exception.
      * @param mixed $cfg
@@ -39,14 +44,25 @@ class InvalidReplacementRuleException extends \Exception {
  *   - regex (string) - a regular expression
  *   - to (string) - a replacement string
 
- * Instead of "to", "eval" can be specified to evaluate arbitrary PHP code
- * that returns a replacement string.
+ * Instead of "to":
+ * - "eval" can be specified to evaluate arbitrary PHP code that returns a replacement string
+ * - "value" can be specified to use the value of a {@see \FeaturePhp\Model\ValueFeature}
+ *   as the replacement string. To use this, you need to set the configuration
+ *   with {@see setConfiguration()}. If "value" is true, just uses the supplied value.
+ *   If it is "integer", an integer value is expected.
+ *   If it is any other string, it is evaluated as PHP code with $value defined (returning true
+ *   uses the value, false indicates an invalid value and a string overrides the value).
  */
 class ReplacementRule extends fphp\Settings {
     /**
      * @var array $cfg a plain settings array
      */
     private $cfg;
+
+    /**
+     * @var \FeaturePhp\Model\Configuration $configuration the configuration used to get feature values
+     */
+    private static $configuration = null;
 
     /**
      * Creates a replacement rule.
@@ -56,6 +72,24 @@ class ReplacementRule extends fphp\Settings {
     public function __construct($cfg, $directory = ".") {
         parent::__construct($cfg, $directory);
         $this->cfg = $cfg;
+    }
+
+    /**
+     * Returns the configuration used to get feature values.
+     * @return \FeaturePhp\Model\Configuration
+     */
+    private static function getConfiguration() {
+        if (is_null(self::$configuration))
+            throw new ReplacementRuleException("to use value rules, set replacement rule configuration");
+        return self::$configuration;
+    }
+
+    /**
+     * Sets the configuration used to get feature values.
+     * @param \FeaturePhp\Model\Configuration $configuration
+     */
+    public static function setConfiguration($configuration) {
+        self::$configuration = $configuration;
     }
 
     /**
@@ -69,7 +103,21 @@ class ReplacementRule extends fphp\Settings {
             return $this->get("to");
         else if ($this->has("eval"))
             return eval($this->get("eval"));
-        else
+        else if ($this->has("value")) {
+            $feature = $this->get("artifact")->getFeature();
+            $value = self::getConfiguration()->getValue($feature);
+            $code = $this->get("value");
+            if ($code === true)
+                $code = 'return $value;';
+            if ($code === "integer")
+                $code = 'if (is_numeric($value)) return intval($value); else return false;';
+            $replacementString = eval($code);
+            if ($replacementString === false)
+                throw new ReplacementRuleException("invalid value for \"{$feature->getName()}\"");
+            if ($replacementString === true)
+                $replacementString = $value;
+            return $replacementString;
+        } else
             throw new InvalidReplacementRuleException($this->cfg);
     }
 

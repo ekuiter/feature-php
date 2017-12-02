@@ -8,6 +8,11 @@ namespace FeaturePhp\Model;
 use \FeaturePhp as fphp;
 
 /**
+ * Exception thrown from the Feature class.
+ */
+class FeatureException extends \Exception {}
+
+/**
  * A feature of a feature model.
  * > A feature is a characteristic or end-user-visible behavior of a software system.
 
@@ -81,6 +86,19 @@ class Feature {
     }
 
     /**
+     * Creates a feature from an XML node.
+     * @param \SimpleXMLElement $node
+     * @param \SimpleXMLElement $parent
+     * @return Feature
+     */
+    public static function fromNode($node, $parent) {
+        if (is_null($node["value"]))
+            return new Feature($node, $parent, $node->children());
+        else
+            return new ValueFeature($node, $parent, $node->children());
+    }
+
+    /**
      * Returns the feature's name.
      * @return string
      */
@@ -135,6 +153,14 @@ class Feature {
      */
     public function getOr() {
         return $this->or;
+    }
+
+    /**
+     * Returns the feature's default value.
+     * @return string
+     */
+    public function getDefaultValue() {
+        throw new FeatureException("not a value feature");
     }
 
     /**
