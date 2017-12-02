@@ -31,7 +31,7 @@ class ChunkGenerator extends ExtendGenerator {
      * @return \FeaturePhp\Specification\ChunkSpecification
      */
     protected function getSpecification($file, $settings, $artifact) {
-        return fphp\Specification\ChunkSpecification::fromArray($file, $settings);
+        return fphp\Specification\ChunkSpecification::fromArrayAndSettings($file, $settings);
     }
 
     /**

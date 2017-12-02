@@ -76,10 +76,10 @@ class CopyGenerator extends Generator {
 
             foreach ($this->getFileOrDirectorySettings($settings, "files") as $file)
                 $this->addFileFromSpecification(
-                    $artifact, fphp\Specification\FileSpecification::fromArray($file, $settings));
+                    $artifact, fphp\Specification\FileSpecification::fromArrayAndSettings($file, $settings));
 
             foreach ($this->getFileOrDirectorySettings($settings, "directories") as $directory) {
-                $directorySpecification = fphp\Specification\DirectorySpecification::fromArray($directory, $settings);
+                $directorySpecification = fphp\Specification\DirectorySpecification::fromArrayAndSettings($directory, $settings);
                 
                 foreach ($directorySpecification->getFileSpecifications() as $fileSpecification)
                     $this->addFileFromSpecification($artifact, $fileSpecification);

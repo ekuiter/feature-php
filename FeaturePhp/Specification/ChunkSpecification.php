@@ -53,7 +53,7 @@ class ChunkSpecification extends ExtendSpecification {
      * @param \FeaturePhp\Settings $settings the settings context
      * @return ChunkSpecification
      */
-    public static function fromArray($cfg, $settings) {
+    public static function fromArrayAndSettings($cfg, $settings) {
         $chunkSpecification = new static($cfg, $settings->getDirectory());
         $chunkSpecification->set("source", null);
         $chunkSpecification->set("target", fphp\Helper\Path::join(

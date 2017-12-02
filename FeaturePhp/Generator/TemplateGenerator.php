@@ -32,7 +32,7 @@ class TemplateGenerator extends ExtendGenerator {
      * @return \FeaturePhp\Specification\TemplateSpecification
      */
     protected function getSpecification($file, $settings, $artifact) {
-        return fphp\Specification\TemplateSpecification::fromArray($file, $settings, $artifact);
+        return fphp\Specification\TemplateSpecification::fromArrayAndSettings($file, $settings, $artifact);
     }
 
     /**

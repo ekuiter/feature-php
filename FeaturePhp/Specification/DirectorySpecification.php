@@ -45,7 +45,7 @@ class DirectorySpecification extends Specification {
      * @param \FeaturePhp\Settings $settings the settings context
      * @return DirectorySpecification
      */
-    public static function fromArray($cfg, $settings) {
+    public static function fromArrayAndSettings($cfg, $settings) {
         $directorySpecification = new self($cfg, $settings->getDirectory());
         $directorySpecification->set("source", $settings->getPath($directorySpecification->getSource()));
         $directorySpecification->set("baseTarget", $settings->getOptional("target", null));

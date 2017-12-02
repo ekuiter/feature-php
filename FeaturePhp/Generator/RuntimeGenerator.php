@@ -74,7 +74,7 @@ class RuntimeGenerator extends Generator {
      */
     public function _generateFiles() {
         $this->files[] = fphp\File\TemplateFile::fromSpecification(
-            fphp\Specification\TemplateSpecification::fromArray(
+            fphp\Specification\TemplateSpecification::fromArrayAndSettings(
                 array(
                     "source" => "Runtime.php.template",
                     "target" => $this->target,
