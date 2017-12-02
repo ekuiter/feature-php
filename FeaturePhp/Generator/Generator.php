@@ -102,11 +102,19 @@ abstract class Generator {
     }
 
     /**
+     * Returns all registered artifacts (selected and deselected).
+     * @return \FeaturePhp\Artifact\Artifact[]
+     */
+    public function getRegisteredArtifacts() {
+        return array_merge($this->selectedArtifacts, $this->deselectedArtifacts);
+    }
+
+    /**
      * Returns whether any artifacts are registered with the generator.
      * @return bool
      */
     public function hasArtifacts() {
-        return count($this->selectedArtifacts) > 0 || count($this->deselectedArtifacts) > 0;
+        return count($this->getRegisteredArtifacts()) > 0;
     }
 
     /**

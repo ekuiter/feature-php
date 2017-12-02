@@ -42,11 +42,14 @@ class CopyGenerator extends Generator {
     /**
      * Adds a stored file from a specification.
      * Considers globally excluded files. Only exact file names are supported.
+     * @param \FeaturePhp\Artifact\Artifact $artifact
      * @param \FeaturePhp\Specification\FileSpecification $fileSpecification
      */
-    private function addFileFromSpecification($fileSpecification) {
-        if (!in_array(basename($fileSpecification->getSource()), $this->exclude))
+    private function addFileFromSpecification($artifact, $fileSpecification) {
+        if (!in_array(basename($fileSpecification->getSource()), $this->exclude)) {
             $this->files[] = fphp\File\StoredFile::fromSpecification($fileSpecification);
+            $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
+        }
     }
 
     /**
@@ -71,19 +74,15 @@ class CopyGenerator extends Generator {
         foreach ($this->selectedArtifacts as $artifact) {
             $settings = $artifact->getGeneratorSettings(self::getKey());
 
-            foreach ($this->getFileOrDirectorySettings($settings, "files") as $file) {
-                $fileSpecification = fphp\Specification\FileSpecification::fromArray($file, $settings);
-                $this->addFileFromSpecification($fileSpecification);
-                $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
-            }
+            foreach ($this->getFileOrDirectorySettings($settings, "files") as $file)
+                $this->addFileFromSpecification(
+                    $artifact, fphp\Specification\FileSpecification::fromArray($file, $settings));
 
             foreach ($this->getFileOrDirectorySettings($settings, "directories") as $directory) {
                 $directorySpecification = fphp\Specification\DirectorySpecification::fromArray($directory, $settings);
                 
-                foreach ($directorySpecification->getFileSpecifications() as $fileSpecification) {
-                    $this->addFileFromSpecification($fileSpecification);
-                    $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
-                }
+                foreach ($directorySpecification->getFileSpecifications() as $fileSpecification)
+                    $this->addFileFromSpecification($artifact, $fileSpecification);
             }
         }
     }

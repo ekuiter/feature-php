@@ -20,7 +20,7 @@ use \FeaturePhp as fphp;
  * mixed* means that a string, object or bool can be given according
  * to {@see \FeaturePhp\Settings::getInstance()}.
  */
-class TemplateSpecification extends FileSpecification {
+class TemplateSpecification extends ExtendSpecification {
     /**
      * Creates a template specification.
      * @param array $cfg a plain settings array

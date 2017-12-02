@@ -25,7 +25,7 @@ use \FeaturePhp as fphp;
  *   - footer (string) - footer after all chunks
  *   - newline (bool) - whether to include new line characters after each chunk
  */
-class ChunkSpecification extends FileSpecification {
+class ChunkSpecification extends ExtendSpecification {
     /**
      * Creates a chunk specification.
      * @param array $cfg a plain settings array

@@ -33,31 +33,39 @@ abstract class ExtendGenerator extends Generator {
     /**
      * Creates an extendable file from a specification.
      * If the extendable file was already created, returns the cached extendable file.
+     * If the extendable file does not yet exist, create it if it may be created from
+     * this specification.
      * @param \FeaturePhp\Specification\Specification $specification
      * @return \FeaturePhp\File\ExtendableFile
      */
     private function getExtendableFile($specification) {
         $target = $specification->getTarget();
         if (!array_key_exists($target, $this->extendableFiles)) {
+            if (!$specification->mayCreate())
+                return null;
             $this->extendableFiles[$target] = $this->getExtendableFileFromSpecification($specification);
             $this->logFile->log(null, "added file \"{$specification->getTarget()}\"");
         }
         return $this->extendableFiles[$target];
     }
-
+    
     /**
      * Generates the extendable files for a set of artifacts and file settings.
      * @param \FeaturePhp\Artifact\Artifact[] $artifacts
      * @param callable $fileSettingsGetter
+     * @param bool $extend
      */
-    private function generateFilesForArtifacts($artifacts, $fileSettingsGetter) {
+    private function generateFilesForArtifacts($artifacts, $fileSettingsGetter, $extend) {
         foreach ($artifacts as $artifact) {
             $settings = $artifact->getGeneratorSettings(static::getKey());
 
             foreach (call_user_func(array($this, $fileSettingsGetter), $settings) as $file) {
                 $specification = $this->getSpecification($file, $settings);
-                $this->getExtendableFile($specification)->extend($specification);
-                $this->logFile->log($artifact, "extended file \"{$specification->getTarget()}\"");
+                $extendableFile = $this->getExtendableFile($specification);
+                if ($extendableFile && $extend) {
+                    $extendableFile->extend($specification);
+                    $this->logFile->log($artifact, "extended file \"{$specification->getTarget()}\"");
+                }
             }
         }
     }
@@ -65,9 +73,12 @@ abstract class ExtendGenerator extends Generator {
     /**
      * Generates the extendable files.
      */
-    public function _generateFiles() {
-        $this->generateFilesForArtifacts($this->selectedArtifacts, "getFileSettingsForSelected");
-        $this->generateFilesForArtifacts($this->deselectedArtifacts, "getFileSettingsForDeselected");
+    public function _generateFiles() {            
+        $this->generateFilesForArtifacts($this->selectedArtifacts, "getFileSettingsForSelected", false);
+        $this->generateFilesForArtifacts($this->deselectedArtifacts, "getFileSettingsForDeselected", false);
+        
+        $this->generateFilesForArtifacts($this->selectedArtifacts, "getFileSettingsForSelected", true);
+        $this->generateFilesForArtifacts($this->deselectedArtifacts, "getFileSettingsForDeselected", true);
 
         foreach ($this->extendableFiles as $extendableFile)
             $this->files[] = $extendableFile;
