@@ -36,18 +36,19 @@ class ConfigurationRenderer extends fphp\Renderer {
     }
 
     /**
-     * Echoes the model and configuration analysis.
+     * Returns the model and configuration analysis.
      */
     public function _render() {
-        echo "<h2>Model Analysis</h2>";
-        $this->analyzeModel($this->configuration->getModel());
-        echo "</td><td valign='top'>";
-        echo "<h2>Configuration Analysis</h2>";
-        $this->analyzeConfiguration($this->configuration);
+        $str = "<h2>Model Analysis</h2>";
+        $str .= $this->analyzeModel($this->configuration->getModel());
+        $str .= "</td><td valign='top'>";
+        $str .= "<h2>Configuration Analysis</h2>";
+        $str .= $this->analyzeConfiguration($this->configuration);
+        return $str;
     }
 
     /**
-     * Echoes a model analysis.
+     * Returns a model analysis.
      * @param Model $model
      */
     private function analyzeModel($model) {
@@ -56,10 +57,10 @@ class ConfigurationRenderer extends fphp\Renderer {
         $constraintNum = count($model->getConstraintSolver()->getConstraints());
         $ruleNum = count($model->getXmlModel()->getRules());
 
-        echo "<div>";
-        echo "<p>The given feature model with the root feature <span class='feature'>$rootFeatureName</span> "
-            . "has the following $featureNum features:</p>";
-        echo "<ul>";
+        $str = "<div>";
+        $str .= "<p>The given feature model with the root feature <span class='feature'>$rootFeatureName</span> "
+             . "has the following $featureNum features:</p>";
+        $str .= "<ul>";
 
         foreach ($model->getFeatures() as $feature) {
             $description = $feature->getDescription();
@@ -67,38 +68,40 @@ class ConfigurationRenderer extends fphp\Renderer {
                 $class = $this->productLine->getArtifact($feature)->isGenerated() ? "" : "unimplemented";
             else
                 $class = "";
-            echo "<li><span class='feature $class'>"
-                . $feature->getName()
-                . ($description ? "</span><br /><span style='font-size: 0.8em'>"
-                   . str_replace("\n", "<br />", $description) . "</span>" : "")
-                . "</li>";
+            $str .= "<li><span class='feature $class'>"
+                 . $feature->getName()
+                 . ($description ? "</span><br /><span style='font-size: 0.8em'>"
+                    . str_replace("\n", "<br />", $description) . "</span>" : "")
+                 . "</li>";
         }
 
-        echo "</ul>";
-        echo "<p>There are $constraintNum feature constraints ($ruleNum of them cross-tree constraints).</p>";
-        echo "</div>";
+        $str .= "</ul>";
+        $str .= "<p>There are $constraintNum feature constraints ($ruleNum of them cross-tree constraints).</p>";
+        $str .= "</div>";
+        return $str;
     }
 
     /**
-     * Echoes a configuration analysis.
+     * Returns a configuration analysis.
      * @param Configuration $configuration
      */
     private function analyzeConfiguration($configuration) {
         $validity = $configuration->isValid() ? "valid" : "invalid";
         
-        echo "<div style='font-family: monospace'>";
-        echo "<p>The given configuration has the following feature selection:</p>";
-        echo "<ul>";
+        $str = "<div style='font-family: monospace'>";
+        $str .= "<p>The given configuration has the following feature selection:</p>";
+        $str .= "<ul>";
 
         foreach ($configuration->getModel()->getFeatures() as $feature) {
             $isSelected = Feature::has($configuration->getSelectedFeatures(), $feature);
             $mark = $isSelected ? "x" : "&nbsp;";
             $class = $isSelected ? "selected" : "deselected";
-            echo "<li>[$mark] <span class='feature $class'>" . $feature->getName() . "</span></li>";
+            $str .= "<li>[$mark] <span class='feature $class'>" . $feature->getName() . "</span></li>";
         }
 
-        echo "</ul>";
-        echo "<p>This configuration is $validity.</p>";
-        echo "</div>";
+        $str .= "</ul>";
+        $str .= "<p>This configuration is $validity.</p>";
+        $str .= "</div>";
+        return $str;
     }
 }

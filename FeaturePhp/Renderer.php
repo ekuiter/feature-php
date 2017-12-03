@@ -29,17 +29,18 @@ abstract class Renderer {
     }
 
     /**
-     * Echoes the renderer's web page.
+     * Returns the renderer's web page.
      */
     public function render() {
-        echo $this->getStyle();
-        echo "<table><tr><td valign='top'>";
-        $this->_render();
-        echo "</td></tr></table>";
+        $str = $this->getStyle();
+        $str .= "<table><tr><td valign='top'>";
+        $str .= $this->_render();
+        $str .= "</td></tr></table>";
+        return $str;
     }
 
     /**
-     * Internal function for echoing the renderer's web page.
+     * Internal function for returning the renderer's web page.
      */
     abstract protected function _render();
 }

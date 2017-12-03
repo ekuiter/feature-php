@@ -29,20 +29,20 @@ class ProductRenderer extends fphp\Renderer {
     }
 
     /**
-     * Echoes the product analysis.
+     * Returns the product analysis.
      */
     public function _render() {
         $featureNum = count($this->product->getConfiguration()->getSelectedFeatures());
         $fileNum = count($this->files);
         
-        echo "<h2>Product Analysis</h2>";
-        echo "<div>";
-        echo "<p>For the given product, $featureNum features were selected and the following $fileNum files were generated:</p>";
-        echo "<ul>";
+        $str = "<h2>Product Analysis</h2>";
+        $str .= "<div>";
+        $str .= "<p>For the given product, $featureNum features were selected and the following $fileNum files were generated:</p>";
+        $str .= "<ul>";
 
         foreach ($this->files as $file) {
             $summary = $file->getContent()->getSummary();
-            echo "<li><span class='fileName' onclick='var style = this.parentElement.children[1].style;
+            $str .= "<li><span class='fileName' onclick='var style = this.parentElement.children[1].style;
                                                       style.display = style.display === \"block\" ? \"none\" : \"block\";'>"
                 . $file->getTarget()
                 . "</span><pre style='font-size: 0.8em; display: none'>"
@@ -50,7 +50,8 @@ class ProductRenderer extends fphp\Renderer {
                 . "</li>";
         }
 
-        echo "</ul>";
-        echo "</div>";
+        $str .= "</ul>";
+        $str .= "</div>";
+        return $str;
     }
 }

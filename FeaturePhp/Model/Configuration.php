@@ -112,11 +112,11 @@ class Configuration {
     }
 
     /**
-     * Analyzes the model and configuration by echoing a web page.
+     * Analyzes the model and configuration by returning a web page.
      * @param \FeaturePhp\ProductLine\ProductLine $productLine
      * optional product line to render more information
      */
     public function renderAnalysis($productLine = null) {
-        (new ConfigurationRenderer($this, $productLine))->render();
+        return (new ConfigurationRenderer($this, $productLine))->render();
     }
 }

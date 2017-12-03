@@ -50,7 +50,7 @@ class TextFileContent extends FileContent {
     public function copy($target) {
         if (!parent::copy($target))
             return false;
-        return file_put_contents($target, $this->content);
+        return file_put_contents($target, $this->content) !== false;
     }
 }
 

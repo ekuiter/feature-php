@@ -124,10 +124,10 @@ class Product {
     }
 
     /**
-     * Analyzes the product by echoing a web page.
+     * Analyzes the product by returning a web page.
      */
     public function renderAnalysis() {
-        (new ProductRenderer($this))->render();
+        return (new ProductRenderer($this))->render();
     }
 }
 

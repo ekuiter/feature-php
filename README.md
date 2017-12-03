@@ -83,7 +83,7 @@ try {
     if (!isset($_REQUEST["generate"])) {
         // output some information on the model and configuration
         echo '<h2><a href="?generate">Generate</a></h2>';
-        $configuration->renderAnalysis();
+        echo $configuration->renderAnalysis();
         
     } else {
         // we want to generate or export a product
@@ -92,7 +92,7 @@ try {
         if (!isset($_REQUEST["export"])) {
             // output some information on the product
             echo '<h2><a href="?generate&export">Download ZIP</a></h2>';
-            $product->renderAnalysis();
+            echo $product->renderAnalysis();
             
         } else
             // export product as ZIP file (using "tmp" as a temporary directory)
