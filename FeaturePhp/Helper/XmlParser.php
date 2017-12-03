@@ -17,11 +17,37 @@ class XmlParserException extends \Exception {}
  */
 class XmlParser {
     /**
+     * @var \SimpleXMLElement $xml the underlying XML document
+     */
+    private $xml = null;
+
+    /**
+     * @var string $str the underlying XML string
+     */
+    private $xmlString = null;
+
+    /**
+     * Returns the XML parser's underlying XML document.
+     * @return \SimpleXMLElement
+     */
+    public function getXml() {
+        return $this->xml;
+    }
+
+    /**
+     * Returns the XML parser's underlying XML string.
+     * @return string
+     */
+    public function getXmlString() {
+        return $this->xmlString;
+    }
+
+    /**
      * Parses an XML string.
      * @param string $str
      * @return \SimpleXMLElement
      */
-    public static function parseString($str) {
+    public function parseString($str) {
         if (!extension_loaded("SimpleXML"))
             throw new XmlParserException("SimpleXML extension not loaded, can not use XmlParser");
         
@@ -34,8 +60,10 @@ class XmlParser {
                 $msg .= "\n" . $error->message;
             throw new XmlParserException($msg);
         }
-        
-        return $xml;
+
+        $this->xml = $xml;
+        $this->xmlString = $str;
+        return $this;
     }
 
     /**
@@ -43,11 +71,11 @@ class XmlParser {
      * @param string $fileName
      * @return \SimpleXMLElement
      */
-    public static function parseFile($fileName) {
+    public function parseFile($fileName) {
         if (!file_exists($fileName))
             throw new XmlParserException("file $fileName does not exist");
         
-        return self::parseString(file_get_contents($fileName));
+        return $this->parseString(file_get_contents($fileName));
     }
 
     /**

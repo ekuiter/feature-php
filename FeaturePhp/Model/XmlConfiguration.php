@@ -27,6 +27,11 @@ class XmlConfigurationException extends \Exception {}
  */
 class XmlConfiguration {
     /**
+     * @var \FeaturePhp\Helper\XmlParser $xmlParser the underlying XML parser
+     */
+    private $xmlParser;
+    
+    /**
      * @var \SimpleXMLElement $xml the underlying XML document
      */
     private $xml;
@@ -43,10 +48,11 @@ class XmlConfiguration {
 
     /**
      * Creates an XML configuration.
-     * @param \SimpleXMLElement $xml
+     * @param \FeaturePhp\Helper\XmlParser $xmlParser
      */
-    public function __construct($xml) {
-        $this->xml = $xml;
+    public function __construct($xmlParser) {
+        $this->xmlParser = $xmlParser;
+        $this->xml = $xml = $xmlParser->getXml();
         $this->selectedFeatureNames = array();
         $this->values = array();
 
@@ -65,7 +71,7 @@ class XmlConfiguration {
      * @return XmlConfiguration
      */
     public static function fromFile($fileName) {        
-        return new self(fphp\Helper\XmlParser::parseFile($fileName));
+        return new self((new fphp\Helper\XmlParser())->parseFile($fileName));
     }
 
     /**
@@ -75,7 +81,7 @@ class XmlConfiguration {
      * @return XmlConfiguration
      */
     public static function fromString($str, $directory = null) {        
-        return new self(fphp\Helper\XmlParser::parseString($str));
+        return new self((new fphp\Helper\XmlParser())->parseString($str));
     }
 
     /**
@@ -95,7 +101,7 @@ class XmlConfiguration {
             return self::emptyInstance();
         else
             $str = $_REQUEST[$key];
-        return new self(fphp\Helper\XmlParser::parseString($str));
+        return new self((new fphp\Helper\XmlParser())->parseString($str));
     }
 
     /**
@@ -103,9 +109,17 @@ class XmlConfiguration {
      * @return XmlConfiguration
      */
     public static function emptyInstance() {
-        return new self(fphp\Helper\XmlParser::parseString("<configuration></configuration>"));
+        return new self((new fphp\Helper\XmlParser())->parseString("<configuration></configuration>"));
     }
 
+    /**
+     * Returns the XML configuration's underlying XML parser.
+     * @return \FeaturePhp\Helper\XmlParser
+     */
+    public function getXmlParser() {
+        return $this->xmlParser;
+    }
+    
     /**
      * Returns the XML configuration's underlying XML document.
      * @return \SimpleXMLElement

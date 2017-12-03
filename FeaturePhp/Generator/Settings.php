@@ -39,6 +39,7 @@ use \FeaturePhp as fphp;
  *   - class (string) - the runtime class name
  *   - target (string) - the runtime class file target in the generated product
  *   - getter (string) - the runtime class method for getting feature information
+ *   - feature (string) - a feature that has to be selected to generate the runtime class
  *
  * The {@see TemplateGenerator} settings follow the structure:
  * - root (object)

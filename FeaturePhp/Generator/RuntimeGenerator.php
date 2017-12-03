@@ -33,6 +33,11 @@ class RuntimeGenerator extends Generator {
     private $getter;
 
     /**
+     * @var string|null $feature a feature that has to be selected to generate the runtime class
+     */
+    private $feature;
+
+    /**
      * Creates a runtime generator.
      * @param Settings $settings
      */
@@ -41,6 +46,7 @@ class RuntimeGenerator extends Generator {
         $this->class = $settings->getOptional("class", "Runtime");
         $this->target = $settings->getOptional("target", "{$this->class}.php");
         $this->getter = $settings->getOptional("getter", "hasFeature");
+        $this->feature = $settings->getOptional("feature", null);
     }
 
     /**
@@ -71,8 +77,20 @@ class RuntimeGenerator extends Generator {
      * Generates the runtime file.
      * Internally, this uses a template file and assigns the given variables.
      * You can override this to add runtime information for other languages.
+     * If a feature was supplied, only generates if that feature is selected.
      */
     public function _generateFiles() {
+        if ($this->feature) {
+            $mayCreate = false;
+            foreach ($this->selectedArtifacts as $selectedArtifact)
+                if ($this->feature === $selectedArtifact->getFeature()->getName())
+                    $mayCreate = true;
+            if (!$mayCreate) {
+                $this->logFile->log(null, "did not add runtime information because \"$this->feature\" is not selected");
+                return;
+            }
+        }
+        
         $this->files[] = fphp\File\TemplateFile::fromSpecification(
             fphp\Specification\TemplateSpecification::fromArrayAndSettings(
                 array(

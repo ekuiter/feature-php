@@ -29,6 +29,11 @@ class XmlModelException extends \Exception {}
  */
 class XmlModel {
     /**
+     * @var \FeaturePhp\Helper\XmlParser $xmlParser the underlying XML parser
+     */
+    private $xmlParser;
+
+    /**
      * @var \SimpleXMLElement $xml the underlying XML document
      */
     private $xml;
@@ -45,10 +50,11 @@ class XmlModel {
 
     /**
      * Creates an XML feature model.
-     * @param \SimpleXMLElement $xml
+     * @param \FeaturePhp\Helper\XmlParser $xmlParser
      */
-    public function __construct($xml) {
-        $this->xml = $xml;
+    public function __construct($xmlParser) {
+        $this->xmlParser = $xmlParser;
+        $this->xml = $xml = $xmlParser->getXml();
         
         $struct = fphp\Helper\XmlParser::get($xml, "struct");
         
@@ -70,7 +76,7 @@ class XmlModel {
      * @return XmlModel
      */
     public static function fromFile($fileName) {        
-        return new self(fphp\Helper\XmlParser::parseFile($fileName));
+        return new self((new fphp\Helper\XmlParser())->parseFile($fileName));
     }
 
     /**
@@ -80,7 +86,7 @@ class XmlModel {
      * @return XmlModel
      */
     public static function fromString($str, $directory = null) {        
-        return new self(fphp\Helper\XmlParser::parseString($str));
+        return new self((new fphp\Helper\XmlParser())->parseString($str));
     }
 
     /**
@@ -104,6 +110,14 @@ class XmlModel {
      */
     public function traverse($callback) {
         self::_traverse($this->root, null, $callback);
+    }
+
+    /**
+     * Returns the XML feature model's underlying XML parser.
+     * @return \FeaturePhp\Helper\XmlParser
+     */
+    public function getXmlParser() {
+        return $this->xmlParser;
     }
 
     /**
