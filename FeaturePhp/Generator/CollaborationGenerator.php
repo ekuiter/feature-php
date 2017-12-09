@@ -23,7 +23,7 @@ class CollaborationGeneratorException extends \Exception {}
  * corresponding roles in the collaborations are composed into a set of refined files
  * (see {@see \FeaturePhp\File\RefinedFile}) implementing the selected features.
  * The concrete composition mechanism may differ from language to language
- * (see {@see \FeaturePhp\Collaboration\Composition}).
+ * (see {@see \FeaturePhp\Collaboration\Composer}).
  */
 class CollaborationGenerator extends FileGenerator {
     /**

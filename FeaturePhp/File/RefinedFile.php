@@ -31,14 +31,14 @@ class RefinedFile extends TextFile {
 
     /**
      * Returns the refined file's content.
-     * It is generated using an appropriate composition mechanism (see {@see \FeaturePhp\Collaboration\Composition}).
+     * It is generated using an appropriate composition mechanism (see {@see \FeaturePhp\Collaboration\Composer}).
      * @return FileContent
      */
     public function getContent() {
-        $composition = fphp\Collaboration\Composition::fromKind($this->roles[0]->getKind());
+        $composer = fphp\Collaboration\Composer::fromKind($this->roles[0]->getKind());
         foreach ($this->roles as $role)
-            $composition = $composition->refine($role);
-        return $composition->getContent();
+            $composer = $composer->refine($role);
+        return $composer->getContent();
     }
 }
 

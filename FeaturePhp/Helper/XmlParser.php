@@ -45,7 +45,7 @@ class XmlParser {
     /**
      * Parses an XML string.
      * @param string $str
-     * @return \SimpleXMLElement
+     * @return XmlParser
      */
     public function parseString($str) {
         if (!extension_loaded("SimpleXML"))
@@ -69,7 +69,7 @@ class XmlParser {
     /**
      * Parses an XML file.
      * @param string $fileName
-     * @return \SimpleXMLElement
+     * @return XmlParser
      */
     public function parseFile($fileName) {
         if (!file_exists($fileName))

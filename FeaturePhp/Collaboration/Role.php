@@ -16,7 +16,7 @@ class RoleException extends \Exception {}
  * A role defines a class' responsibilities in a collaboration.
  * As part of a {@see Collaboration}, a role implements part of a feature's functionality.
  * A role may be the base code for a class or a class refinement. Roles are composed using
- * a {@see Composition}.
+ * a {@see Composer}.
  */
 class Role {
     /**
@@ -46,7 +46,7 @@ class Role {
     public function getFileSpecification() {
         return $this->fileSpecification;
     }
-
+    
     /**
      * Returns which collaboration the role belongs to.
      * @return Collaboration
@@ -57,7 +57,7 @@ class Role {
 
     /**
      * Returns the kind of the role.
-     * This is used to determine the role's {@see Composition}.
+     * This is used to determine the role's {@see Composer}.
      * As of now, the kind is simply the file extension.
      * @return string
      */

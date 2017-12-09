@@ -124,6 +124,14 @@ class Feature {
     }
 
     /**
+     * Returns the feature's identifier.
+     * @return string
+     */
+    public function getIdentifier() {
+        return str_replace(" ", "", strtolower($this->name));
+    }
+
+    /**
      * Returns the feature's description.
      * @return string
      */
