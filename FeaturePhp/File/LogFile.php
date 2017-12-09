@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * The FeaturePhp\File\LogFile class.

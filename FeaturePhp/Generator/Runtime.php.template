@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * {{class}} contains information about selected and deselected runtime features.

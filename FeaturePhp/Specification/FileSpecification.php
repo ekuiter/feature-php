@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * The FeaturePhp\Specification\FileSpecification class.

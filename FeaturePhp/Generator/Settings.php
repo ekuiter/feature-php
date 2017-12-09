@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * The FeaturePhp\Generator\Settings class.

@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * The FeaturePhp\Helper\XmlParser class.

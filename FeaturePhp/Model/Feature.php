@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * The FeaturePhp\Model\Feature class.

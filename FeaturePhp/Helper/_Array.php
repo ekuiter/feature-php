@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * The FeaturePhp\Helper\_Array class.

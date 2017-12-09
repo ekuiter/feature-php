@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * The FeaturePhp\Collaboration\Role class.

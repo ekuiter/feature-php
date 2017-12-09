@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * The FeaturePhp\ProductLine\ProductLine class.

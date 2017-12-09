@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * The FeaturePhp\Artifact\Artifact class.
