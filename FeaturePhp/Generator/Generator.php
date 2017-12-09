@@ -50,7 +50,8 @@ abstract class Generator {
             "\FeaturePhp\Generator\CopyGenerator",
             "\FeaturePhp\Generator\RuntimeGenerator",
             "\FeaturePhp\Generator\TemplateGenerator",
-            "\FeaturePhp\Generator\ChunkGenerator"
+            "\FeaturePhp\Generator\ChunkGenerator",
+            "\FeaturePhp\Generator\CollaborationGenerator"
         );
     }
 

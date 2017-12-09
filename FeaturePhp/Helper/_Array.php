@@ -20,7 +20,7 @@ class _Array {
      * Finds an array element by comparing a member with the given value.
      * @param array $array
      * @param callable $key
-     * @param string $value
+     * @param mixed $value
      * @return object
      */
     public static function findByKey($array, $key, $value) {
@@ -63,6 +63,28 @@ class _Array {
         });
         if (!$result)
             throw new ArrayException("sorting by \"$key\" failed");
+        return $array;
+    }
+
+    /**
+     * Sorts an array regarding a custom key using the decorate-sort-undecorate pattern.
+     * This is useful if the key should only be calculated once per element
+     * ({@see https://gregheo.com/blog/schwartzian-transform/}).
+     * @param array $_array
+     * @param callable $func extracts a string value from an element
+     * @return array
+     */
+    public static function schwartzianTransform($_array, $func) {
+        $array = $_array;
+        array_walk($array, function(&$v) use ($func) {
+            $v = array($v, call_user_func($func, $v));
+        });
+        usort($array, function($a, $b) {
+            return strcmp($a[1], $b[1]);
+        });
+        array_walk($array, function(&$v) {
+            $v = $v[0];
+        });
         return $array;
     }
 }

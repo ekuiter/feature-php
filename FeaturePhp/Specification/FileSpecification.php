@@ -37,6 +37,14 @@ class FileSpecification extends Specification {
     }
 
     /**
+     * Returns the entity's source relative to its settings.
+     * @return string
+     */
+    public function getRelativeSource() {
+        return $this->get("relativeSource");
+    }
+
+    /**
      * Creates a file specification from a plain settings array.
      * The settings context is taken into consideration to generate paths
      * relative to the settings.
@@ -47,6 +55,7 @@ class FileSpecification extends Specification {
      */
     public static function fromArrayAndSettings($cfg, $settings, $artifact = null) {
         $fileSpecification = new static($cfg, $settings->getDirectory(), $artifact);
+        $fileSpecification->set("relativeSource", $fileSpecification->getSource());
         $fileSpecification->set("source", $settings->getPath($fileSpecification->getSource()));
         $fileSpecification->set("target", fphp\Helper\Path::join(
             $settings->getOptional("target", null), $fileSpecification->getTarget()));
