@@ -18,18 +18,20 @@ use \FeaturePhp as fphp;
  *   - filesIfSelected (array) - chunks to add if the artifact's feature is selected
  *   - filesIfDeselected (array) - chunks to add if the artifact's feature is deselected
  *
- * The {@see CopyGenerator} and {@see CollaborationGenerator} settings inside an
- * artifact's generator settings follow the structure:
+ * The {@see CopyGenerator}, {@see CollaborationGenerator} and {@see AspectGenerator}
+ * settings inside an artifact's generator settings follow the structure:
  * - root (object)
  *   - files (array) - see {@see \FeaturePhp\Specification\FileSpecification}
  *   - directories (array) - see {@see \FeaturePhp\Specification\DirectorySpecification}
  *
- * The {@see CopyGenerator} and {@see CollaborationGenerator} settings in the product
- * line's generator settings follow the structure:
+ * The {@see CopyGenerator}, {@see CollaborationGenerator} and {@see AspectGenerator}
+ * settings in the product line's generator settings follow the structure:
  * - root (object)
- *   - exclude (array) - file names to exclude globally, useful for files like .gitignore
+ *   - exclude (array) - file names to exclude globally, useful for files like .gitignore (to exclude a directory, use "&lt;directory&gt;/*")
  *   - featureOrder (array) - array of feature names to determine role ordering,
  *     for collaboration generator only
+ *   - feature (string) - a feature that has to be selected to generate the aspect kernel,
+ *     for aspect generator only
  *
  * The {@see RuntimeGenerator} settings inside an artifact's generator settings
  * follow the structure:

@@ -76,10 +76,21 @@ class DirectorySpecification extends Specification {
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->getSource())) as $entry)
             if (!fphp\Helper\Path::isDot($entry)) {
                 $fileSource = $entry->getPathName();
+                if (is_link($fileSource))
+                    continue;
                 $relativeFileTarget = fphp\Helper\Path::stripBase(
                     realpath($fileSource), realpath($this->getSource()));
-                if (in_array($relativeFileTarget, $this->getExclude()))
-                    continue;
+
+                foreach ($this->getExclude() as $exclude) {
+                    if ($relativeFileTarget === $exclude)
+                        continue 2;
+                    $parts = explode("/", $exclude);
+                    if ($parts[count($parts) - 1] === "*")
+                        try {
+                            fphp\Helper\Path::stripBase($relativeFileTarget, implode("/", array_slice($parts, 0, count($parts) - 1)));
+                            continue 2;
+                        } catch (fphp\Helper\PathException $e) {}
+                }
                         
                 $fileTarget = fphp\Helper\Path::join(
                     $this->get("baseTarget"), fphp\Helper\Path::join($this->getTarget(), $relativeFileTarget));

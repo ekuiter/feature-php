@@ -51,7 +51,8 @@ abstract class Generator {
             "\FeaturePhp\Generator\RuntimeGenerator",
             "\FeaturePhp\Generator\TemplateGenerator",
             "\FeaturePhp\Generator\ChunkGenerator",
-            "\FeaturePhp\Generator\CollaborationGenerator"
+            "\FeaturePhp\Generator\CollaborationGenerator",
+            "\FeaturePhp\Generator\AspectGenerator"
         );
     }
 
@@ -130,6 +131,19 @@ abstract class Generator {
             $this->_generateFiles();
         }
         return array_merge(array($this->logFile), $this->files);
+    }
+
+    /**
+     * Returns whether a feature's artifact is selected.
+     * @param string $featureName
+     * @return bool
+     */
+    protected function isSelectedFeature($featureName) {        
+        $isSelected = false;
+        foreach ($this->selectedArtifacts as $selectedArtifact)
+            if ($featureName === $selectedArtifact->getFeature()->getName())
+                $isSelected = true;
+        return $isSelected;
     }
 
     /**

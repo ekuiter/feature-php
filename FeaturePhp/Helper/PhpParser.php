@@ -53,6 +53,17 @@ class PhpParser {
     }
 
     /**
+     * Asserts that the code defines one class and returns it.
+     * @param string $fileSource
+     * @return \PhpParser\Node\Stmt\Class_
+     */
+    public function getExactlyOneClass($fileSource) {
+        if (count($this->ast) !== 1 || $this->ast[0]->getType() !== "Stmt_Class")
+            throw new PhpParserException("\"$fileSource\" does not define exactly one class");
+        return $this->ast[0];
+    }
+
+    /**
      * Returns an abstract syntax tree's code.
      * @param array[] $ast
      * @return string

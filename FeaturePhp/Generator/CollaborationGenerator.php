@@ -87,8 +87,9 @@ class CollaborationGenerator extends FileGenerator {
             });
             
             // take any representative from the equivalence class to extract the file target
-            $this->files[] = new fphp\File\RefinedFile(
-                $roleEquivalenceClass[0]->getFileSpecification()->getTarget(), $roleEquivalenceClass);
+            $fileTarget = $roleEquivalenceClass[0]->getFileSpecification()->getTarget();
+            $this->files[] = new fphp\File\RefinedFile($fileTarget, $roleEquivalenceClass);
+            $this->logFile->log(null, "added file \"$fileTarget\"");
         }
     }
 }

@@ -89,11 +89,9 @@ class ClassComposer extends Composer {
      */
     public function refine($role) {
         $fileSource = $role->getFileSpecification()->getSource();
-        $ast = (new fphp\Helper\PhpParser())->parseFile($fileSource)->getAst();
-
-        if (count($ast) !== 1 || $ast[0]->getType() !== "Stmt_Class")
-            throw new ClassComposerException("\"$fileSource\" does not contain exactly one class");
-        $class = $ast[0];
+        $parser = (new fphp\Helper\PhpParser())->parseFile($fileSource);
+        $ast = $parser->getAst();
+        $class = $parser->getExactlyOneClass($fileSource);
 
         if (!$this->targetClass) { // not refining, but defining the target class
             $this->targetClass = $class->name;

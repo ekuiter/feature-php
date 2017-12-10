@@ -1,0 +1,14 @@
+<?php
+
+{{includes}}
+
+/**
+ * {{class}} registers aspects, pointcuts and advices.
+ */
+class {{class}} extends Go\Core\AspectKernel {
+    protected function configureAop(Go\Core\AspectContainer $container) {
+        {{registers}}
+    }
+}
+
+?>

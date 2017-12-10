@@ -83,6 +83,7 @@ class Path {
      * Removes a directory recursively.
      * (see {@see https://paulund.co.uk/php-delete-directory-and-files-in-directory})
      * @param string $path
+     * @return bool
      */
     public static function removeDirectory($path) {
         if (is_dir($path))
@@ -99,6 +100,19 @@ class Path {
         closedir($dir);
         rmdir($path);
         return true;
+    }
+
+    /**
+     * Builds a path referring to the root directory from a relative path.
+     * @param string $directory
+     * return string
+     */
+    public static function rootPath($directory) {
+        $num = count(explode("/", $directory));
+        $path = "";
+        for ($i = 0; $i < $num; $i++)
+            $path = self::join("..", $path);
+        return $path;
     }
 }
 

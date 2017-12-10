@@ -80,15 +80,9 @@ class RuntimeGenerator extends Generator {
      * If a feature was supplied, only generates if that feature is selected.
      */
     public function _generateFiles() {
-        if ($this->feature) {
-            $mayCreate = false;
-            foreach ($this->selectedArtifacts as $selectedArtifact)
-                if ($this->feature === $selectedArtifact->getFeature()->getName())
-                    $mayCreate = true;
-            if (!$mayCreate) {
-                $this->logFile->log(null, "did not add runtime information because \"$this->feature\" is not selected");
-                return;
-            }
+        if ($this->feature && !$this->isSelectedFeature($this->feature)) {
+            $this->logFile->log(null, "did not add runtime information because \"$this->feature\" is not selected");
+            return;
         }
         
         $this->files[] = fphp\File\TemplateFile::fromSpecification(

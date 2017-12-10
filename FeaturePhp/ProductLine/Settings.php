@@ -106,12 +106,15 @@ class Settings extends fphp\Settings {
             $this->set("generators", $key, self::getInstance($generator, "\FeaturePhp\Generator\Settings"));
 
         // always exclude the artifact file
-        if (is_null($this->getOptional("generators", "copy", null)))
-            $this->set("generators", "copy", fphp\Generator\Settings::emptyInstance());
-        $this->get("generators", "copy")->set(
-            "exclude", array_merge(
-                $this->get("generators", "copy")->getOptional("exclude", array()),
-                array($this->get("artifactFile"))));
+        foreach (array("copy", "collaboration", "aspect") as $fileGenerator) {
+            if (is_null($this->getOptional("generators", $fileGenerator, null)))
+                $this->set("generators", $fileGenerator, fphp\Generator\Settings::emptyInstance());
+            
+            $this->get("generators", $fileGenerator)->set(
+                "exclude", array_merge(
+                    $this->get("generators", $fileGenerator)->getOptional("exclude", array()),
+                    array($this->get("artifactFile"))));
+        }
     }
 }
 
