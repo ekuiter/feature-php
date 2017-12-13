@@ -3,9 +3,6 @@
 This is a work-in-progress [Composer package](https://packagist.org/packages/ekuiter/feature-php)
 for analyzing FeatureIDE feature models and generating tailored variants of software product lines.
 
-[Here](https://github.com/ekuiter/feature-example) you can find an example of its usage
-as well as below.
-
 (If you'd like to guide the user in creating a configuration in the browser, have a look at
 [ekuiter/feature-configurator](https://github.com/ekuiter/feature-configurator).)
 
