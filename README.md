@@ -13,6 +13,7 @@ as well as below.
 ### Requirements
 
 PHP 5.3 is required with the SimpleXML extension. The zip extension is needed for exporting products as ZIP files.
+[nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) is needed for feature- and aspect-oriented programming.
 
 ### Getting started
 
