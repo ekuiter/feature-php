@@ -65,11 +65,13 @@
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct() :: Creates a template file."><span class="description">Creates a template file.</span><pre>__construct()</pre></a></li>
 <li class="method public inherited"><a href="#method___construct" title="__construct() :: Creates a file."><span class="description">Creates a file.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_extend" title="extend() :: Adds rules to the template file."><span class="description">Adds rules to the template file.</span><pre>extend()</pre></a></li>
 <li class="method public "><a href="#method_fromSpecification" title="fromSpecification() :: Creates a template file from a template specification."><span class="description">Creates a template file from a template specification.</span><pre>fromSpecification()</pre></a></li>
 <li class="method public inherited"><a href="#method_fromSpecification" title="fromSpecification() :: Creates a stored file from a file specification."><span class="description">Creates a stored file from a file specification.</span><pre>fromSpecification()</pre></a></li>
 <li class="method public "><a href="#method_getContent" title="getContent() :: Returns the template file's content."><span class="description">Returns the template file's content.</span><pre>getContent()</pre></a></li>
 <li class="method public inherited"><a href="#method_getContent" title="getContent() :: Returns the file's content."><span class="description">Returns the file's content.</span><pre>getContent()</pre></a></li>
 <li class="method public inherited"><a href="#method_getTarget" title="getTarget() :: Returns the file's target."><span class="description">Returns the file's target.</span><pre>getTarget()</pre></a></li>
+<li class="method public "><a href="#method_render" title="render() :: A quick way to directly render a template file with some replacement rules."><span class="description">A quick way to directly render a template file with some replacement rules.</span><pre>render()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -156,6 +158,24 @@ parts of the file to be replaced, enabling simple feature-based templating syste
 </div>
 </div></div>
 </div>
+<a id="method_extend"></a><div class="element clickable method public method_extend " data-toggle="collapse" data-target=".method_extend .collapse" title="public">
+<h2>Adds rules to the template file.</h2>
+<pre>extend(\FeaturePhp\Specification\TemplateSpecification $templateSpecification) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is expected to be called only be a <a href="../classes/FeaturePhp.Generator.TemplateGenerator.html">\FeaturePhp\Generator\TemplateGenerator</a>.
+Only uses the rules of the template specification.</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\FeaturePhp\File\ExtendFile::extend()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$templateSpecification</h4>
+<code>\FeaturePhp\Specification\TemplateSpecification</code>
+</div>
+</div></div>
+</div>
 <a id="method_fromSpecification"></a><div class="element clickable method public method_fromSpecification " data-toggle="collapse" data-target=".method_fromSpecification .collapse" title="public">
 <h2>Creates a template file from a template specification.</h2>
 <pre>fromSpecification(\FeaturePhp\Specification\TemplateSpecification $templateSpecification) : \FeaturePhp\File\TemplateFile</pre>
@@ -226,6 +246,25 @@ parts of the file to be replaced, enabling simple feature-based templating syste
 <div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
+<a id="method_render"></a><div class="element clickable method public method_render " data-toggle="collapse" data-target=".method_render .collapse" title="public">
+<h2>A quick way to directly render a template file with some replacement rules.</h2>
+<pre>render(string $source, array&lt;mixed,array&gt; $rules<code> = array()</code>) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$source</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$rules</h4>
+<code>array&lt;mixed,array&gt;</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
 <h3>
 <i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_fileSource"> </a><div class="element clickable property protected property_fileSource" data-toggle="collapse" data-target=".property_fileSource .collapse" title="protected">
@@ -264,8 +303,8 @@ parts of the file to be replaced, enabling simple feature-based templating syste
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:41+01:00.<br></footer></div>
 </div>
 </body>
 </html>

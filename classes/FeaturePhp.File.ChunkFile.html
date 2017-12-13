@@ -65,8 +65,8 @@
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct() :: Creates a chunked file."><span class="description">Creates a chunked file.</span><pre>__construct()</pre></a></li>
 <li class="method public inherited"><a href="#method___construct" title="__construct() :: Creates a file."><span class="description">Creates a file.</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_addChunk" title="addChunk() :: Adds a chunk to the chunked file."><span class="description">Adds a chunk to the chunked file.</span><pre>addChunk()</pre></a></li>
 <li class="method public inherited"><a href="#method_append" title="append() :: Appends text content to the file."><span class="description">Appends text content to the file.</span><pre>append()</pre></a></li>
+<li class="method public "><a href="#method_extend" title="extend() :: Adds a chunk to the chunked file."><span class="description">Adds a chunk to the chunked file.</span><pre>extend()</pre></a></li>
 <li class="method public "><a href="#method_fromSpecification" title="fromSpecification() :: Creates a chunked file from a chunk specification."><span class="description">Creates a chunked file from a chunk specification.</span><pre>fromSpecification()</pre></a></li>
 <li class="method public "><a href="#method_getContent" title="getContent() :: Returns the chunked file's content."><span class="description">Returns the chunked file's content.</span><pre>getContent()</pre></a></li>
 <li class="method public inherited"><a href="#method_getContent" title="getContent() :: Returns the file's content."><span class="description">Returns the file's content.</span><pre>getContent()</pre></a></li>
@@ -164,20 +164,6 @@ It contains some chunks of text in an undefined order. Optionally, a header and 
 </div>
 </div></div>
 </div>
-<a id="method_addChunk"></a><div class="element clickable method public method_addChunk " data-toggle="collapse" data-target=".method_addChunk .collapse" title="public">
-<h2>Adds a chunk to the chunked file.</h2>
-<pre>addChunk(\FeaturePhp\Specification\ChunkSpecification $chunkSpecification) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>This is expected to be called only be a <a href="../classes/FeaturePhp.Generator.ChunkGenerator.html">\FeaturePhp\Generator\ChunkGenerator</a>.
-Only uses the text of the chunk specification.</p></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$chunkSpecification</h4>
-<code>\FeaturePhp\Specification\ChunkSpecification</code>
-</div>
-</div></div>
-</div>
 <a id="method_append"></a><div class="element clickable method public method_append inherited" data-toggle="collapse" data-target=".method_append .collapse" title="public">
 <h2>Appends text content to the file.</h2>
 <pre>append(string $content) </pre>
@@ -188,6 +174,24 @@ Only uses the text of the chunk specification.</p></div>
 <div class="subelement argument">
 <h4>$content</h4>
 <code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_extend"></a><div class="element clickable method public method_extend " data-toggle="collapse" data-target=".method_extend .collapse" title="public">
+<h2>Adds a chunk to the chunked file.</h2>
+<pre>extend(\FeaturePhp\Specification\ChunkSpecification $chunkSpecification) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is expected to be called only be a <a href="../classes/FeaturePhp.Generator.ChunkGenerator.html">\FeaturePhp\Generator\ChunkGenerator</a>.
+Only uses the text of the chunk specification.</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\FeaturePhp\File\ExtendFile::extend()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$chunkSpecification</h4>
+<code>\FeaturePhp\Specification\ChunkSpecification</code>
 </div>
 </div></div>
 </div>
@@ -298,8 +302,8 @@ Only uses the text of the chunk specification.</p></div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:41+01:00.<br></footer></div>
 </div>
 </body>
 </html>

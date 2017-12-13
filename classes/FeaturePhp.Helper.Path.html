@@ -64,7 +64,9 @@
                     <ul>
 <li class="method public "><a href="#method_isDot" title="isDot() :: Returns whether a file path refers to the current or parent directory."><span class="description">Returns whether a file path refers to the current or parent directory.</span><pre>isDot()</pre></a></li>
 <li class="method public "><a href="#method_join" title="join() :: Joins two file or directory paths."><span class="description">Joins two file or directory paths.</span><pre>join()</pre></a></li>
+<li class="method public "><a href="#method_removeDirectory" title="removeDirectory() :: Removes a directory recursively."><span class="description">Removes a directory recursively.</span><pre>removeDirectory()</pre></a></li>
 <li class="method public "><a href="#method_resolve" title="resolve() :: Resolves a relative file or directory path."><span class="description">Resolves a relative file or directory path.</span><pre>resolve()</pre></a></li>
+<li class="method public "><a href="#method_rootPath" title="rootPath() :: Builds a path referring to the root directory from a relative path."><span class="description">Builds a path referring to the root directory from a relative path.</span><pre>rootPath()</pre></a></li>
 <li class="method public "><a href="#method_stripBase" title="stripBase() :: Strips a base from a file or directory path."><span class="description">Strips a base from a file or directory path.</span><pre>stripBase()</pre></a></li>
 </ul>
 </li></ul>
@@ -127,6 +129,21 @@ left path optional (see <a href="https://stackoverflow.com/q/1091107"><a href="h
 <div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
+<a id="method_removeDirectory"></a><div class="element clickable method public method_removeDirectory " data-toggle="collapse" data-target=".method_removeDirectory .collapse" title="public">
+<h2>Removes a directory recursively.</h2>
+<pre>removeDirectory(string $path) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>(see <a href="https://paulund.co.uk/php-delete-directory-and-files-in-directory"><a href="https://paulund.co.uk/php-delete-directory-and-files-in-directory">https://paulund.co.uk/php-delete-directory-and-files-in-directory</a></a>)</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$path</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
 <a id="method_resolve"></a><div class="element clickable method public method_resolve " data-toggle="collapse" data-target=".method_resolve .collapse" title="public">
 <h2>Resolves a relative file or directory path.</h2>
 <pre>resolve(string $fileName) : string</pre>
@@ -142,6 +159,18 @@ working directory (e.g. ../test can not be resolved)
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_rootPath"></a><div class="element clickable method public method_rootPath " data-toggle="collapse" data-target=".method_rootPath .collapse" title="public">
+<h2>Builds a path referring to the root directory from a relative path.</h2>
+<pre>rootPath(string $directory) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$directory</h4>
+<code>string</code><p>return string</p></div>
 </div></div>
 </div>
 <a id="method_stripBase"></a><div class="element clickable method public method_stripBase " data-toggle="collapse" data-target=".method_stripBase .collapse" title="public">
@@ -169,8 +198,8 @@ working directory (e.g. ../test can not be resolved)
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:42+01:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -59,14 +59,28 @@
 <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
 </div>
 </div>
-<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list"><li class="nav-header">
+<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list">
+<li class="nav-header">
 <i title="Methods" class="icon-custom icon-method"></i> Methods
                     <ul>
 <li class="method public "><a href="#method_get" title="get() :: Returns a child node for a tag name from an XML node."><span class="description">Returns a child node for a tag name from an XML node.</span><pre>get()</pre></a></li>
+<li class="method public "><a href="#method_getXml" title="getXml() :: Returns the XML parser's underlying XML document."><span class="description">Returns the XML parser's underlying XML document.</span><pre>getXml()</pre></a></li>
+<li class="method public "><a href="#method_getXmlString" title="getXmlString() :: Returns the XML parser's underlying XML string."><span class="description">Returns the XML parser's underlying XML string.</span><pre>getXmlString()</pre></a></li>
 <li class="method public "><a href="#method_parseFile" title="parseFile() :: Parses an XML file."><span class="description">Parses an XML file.</span><pre>parseFile()</pre></a></li>
 <li class="method public "><a href="#method_parseString" title="parseString() :: Parses an XML string."><span class="description">Parses an XML string.</span><pre>parseString()</pre></a></li>
 </ul>
-</li></ul>
+</li>
+<li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property_xml" title="$xml() :: "><span class="description">the underlying XML document</span><pre>$xml</pre></a></li>
+<li class="property private "><a href="#property_xmlString" title="$xmlString() :: "><span class="description">the underlying XML string</span><pre>$xmlString</pre></a></li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="span8">
 <a xmlns:php="http://php.net/xsl" id="\FeaturePhp\Helper\XmlParser"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
@@ -113,10 +127,30 @@
 <div class="subelement response"><code>\SimpleXMLElement</code></div>
 </div></div>
 </div>
+<a id="method_getXml"></a><div class="element clickable method public method_getXml " data-toggle="collapse" data-target=".method_getXml .collapse" title="public">
+<h2>Returns the XML parser's underlying XML document.</h2>
+<pre>getXml() : \SimpleXMLElement</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\SimpleXMLElement</code></div>
+</div></div>
+</div>
+<a id="method_getXmlString"></a><div class="element clickable method public method_getXmlString " data-toggle="collapse" data-target=".method_getXmlString .collapse" title="public">
+<h2>Returns the XML parser's underlying XML string.</h2>
+<pre>getXmlString() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
 <a id="method_parseFile"></a><div class="element clickable method public method_parseFile " data-toggle="collapse" data-target=".method_parseFile .collapse" title="public">
 <h2>Parses an XML file.</h2>
-<pre>parseFile(string $fileName) : \SimpleXMLElement</pre>
-<div class="labels"><span class="label">Static</span></div>
+<pre>parseFile(string $fileName) : \FeaturePhp\Helper\XmlParser</pre>
+<div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
@@ -125,13 +159,13 @@
 <code>string</code>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code>\SimpleXMLElement</code></div>
+<div class="subelement response"><code>\FeaturePhp\Helper\XmlParser</code></div>
 </div></div>
 </div>
 <a id="method_parseString"></a><div class="element clickable method public method_parseString " data-toggle="collapse" data-target=".method_parseString .collapse" title="public">
 <h2>Parses an XML string.</h2>
-<pre>parseString(string $str) : \SimpleXMLElement</pre>
-<div class="labels"><span class="label">Static</span></div>
+<pre>parseString(string $str) : \FeaturePhp\Helper\XmlParser</pre>
+<div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
@@ -140,8 +174,30 @@
 <code>string</code>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code>\SimpleXMLElement</code></div>
+<div class="subelement response"><code>\FeaturePhp\Helper\XmlParser</code></div>
 </div></div>
+</div>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_xml"> </a><div class="element clickable property private property_xml" data-toggle="collapse" data-target=".property_xml .collapse" title="private">
+<h2>the underlying XML document</h2>
+<pre>$xml : \SimpleXMLElement</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>null</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_xmlString"> </a><div class="element clickable property private property_xmlString" data-toggle="collapse" data-target=".property_xmlString .collapse" title="private">
+<h2>the underlying XML string</h2>
+<pre>$xmlString : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>null</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 </div>
 </div>
@@ -149,8 +205,8 @@
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:42+01:00.<br></footer></div>
 </div>
 </body>
 </html>

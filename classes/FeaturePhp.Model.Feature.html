@@ -65,15 +65,22 @@
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct() :: Creates a feature."><span class="description">Creates a feature.</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#method_findByName" title="findByName() :: Finds a feature by its name in a list of features."><span class="description">Finds a feature by its name in a list of features.</span><pre>findByName()</pre></a></li>
+<li class="method public "><a href="#method_fromNode" title="fromNode() :: Creates a feature from an XML node."><span class="description">Creates a feature from an XML node.</span><pre>fromNode()</pre></a></li>
 <li class="method public "><a href="#method_getAlternative" title="getAlternative() :: Returns whether the feature provides an alternative choice."><span class="description">Returns whether the feature provides an alternative choice.</span><pre>getAlternative()</pre></a></li>
 <li class="method public "><a href="#method_getChildren" title="getChildren() :: Returns the feature's child features."><span class="description">Returns the feature's child features.</span><pre>getChildren()</pre></a></li>
+<li class="method public "><a href="#method_getDefaultValue" title="getDefaultValue() :: Returns the feature's default value."><span class="description">Returns the feature's default value.</span><pre>getDefaultValue()</pre></a></li>
 <li class="method public "><a href="#method_getDescription" title="getDescription() :: Returns the feature's description."><span class="description">Returns the feature's description.</span><pre>getDescription()</pre></a></li>
+<li class="method public "><a href="#method_getIdentifier" title="getIdentifier() :: Returns the feature's identifier."><span class="description">Returns the feature's identifier.</span><pre>getIdentifier()</pre></a></li>
 <li class="method public "><a href="#method_getMandatory" title="getMandatory() :: Returns whether the feature is mandatory."><span class="description">Returns whether the feature is mandatory.</span><pre>getMandatory()</pre></a></li>
 <li class="method public "><a href="#method_getName" title="getName() :: Returns the feature's name."><span class="description">Returns the feature's name.</span><pre>getName()</pre></a></li>
 <li class="method public "><a href="#method_getOr" title="getOr() :: Returns whether the feature provides a choice using an inclusive or."><span class="description">Returns whether the feature provides a choice using an inclusive or.</span><pre>getOr()</pre></a></li>
 <li class="method public "><a href="#method_getParent" title="getParent() :: Returns the feature's parent feature."><span class="description">Returns the feature's parent feature.</span><pre>getParent()</pre></a></li>
+<li class="method public "><a href="#method_getPermissiveName" title="getPermissiveName() :: Returns the feature's permissive name."><span class="description">Returns the feature's permissive name.</span><pre>getPermissiveName()</pre></a></li>
 <li class="method public "><a href="#method_has" title="has() :: Returns whether a feature is included in a list of features."><span class="description">Returns whether a feature is included in a list of features.</span><pre>has()</pre></a></li>
 </ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="method private "><a href="#method__getPermissiveName" title="_getPermissiveName() :: Transforms a feature's name to a permissive name."><span class="description">Transforms a feature's name to a permissive name.</span><pre>_getPermissiveName()</pre></a></li></ul>
 </li>
 <li class="nav-header">
 <i title="Properties" class="icon-custom icon-property"></i> Properties
@@ -147,10 +154,10 @@ the details of product generation.</p></div>
 </div>
 <a id="method_findByName"></a><div class="element clickable method public method_findByName " data-toggle="collapse" data-target=".method_findByName .collapse" title="public">
 <h2>Finds a feature by its name in a list of features.</h2>
-<pre>findByName(array&lt;mixed,\FeaturePhp\Model\Feature&gt; $features, string $featureName) : \FeaturePhp\Model\Feature</pre>
+<pre>findByName(array&lt;mixed,\FeaturePhp\Model\Feature&gt; $features, string $featureName, boolean $permissive<code> = false</code>) : \FeaturePhp\Model\Feature</pre>
 <div class="labels"><span class="label">Static</span></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
+<div class="long_description"><p>Permissive search ignores case and substitutes hyphens.</p></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$features</h4>
@@ -159,6 +166,29 @@ the details of product generation.</p></div>
 <div class="subelement argument">
 <h4>$featureName</h4>
 <code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$permissive</h4>
+<code>boolean</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\FeaturePhp\Model\Feature</code></div>
+</div></div>
+</div>
+<a id="method_fromNode"></a><div class="element clickable method public method_fromNode " data-toggle="collapse" data-target=".method_fromNode .collapse" title="public">
+<h2>Creates a feature from an XML node.</h2>
+<pre>fromNode(\SimpleXMLElement $node, \SimpleXMLElement $parent) : \FeaturePhp\Model\Feature</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$node</h4>
+<code>\SimpleXMLElement</code>
+</div>
+<div class="subelement argument">
+<h4>$parent</h4>
+<code>\SimpleXMLElement</code>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code>\FeaturePhp\Model\Feature</code></div>
@@ -184,9 +214,29 @@ the details of product generation.</p></div>
 <div class="subelement response"><code>array&lt;mixed,\SimpleXMLElement&gt;</code></div>
 </div></div>
 </div>
+<a id="method_getDefaultValue"></a><div class="element clickable method public method_getDefaultValue " data-toggle="collapse" data-target=".method_getDefaultValue .collapse" title="public">
+<h2>Returns the feature's default value.</h2>
+<pre>getDefaultValue() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
 <a id="method_getDescription"></a><div class="element clickable method public method_getDescription " data-toggle="collapse" data-target=".method_getDescription .collapse" title="public">
 <h2>Returns the feature's description.</h2>
 <pre>getDescription() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getIdentifier"></a><div class="element clickable method public method_getIdentifier " data-toggle="collapse" data-target=".method_getIdentifier .collapse" title="public">
+<h2>Returns the feature's identifier.</h2>
+<pre>getIdentifier() : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -234,6 +284,16 @@ the details of product generation.</p></div>
 <div class="subelement response"><code>\SimpleXMLElement</code></div>
 </div></div>
 </div>
+<a id="method_getPermissiveName"></a><div class="element clickable method public method_getPermissiveName " data-toggle="collapse" data-target=".method_getPermissiveName .collapse" title="public">
+<h2>Returns the feature's permissive name.</h2>
+<pre>getPermissiveName() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
 <a id="method_has"></a><div class="element clickable method public method_has " data-toggle="collapse" data-target=".method_has .collapse" title="public">
 <h2>Returns whether a feature is included in a list of features.</h2>
 <pre>has(array&lt;mixed,\FeaturePhp\Model\Features&gt; $features, \FeaturePhp\Model\Feature $feature) : boolean</pre>
@@ -251,6 +311,21 @@ the details of product generation.</p></div>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method__getPermissiveName"></a><div class="element clickable method private method__getPermissiveName " data-toggle="collapse" data-target=".method__getPermissiveName .collapse" title="private">
+<h2>Transforms a feature's name to a permissive name.</h2>
+<pre>_getPermissiveName(string $name) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
 <h3>
@@ -331,8 +406,8 @@ the details of product generation.</p></div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:42+01:00.<br></footer></div>
 </div>
 </body>
 </html>

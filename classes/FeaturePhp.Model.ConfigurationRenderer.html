@@ -64,20 +64,20 @@
 <i title="Methods" class="icon-custom icon-method"></i> Methods
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct() :: Creates a configuration renderer."><span class="description">Creates a configuration renderer.</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method__render" title="_render() :: Echoes the model and configuration analysis."><span class="description">Echoes the model and configuration analysis.</span><pre>_render()</pre></a></li>
-<li class="method public inherited"><a href="#method_render" title="render() :: Echoes the renderer's web page."><span class="description">Echoes the renderer's web page.</span><pre>render()</pre></a></li>
+<li class="method public "><a href="#method__render" title="_render() :: Returns the model and configuration analysis."><span class="description">Returns the model and configuration analysis.</span><pre>_render()</pre></a></li>
+<li class="method public inherited"><a href="#method_render" title="render() :: Returns the renderer's web page."><span class="description">Returns the renderer's web page.</span><pre>render()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header protected">» Protected
                     <ul>
-<li class="method protected inherited"><a href="#method__render" title="_render() :: Internal function for echoing the renderer's web page."><span class="description">Internal function for echoing the renderer's web page.</span><pre>_render()</pre></a></li>
+<li class="method protected inherited"><a href="#method__render" title="_render() :: Internal function for returning the renderer's web page."><span class="description">Internal function for returning the renderer's web page.</span><pre>_render()</pre></a></li>
 <li class="method protected inherited"><a href="#method_getStyle" title="getStyle() :: Returns a simple stylesheet."><span class="description">Returns a simple stylesheet.</span><pre>getStyle()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header private">» Private
                     <ul>
-<li class="method private "><a href="#method_analyzeConfiguration" title="analyzeConfiguration() :: Echoes a configuration analysis."><span class="description">Echoes a configuration analysis.</span><pre>analyzeConfiguration()</pre></a></li>
-<li class="method private "><a href="#method_analyzeModel" title="analyzeModel() :: Echoes a model analysis."><span class="description">Echoes a model analysis.</span><pre>analyzeModel()</pre></a></li>
+<li class="method private "><a href="#method_analyzeConfiguration" title="analyzeConfiguration() :: Returns a configuration analysis."><span class="description">Returns a configuration analysis.</span><pre>analyzeConfiguration()</pre></a></li>
+<li class="method private "><a href="#method_analyzeModel" title="analyzeModel() :: Returns a model analysis."><span class="description">Returns a model analysis.</span><pre>analyzeModel()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -85,7 +85,10 @@
                     <ul></ul>
 </li>
 <li class="nav-header private">» Private
-                    <ul><li class="property private "><a href="#property_configuration" title="$configuration() :: "><span class="description">the configuration that will be analyzed</span><pre>$configuration</pre></a></li></ul>
+                    <ul>
+<li class="property private "><a href="#property_configuration" title="$configuration() :: "><span class="description">the configuration that will be analyzed</span><pre>$configuration</pre></a></li>
+<li class="property private "><a href="#property_productLine" title="$productLine() :: "><span class="description">the associated product line</span><pre>$productLine</pre></a></li>
+</ul>
 </li>
 </ul>
 </div>
@@ -123,7 +126,7 @@ the configuration's validity.</p></div>
 <i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct " data-toggle="collapse" data-target=".method___construct .collapse" title="public">
 <h2>Creates a configuration renderer.</h2>
-<pre>__construct(\FeaturePhp\Model\Configuration $configuration) </pre>
+<pre>__construct(\FeaturePhp\Model\Configuration $configuration, \FeaturePhp\ProductLine\ProductLine $productLine<code> = null</code>) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -132,10 +135,14 @@ the configuration's validity.</p></div>
 <h4>$configuration</h4>
 <code>\FeaturePhp\Model\Configuration</code>
 </div>
+<div class="subelement argument">
+<h4>$productLine</h4>
+<code>\FeaturePhp\ProductLine\ProductLine</code>
+</div>
 </div></div>
 </div>
 <a id="method__render"></a><div class="element clickable method public method__render " data-toggle="collapse" data-target=".method__render .collapse" title="public">
-<h2>Echoes the model and configuration analysis.</h2>
+<h2>Returns the model and configuration analysis.</h2>
 <pre>_render() </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -147,13 +154,13 @@ the configuration's validity.</p></div>
 </div></div>
 </div>
 <a id="method_render"></a><div class="element clickable method public method_render inherited" data-toggle="collapse" data-target=".method_render .collapse" title="public">
-<h2>Echoes the renderer's web page.</h2>
+<h2>Returns the renderer's web page.</h2>
 <pre>render() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="method__render"></a><div class="element clickable method protected method__render inherited" data-toggle="collapse" data-target=".method__render .collapse" title="protected">
-<h2>Internal function for echoing the renderer's web page.</h2>
+<h2>Internal function for returning the renderer's web page.</h2>
 <pre>_render() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
@@ -169,7 +176,7 @@ the configuration's validity.</p></div>
 </div></div>
 </div>
 <a id="method_analyzeConfiguration"></a><div class="element clickable method private method_analyzeConfiguration " data-toggle="collapse" data-target=".method_analyzeConfiguration .collapse" title="private">
-<h2>Echoes a configuration analysis.</h2>
+<h2>Returns a configuration analysis.</h2>
 <pre>analyzeConfiguration(\FeaturePhp\Model\Configuration $configuration) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -182,7 +189,7 @@ the configuration's validity.</p></div>
 </div></div>
 </div>
 <a id="method_analyzeModel"></a><div class="element clickable method private method_analyzeModel " data-toggle="collapse" data-target=".method_analyzeModel .collapse" title="private">
-<h2>Echoes a model analysis.</h2>
+<h2>Returns a model analysis.</h2>
 <pre>analyzeModel(\FeaturePhp\Model\Model $model) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -206,14 +213,24 @@ the configuration's validity.</p></div>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
+<a id="property_productLine"> </a><div class="element clickable property private property_productLine" data-toggle="collapse" data-target=".property_productLine .collapse" title="private">
+<h2>the associated product line</h2>
+<pre>$productLine : \FeaturePhp\ProductLine\ProductLine | null</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:42+01:00.<br></footer></div>
 </div>
 </body>
 </html>

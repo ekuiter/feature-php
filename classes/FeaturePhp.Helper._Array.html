@@ -64,6 +64,7 @@
                     <ul>
 <li class="method public "><a href="#method_assertNoDuplicates" title="assertNoDuplicates() :: Asserts that an array does not contain duplicates regarding a member."><span class="description">Asserts that an array does not contain duplicates regarding a member.</span><pre>assertNoDuplicates()</pre></a></li>
 <li class="method public "><a href="#method_findByKey" title="findByKey() :: Finds an array element by comparing a member with the given value."><span class="description">Finds an array element by comparing a member with the given value.</span><pre>findByKey()</pre></a></li>
+<li class="method public "><a href="#method_schwartzianTransform" title="schwartzianTransform() :: Sorts an array regarding a custom key using the decorate-sort-undecorate pattern."><span class="description">Sorts an array regarding a custom key using the decorate-sort-undecorate pattern.</span><pre>schwartzianTransform()</pre></a></li>
 <li class="method public "><a href="#method_sortByKey" title="sortByKey() :: Sorts an array in ascending order regarding a member."><span class="description">Sorts an array in ascending order regarding a member.</span><pre>sortByKey()</pre></a></li>
 </ul>
 </li></ul>
@@ -112,7 +113,7 @@
 </div>
 <a id="method_findByKey"></a><div class="element clickable method public method_findByKey " data-toggle="collapse" data-target=".method_findByKey .collapse" title="public">
 <h2>Finds an array element by comparing a member with the given value.</h2>
-<pre>findByKey(array $array, callable $key, string $value) : object</pre>
+<pre>findByKey(array $array, callable $key, mixed $value) : object</pre>
 <div class="labels"><span class="label">Static</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -127,10 +128,29 @@
 </div>
 <div class="subelement argument">
 <h4>$value</h4>
-<code>string</code>
+<code>mixed</code>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code>object</code></div>
+</div></div>
+</div>
+<a id="method_schwartzianTransform"></a><div class="element clickable method public method_schwartzianTransform " data-toggle="collapse" data-target=".method_schwartzianTransform .collapse" title="public">
+<h2>Sorts an array regarding a custom key using the decorate-sort-undecorate pattern.</h2>
+<pre>schwartzianTransform(array $_array, callable $func) : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is useful if the key should only be calculated once per element
+(<a href="https://gregheo.com/blog/schwartzian-transform/"><a href="https://gregheo.com/blog/schwartzian-transform/">https://gregheo.com/blog/schwartzian-transform/</a></a>).</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$_array</h4>
+<code>array</code>
+</div>
+<div class="subelement argument">
+<h4>$func</h4>
+<code>callable</code><p>extracts a string value from an element</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
 </div></div>
 </div>
 <a id="method_sortByKey"></a><div class="element clickable method public method_sortByKey " data-toggle="collapse" data-target=".method_sortByKey .collapse" title="public">
@@ -158,8 +178,8 @@
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:42+01:00.<br></footer></div>
 </div>
 </body>
 </html>

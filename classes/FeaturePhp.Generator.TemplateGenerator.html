@@ -63,24 +63,37 @@
 <li class="nav-header">
 <i title="Methods" class="icon-custom icon-method"></i> Methods
                     <ul>
-<li class="method public "><a href="#method___construct" title="__construct() :: Creates a template generator."><span class="description">Creates a template generator.</span><pre>__construct()</pre></a></li>
 <li class="method public inherited"><a href="#method___construct" title="__construct() :: Creates a generator."><span class="description">Creates a generator.</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method__generateFiles" title="_generateFiles() :: Generates the template files."><span class="description">Generates the template files.</span><pre>_generateFiles()</pre></a></li>
 <li class="method public inherited"><a href="#method_addDeselectedArtifact" title="addDeselectedArtifact() :: Registers an artifact whose corresponding feature is deselected."><span class="description">Registers an artifact whose corresponding feature is deselected.</span><pre>addDeselectedArtifact()</pre></a></li>
 <li class="method public inherited"><a href="#method_addSelectedArtifact" title="addSelectedArtifact() :: Registers an artifact whose corresponding feature is selected."><span class="description">Registers an artifact whose corresponding feature is selected.</span><pre>addSelectedArtifact()</pre></a></li>
 <li class="method public inherited"><a href="#method_generateFiles" title="generateFiles() :: Generates the files for all registered artifacts."><span class="description">Generates the files for all registered artifacts.</span><pre>generateFiles()</pre></a></li>
 <li class="method public inherited"><a href="#method_getGeneratorMap" title="getGeneratorMap() :: Returns a map from all generator keys to class names."><span class="description">Returns a map from all generator keys to class names.</span><pre>getGeneratorMap()</pre></a></li>
 <li class="method public "><a href="#method_getKey" title="getKey() :: Returns the template generator's key."><span class="description">Returns the template generator's key.</span><pre>getKey()</pre></a></li>
 <li class="method public inherited"><a href="#method_getKey" title="getKey() :: Returns the generator's key."><span class="description">Returns the generator's key.</span><pre>getKey()</pre></a></li>
+<li class="method public inherited"><a href="#method_getRegisteredArtifacts" title="getRegisteredArtifacts() :: Returns all registered artifacts (selected and deselected)."><span class="description">Returns all registered artifacts (selected and deselected).</span><pre>getRegisteredArtifacts()</pre></a></li>
 <li class="method public inherited"><a href="#method_getSettings" title="getSettings() :: Returns the generator's settings."><span class="description">Returns the generator's settings.</span><pre>getSettings()</pre></a></li>
 <li class="method public inherited"><a href="#method_hasArtifacts" title="hasArtifacts() :: Returns whether any artifacts are registered with the generator."><span class="description">Returns whether any artifacts are registered with the generator.</span><pre>hasArtifacts()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header protected">» Protected
-                    <ul><li class="method protected inherited"><a href="#method__generateFiles" title="_generateFiles() :: Internal function for generating the files for all registered artifacts."><span class="description">Internal function for generating the files for all registered artifacts.</span><pre>_generateFiles()</pre></a></li></ul>
+                    <ul>
+<li class="method protected inherited"><a href="#method__generateFiles" title="_generateFiles() :: Internal function for generating the files for all registered artifacts."><span class="description">Internal function for generating the files for all registered artifacts.</span><pre>_generateFiles()</pre></a></li>
+<li class="method protected "><a href="#method_getExtendableFileFromSpecification" title="getExtendableFileFromSpecification() :: Returns a template file from a template specification."><span class="description">Returns a template file from a template specification.</span><pre>getExtendableFileFromSpecification()</pre></a></li>
+<li class="method protected inherited"><a href="#method_getExtendableFileFromSpecification" title="getExtendableFileFromSpecification() :: Returns an extendable file from a specification."><span class="description">Returns an extendable file from a specification.</span><pre>getExtendableFileFromSpecification()</pre></a></li>
+<li class="method protected "><a href="#method_getSpecification" title="getSpecification() :: Returns a template specification from a plain settings array."><span class="description">Returns a template specification from a plain settings array.</span><pre>getSpecification()</pre></a></li>
+<li class="method protected inherited"><a href="#method_getSpecification" title="getSpecification() :: Returns a specification from a plain settings array."><span class="description">Returns a specification from a plain settings array.</span><pre>getSpecification()</pre></a></li>
+<li class="method protected inherited"><a href="#method_isSelectedFeature" title="isSelectedFeature() :: Returns whether a feature's artifact is selected."><span class="description">Returns whether a feature's artifact is selected.</span><pre>isSelectedFeature()</pre></a></li>
+</ul>
 </li>
 <li class="nav-header private">» Private
-                    <ul><li class="method private inherited"><a href="#method_getGenerators" title="getGenerators() :: Returns the class names of all generators."><span class="description">Returns the class names of all generators.</span><pre>getGenerators()</pre></a></li></ul>
+                    <ul>
+<li class="method private inherited"><a href="#method_generateFilesForArtifacts" title="generateFilesForArtifacts() :: Generates the extendable files for a set of artifacts and file settings."><span class="description">Generates the extendable files for a set of artifacts and file settings.</span><pre>generateFilesForArtifacts()</pre></a></li>
+<li class="method private inherited"><a href="#method_getExtendableFile" title="getExtendableFile() :: Creates an extendable file from a specification."><span class="description">Creates an extendable file from a specification.</span><pre>getExtendableFile()</pre></a></li>
+<li class="method private inherited"><a href="#method_getFileSettings" title="getFileSettings() :: Returns plain settings arrays with file specifications for all registered artifacts."><span class="description">Returns plain settings arrays with file specifications for all registered artifacts.</span><pre>getFileSettings()</pre></a></li>
+<li class="method private inherited"><a href="#method_getFileSettingsForDeselected" title="getFileSettingsForDeselected() :: Returns plain settings arrays with file specifications for deselected artifacts."><span class="description">Returns plain settings arrays with file specifications for deselected artifacts.</span><pre>getFileSettingsForDeselected()</pre></a></li>
+<li class="method private inherited"><a href="#method_getFileSettingsForSelected" title="getFileSettingsForSelected() :: Returns plain settings arrays with file specifications for selected artifacts."><span class="description">Returns plain settings arrays with file specifications for selected artifacts.</span><pre>getFileSettingsForSelected()</pre></a></li>
+<li class="method private inherited"><a href="#method_getGenerators" title="getGenerators() :: Returns the class names of all generators."><span class="description">Returns the class names of all generators.</span><pre>getGenerators()</pre></a></li>
+</ul>
 </li>
 <li class="nav-header">
 <i title="Properties" class="icon-custom icon-property"></i> Properties
@@ -94,6 +107,9 @@
 <li class="property protected "><a href="#property_selectedArtifacts" title="$selectedArtifacts() :: "><span class="description">artifacts with a corresponding selected feature that specify this generator</span><pre>$selectedArtifacts</pre></a></li>
 <li class="property protected "><a href="#property_settings" title="$settings() :: "><span class="description">the settings object with generator settings</span><pre>$settings</pre></a></li>
 </ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="property private "><a href="#property_extendableFiles" title="$extendableFiles() :: "><span class="description">cached extendable files</span><pre>$extendableFiles</pre></a></li></ul>
 </li>
 </ul>
 </div>
@@ -125,28 +141,11 @@ files.</p></div>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\FeaturePhp\Generator\Generator</td>
+<td>\FeaturePhp\Generator\ExtendGenerator</td>
 </tr>
 </table>
 <h3>
 <i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
-<a id="method___construct"></a><div class="element clickable method public method___construct " data-toggle="collapse" data-target=".method___construct .collapse" title="public">
-<h2>Creates a template generator.</h2>
-<pre>__construct(\FeaturePhp\Generator\Settings $settings) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>inherited_from</th>
-<td>\FeaturePhp\Generator\Generator::__construct()</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$settings</h4>
-<code>\FeaturePhp\Generator\Settings</code>
-</div>
-</div></div>
-</div>
 <a id="method___construct"></a><div class="element clickable method public method___construct inherited" data-toggle="collapse" data-target=".method___construct .collapse" title="public">
 <h2>Creates a generator.</h2>
 <pre>__construct(\FeaturePhp\Generator\Settings $settings) </pre>
@@ -158,18 +157,6 @@ files.</p></div>
 <h4>$settings</h4>
 <code>\FeaturePhp\Generator\Settings</code>
 </div>
-</div></div>
-</div>
-<a id="method__generateFiles"></a><div class="element clickable method public method__generateFiles " data-toggle="collapse" data-target=".method__generateFiles .collapse" title="public">
-<h2>Generates the template files.</h2>
-<pre>_generateFiles() </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>Only template specifications from selected artifacts are considered.</p></div>
-<table class="table table-bordered"><tr>
-<th>inherited_from</th>
-<td>\FeaturePhp\Generator\Generator::_generateFiles()</td>
-</tr></table>
 </div></div>
 </div>
 <a id="method_addDeselectedArtifact"></a><div class="element clickable method public method_addDeselectedArtifact inherited" data-toggle="collapse" data-target=".method_addDeselectedArtifact .collapse" title="public">
@@ -226,12 +213,7 @@ The generator's log file is included.</p></div>
 <pre>getKey() : string</pre>
 <div class="labels"><span class="label">Static</span></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>The key is the name used to identify the <a href="../classes/FeaturePhp.Generator.Settings.html">\FeaturePhp\Generator\Settings</a>
-for a generator.</p></div>
-<table class="table table-bordered"><tr>
-<th>inherited_from</th>
-<td>\FeaturePhp\Generator\Generator::getKey()</td>
-</tr></table>
+<div class="long_description"></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
 </div></div>
@@ -247,6 +229,16 @@ for a generator.</p></div>
 for a generator.</p></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getRegisteredArtifacts"></a><div class="element clickable method public method_getRegisteredArtifacts inherited" data-toggle="collapse" data-target=".method_getRegisteredArtifacts .collapse" title="public">
+<h2>Returns all registered artifacts (selected and deselected).</h2>
+<pre>getRegisteredArtifacts() : array&lt;mixed,\FeaturePhp\Artifact\Artifact&gt;</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array&lt;mixed,\FeaturePhp\Artifact\Artifact&gt;</code></div>
 </div></div>
 </div>
 <a id="method_getSettings"></a><div class="element clickable method public method_getSettings inherited" data-toggle="collapse" data-target=".method_getSettings .collapse" title="public">
@@ -274,6 +266,182 @@ for a generator.</p></div>
 <pre>_generateFiles() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getExtendableFileFromSpecification"></a><div class="element clickable method protected method_getExtendableFileFromSpecification " data-toggle="collapse" data-target=".method_getExtendableFileFromSpecification .collapse" title="protected">
+<h2>Returns a template file from a template specification.</h2>
+<pre>getExtendableFileFromSpecification(\FeaturePhp\Specification\TemplateSpecification $templateSpecification) : \FeaturePhp\File\TemplateFile</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\FeaturePhp\Generator\ExtendGenerator::getExtendableFileFromSpecification()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$templateSpecification</h4>
+<code>\FeaturePhp\Specification\TemplateSpecification</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\FeaturePhp\File\TemplateFile</code></div>
+</div></div>
+</div>
+<a id="method_getExtendableFileFromSpecification"></a><div class="element clickable method protected method_getExtendableFileFromSpecification inherited" data-toggle="collapse" data-target=".method_getExtendableFileFromSpecification .collapse" title="protected">
+<h2>Returns an extendable file from a specification.</h2>
+<pre>getExtendableFileFromSpecification(\FeaturePhp\Specification\Specification $specification) : \FeaturePhp\File\ExtendableFile</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$specification</h4>
+<code>\FeaturePhp\Specification\Specification</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\FeaturePhp\File\ExtendableFile</code></div>
+</div></div>
+</div>
+<a id="method_getSpecification"></a><div class="element clickable method protected method_getSpecification " data-toggle="collapse" data-target=".method_getSpecification .collapse" title="protected">
+<h2>Returns a template specification from a plain settings array.</h2>
+<pre>getSpecification(array $file, \FeaturePhp\Generator\Settings $settings, \FeaturePhp\Artifact\Artifact $artifact) : \FeaturePhp\Specification\TemplateSpecification</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\FeaturePhp\Generator\ExtendGenerator::getSpecification()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$file</h4>
+<code>array</code><p>a plain settings array</p></div>
+<div class="subelement argument">
+<h4>$settings</h4>
+<code>\FeaturePhp\Generator\Settings</code><p>the generator's settings</p></div>
+<div class="subelement argument">
+<h4>$artifact</h4>
+<code>\FeaturePhp\Artifact\Artifact</code><p>the currently processed artifact</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\FeaturePhp\Specification\TemplateSpecification</code></div>
+</div></div>
+</div>
+<a id="method_getSpecification"></a><div class="element clickable method protected method_getSpecification inherited" data-toggle="collapse" data-target=".method_getSpecification .collapse" title="protected">
+<h2>Returns a specification from a plain settings array.</h2>
+<pre>getSpecification(array $file, \FeaturePhp\Generator\Settings $settings, \FeaturePhp\Artifact\Artifact $artifact) : \FeaturePhp\Specification\Specification</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$file</h4>
+<code>array</code><p>a plain settings array</p></div>
+<div class="subelement argument">
+<h4>$settings</h4>
+<code>\FeaturePhp\Generator\Settings</code><p>the generator's settings</p></div>
+<div class="subelement argument">
+<h4>$artifact</h4>
+<code>\FeaturePhp\Artifact\Artifact</code><p>the currently processed artifact</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\FeaturePhp\Specification\Specification</code></div>
+</div></div>
+</div>
+<a id="method_isSelectedFeature"></a><div class="element clickable method protected method_isSelectedFeature inherited" data-toggle="collapse" data-target=".method_isSelectedFeature .collapse" title="protected">
+<h2>Returns whether a feature's artifact is selected.</h2>
+<pre>isSelectedFeature(string $featureName) : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$featureName</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_generateFilesForArtifacts"></a><div class="element clickable method private method_generateFilesForArtifacts inherited" data-toggle="collapse" data-target=".method_generateFilesForArtifacts .collapse" title="private">
+<h2>Generates the extendable files for a set of artifacts and file settings.</h2>
+<pre>generateFilesForArtifacts(array&lt;mixed,\FeaturePhp\Artifact\Artifact&gt; $artifacts, callable $fileSettingsGetter, boolean $extend) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$artifacts</h4>
+<code>array&lt;mixed,\FeaturePhp\Artifact\Artifact&gt;</code>
+</div>
+<div class="subelement argument">
+<h4>$fileSettingsGetter</h4>
+<code>callable</code>
+</div>
+<div class="subelement argument">
+<h4>$extend</h4>
+<code>boolean</code>
+</div>
+</div></div>
+</div>
+<a id="method_getExtendableFile"></a><div class="element clickable method private method_getExtendableFile inherited" data-toggle="collapse" data-target=".method_getExtendableFile .collapse" title="private">
+<h2>Creates an extendable file from a specification.</h2>
+<pre>getExtendableFile(\FeaturePhp\Specification\Specification $specification) : \FeaturePhp\File\ExtendableFile</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>If the extendable file was already created, returns the cached extendable file.
+If the extendable file does not yet exist, create it if it may be created from
+this specification.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$specification</h4>
+<code>\FeaturePhp\Specification\Specification</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\FeaturePhp\File\ExtendableFile</code></div>
+</div></div>
+</div>
+<a id="method_getFileSettings"></a><div class="element clickable method private method_getFileSettings inherited" data-toggle="collapse" data-target=".method_getFileSettings .collapse" title="private">
+<h2>Returns plain settings arrays with file specifications for all registered artifacts.</h2>
+<pre>getFileSettings(\FeaturePhp\Generator\Settings $settings) : array&lt;mixed,array&gt;</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settings</h4>
+<code>\FeaturePhp\Generator\Settings</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array&lt;mixed,array&gt;</code></div>
+</div></div>
+</div>
+<a id="method_getFileSettingsForDeselected"></a><div class="element clickable method private method_getFileSettingsForDeselected inherited" data-toggle="collapse" data-target=".method_getFileSettingsForDeselected .collapse" title="private">
+<h2>Returns plain settings arrays with file specifications for deselected artifacts.</h2>
+<pre>getFileSettingsForDeselected(\FeaturePhp\Generator\Settings $settings) : array&lt;mixed,array&gt;</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settings</h4>
+<code>\FeaturePhp\Generator\Settings</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array&lt;mixed,array&gt;</code></div>
+</div></div>
+</div>
+<a id="method_getFileSettingsForSelected"></a><div class="element clickable method private method_getFileSettingsForSelected inherited" data-toggle="collapse" data-target=".method_getFileSettingsForSelected .collapse" title="private">
+<h2>Returns plain settings arrays with file specifications for selected artifacts.</h2>
+<pre>getFileSettingsForSelected(\FeaturePhp\Generator\Settings $settings) : array&lt;mixed,array&gt;</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settings</h4>
+<code>\FeaturePhp\Generator\Settings</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array&lt;mixed,array&gt;</code></div>
+</div></div>
 </div>
 <a id="method_getGenerators"></a><div class="element clickable method private method_getGenerators inherited" data-toggle="collapse" data-target=".method_getGenerators .collapse" title="private">
 <h2>Returns the class names of all generators.</h2>
@@ -339,14 +507,24 @@ for a generator.</p></div>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
+<a id="property_extendableFiles"> </a><div class="element clickable property private property_extendableFiles" data-toggle="collapse" data-target=".property_extendableFiles .collapse" title="private">
+<h2>cached extendable files</h2>
+<pre>$extendableFiles : array&lt;mixed,\FeaturePhp\File\ExtendableFile&gt;</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:42+01:00.<br></footer></div>
 </div>
 </body>
 </html>

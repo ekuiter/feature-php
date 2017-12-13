@@ -61,12 +61,23 @@
 <a href="../packages/Default.html" title="Default"><i class="icon-folder-open"></i>Default</a><ul class="nav nav-list nav-packages"></ul>
 </li>
 <li class="nav-header">
+<i title="Interfaces" class="icon-custom icon-interface"></i> Interfaces</li>
+<li><a href="#ExtendFile" title="A file that can be extended by different artifacts.">ExtendFile</a></li>
+<li class="nav-header">
 <i title="Classes" class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#RoleException" title="Exception thrown from the Role class.">RoleException</a></li>
+<li><a href="#Role" title="A role defines a class' responsibilities in a collaboration.">Role</a></li>
+<li><a href="#ClassComposerException" title="Exception thrown from the ClassComposer class.">ClassComposerException</a></li>
+<li><a href="#ClassComposer" title="Composes roles that refine PHP classes.">ClassComposer</a></li>
+<li><a href="#ComposerException" title="Exception thrown from the Composer class.">ComposerException</a></li>
+<li><a href="#Composer" title="Composes roles of the same kind.">Composer</a></li>
+<li><a href="#Collaboration" title="A collaboration is a set of cooperating roles.">Collaboration</a></li>
 <li><a href="#SettingsException" title="Exception thrown from the Settings class.">SettingsException</a></li>
 <li><a href="#InvalidSettingsException" title="Exception thrown from the Settings class regarding invalid settings arrays.">InvalidSettingsException</a></li>
 <li><a href="#NotFoundSettingsException" title="Exception thrown from the Settings class regarding settings that are not present.">NotFoundSettingsException</a></li>
 <li><a href="#Settings" title="A general key-value store for user-supplied settings.">Settings</a></li>
 <li><a href="#Renderer" title="A minimalistic renderer for a web page.">Renderer</a></li>
+<li><a href="#RefinedFile" title="A text file generated from a set of roles.">RefinedFile</a></li>
 <li><a href="#File" title="A file generated for a product.">File</a></li>
 <li><a href="#FileContent" title="A file's content.">FileContent</a></li>
 <li><a href="#ChunkFile" title="A text file generated from multiple chunks.">ChunkFile</a></li>
@@ -76,8 +87,10 @@
 <li><a href="#TextFileContent" title="A text file's content.">TextFileContent</a></li>
 <li><a href="#StoredFileContent" title="A stored file's content.">StoredFileContent</a></li>
 <li><a href="#StoredFile" title="A file stored on the server.">StoredFile</a></li>
+<li><a href="#ExtendSpecification" title="Settings for specifying an extendable file.">ExtendSpecification</a></li>
 <li><a href="#ChunkSpecification" title="Settings for specifying a chunk of a text file.">ChunkSpecification</a></li>
 <li><a href="#ReplacementRuleException" title="Exception thrown from the ReplacementRule class.">ReplacementRuleException</a></li>
+<li><a href="#InvalidReplacementRuleException" title="Exception thrown from the ReplacementRule class regarding invalid settings arrays.">InvalidReplacementRuleException</a></li>
 <li><a href="#ReplacementRule" title="Settings for specifying a replacement rule in a template specification.">ReplacementRule</a></li>
 <li><a href="#TemplateSpecification" title="Settings for specifying a text file in which specific parts may be replaced.">TemplateSpecification</a></li>
 <li><a href="#SpecificationException" title="Exception thrown from the Specification class.">SpecificationException</a></li>
@@ -90,15 +103,23 @@
 <li><a href="#ChunkGenerator" title="Generates text files from multiple chunks.">ChunkGenerator</a></li>
 <li><a href="#RuntimeGenerator" title="Generates a file with runtime information.">RuntimeGenerator</a></li>
 <li><a href="#EmptyGenerator" title="Generates no files.">EmptyGenerator</a></li>
+<li><a href="#FileGenerator" title="Generates files from specified files and directories.">FileGenerator</a></li>
+<li><a href="#AspectGenerator" title="Registers aspects in an aspect kernel.">AspectGenerator</a></li>
+<li><a href="#CollaborationGeneratorException" title="Exception thrown from the CollaborationGenerator class.">CollaborationGeneratorException</a></li>
+<li><a href="#CollaborationGenerator" title="Composes classes from roles inside collaborations.">CollaborationGenerator</a></li>
+<li><a href="#ExtendGenerator" title="Generates text files that can be extended by different artifacts.">ExtendGenerator</a></li>
 <li><a href="#CopyGenerator" title="Copies files and directories.">CopyGenerator</a></li>
 <li><a href="#Generator" title="Generates a product's files.">Generator</a></li>
 <li><a href="#TemplateGenerator" title="Generates text files by replacing parts of template files.">TemplateGenerator</a></li>
 <li><a href="#XmlModelException" title="Exception thrown from the XmlModel class.">XmlModelException</a></li>
 <li><a href="#XmlModel" title="A feature model represented in XML.">XmlModel</a></li>
+<li><a href="#FeatureException" title="Exception thrown from the Feature class.">FeatureException</a></li>
 <li><a href="#Feature" title="A feature of a feature model.">Feature</a></li>
 <li><a href="#XmlConfigurationException" title="Exception thrown from the XmlConfiguration class.">XmlConfigurationException</a></li>
 <li><a href="#XmlConfiguration" title="A configuration represented in XML.">XmlConfiguration</a></li>
 <li><a href="#ConfigurationRenderer" title="A renderer for a configuration and its model.">ConfigurationRenderer</a></li>
+<li><a href="#ValueFeatureException" title="Exception thrown from the ValueFeature class.">ValueFeatureException</a></li>
+<li><a href="#ValueFeature" title="A feature holding a value.">ValueFeature</a></li>
 <li><a href="#ModelException" title="Exception thrown from the Model class.">ModelException</a></li>
 <li><a href="#Model" title="A feature model for a software product line.">Model</a></li>
 <li><a href="#Configuration" title="A configuration of a software product line.">Configuration</a></li>
@@ -106,13 +127,20 @@
 <li><a href="#ConstraintSolver" title="A solver for feature constraints.">ConstraintSolver</a></li>
 <li><a href="#Settings" title="Settings for an artifact.">Settings</a></li>
 <li><a href="#Artifact" title="An artifact associated with a feature.">Artifact</a></li>
+<li><a href="#AspectKernel" title="An aspect kernel manages a set of aspects.">AspectKernel</a></li>
+<li><a href="#Aspect" title="An aspect implements a crosscutting concern.">Aspect</a></li>
 <li><a href="#ZipExporterException" title="Exception thrown from the ZipExporter class.">ZipExporterException</a></li>
 <li><a href="#ZipExporter" title="Exports products as ZIP archives.">ZipExporter</a></li>
 <li><a href="#Exporter" title="An exporter for a product.">Exporter</a></li>
+<li><a href="#LocalExporterException" title="Exception thrown from the LocalExporter class.">LocalExporterException</a></li>
+<li><a href="#LocalExporter" title="Exports products to the local filesystem.">LocalExporter</a></li>
 <li><a href="#DownloadZipExporterException" title="Exception thrown from the DownloadZipExporter class.">DownloadZipExporterException</a></li>
 <li><a href="#DownloadZipExporter" title="Exports products as ZIP archives and offers them for downloading.">DownloadZipExporter</a></li>
 <li><a href="#XmlParserException" title="Exception thrown from the XmlParser class.">XmlParserException</a></li>
 <li><a href="#XmlParser" title="Helper class for parsing XML files.">XmlParser</a></li>
+<li><a href="#PhpParserException" title="Exception thrown from the PhpParser class.">PhpParserException</a></li>
+<li><a href="#PhpParser" title="Helper class for parsing PHP files.">PhpParser</a></li>
+<li><a href="#Partition" title="Helper class for partitioning an array with an equivalence relation.">Partition</a></li>
 <li><a href="#PathException" title="Exception thrown from the Path class.">PathException</a></li>
 <li><a href="#Path" title="Helper class for handling file and directory paths.">Path</a></li>
 <li><a href="#ArrayException" title="Exception thrown from the _Array class.">ArrayException</a></li>
@@ -132,6 +160,13 @@
 <div class="package-indent">
 <h3>
 <i title="Classes" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="ExtendFile" class="element ajax clickable interface">
+<h1>ExtendFile<a href="../classes/FeaturePhp.File.ExtendFile.html">¶</a>
+</h1>
+<p class="short_description">A file that can be extended by different artifacts.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.File.ExtendFile.html" class="more">« More »</a>
+</div>
 <div xmlns:php="http://php.net/xsl" id="Artifact" class="element ajax clickable class">
 <h1>Artifact<a href="../classes/FeaturePhp.Artifact.Artifact.html">¶</a>
 </h1>
@@ -145,6 +180,69 @@
 <p class="short_description">Settings for an artifact.</p>
 <div class="details collapse"></div>
 <a href="../classes/FeaturePhp.Artifact.Settings.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Aspect" class="element ajax clickable class">
+<h1>Aspect<a href="../classes/FeaturePhp.Aspect.Aspect.html">¶</a>
+</h1>
+<p class="short_description">An aspect implements a crosscutting concern.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Aspect.Aspect.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="AspectKernel" class="element ajax clickable class">
+<h1>AspectKernel<a href="../classes/FeaturePhp.Aspect.AspectKernel.html">¶</a>
+</h1>
+<p class="short_description">An aspect kernel manages a set of aspects.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Aspect.AspectKernel.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ClassComposer" class="element ajax clickable class">
+<h1>ClassComposer<a href="../classes/FeaturePhp.Collaboration.ClassComposer.html">¶</a>
+</h1>
+<p class="short_description">Composes roles that refine PHP classes.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Collaboration.ClassComposer.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ClassComposerException" class="element ajax clickable class">
+<h1>ClassComposerException<a href="../classes/FeaturePhp.Collaboration.ClassComposerException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the ClassComposer class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Collaboration.ClassComposerException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Collaboration" class="element ajax clickable class">
+<h1>Collaboration<a href="../classes/FeaturePhp.Collaboration.Collaboration.html">¶</a>
+</h1>
+<p class="short_description">A collaboration is a set of cooperating roles.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Collaboration.Collaboration.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Composer" class="element ajax clickable class">
+<h1>Composer<a href="../classes/FeaturePhp.Collaboration.Composer.html">¶</a>
+</h1>
+<p class="short_description">Composes roles of the same kind.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Collaboration.Composer.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ComposerException" class="element ajax clickable class">
+<h1>ComposerException<a href="../classes/FeaturePhp.Collaboration.ComposerException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the Composer class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Collaboration.ComposerException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Role" class="element ajax clickable class">
+<h1>Role<a href="../classes/FeaturePhp.Collaboration.Role.html">¶</a>
+</h1>
+<p class="short_description">A role defines a class' responsibilities in a collaboration.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Collaboration.Role.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="RoleException" class="element ajax clickable class">
+<h1>RoleException<a href="../classes/FeaturePhp.Collaboration.RoleException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the Role class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Collaboration.RoleException.html" class="more">« More »</a>
 </div>
 <div xmlns:php="http://php.net/xsl" id="DownloadZipExporter" class="element ajax clickable class">
 <h1>DownloadZipExporter<a href="../classes/FeaturePhp.Exporter.DownloadZipExporter.html">¶</a>
@@ -166,6 +264,20 @@
 <p class="short_description">An exporter for a product.</p>
 <div class="details collapse"></div>
 <a href="../classes/FeaturePhp.Exporter.Exporter.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="LocalExporter" class="element ajax clickable class">
+<h1>LocalExporter<a href="../classes/FeaturePhp.Exporter.LocalExporter.html">¶</a>
+</h1>
+<p class="short_description">Exports products to the local filesystem.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Exporter.LocalExporter.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="LocalExporterException" class="element ajax clickable class">
+<h1>LocalExporterException<a href="../classes/FeaturePhp.Exporter.LocalExporterException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the LocalExporter class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Exporter.LocalExporterException.html" class="more">« More »</a>
 </div>
 <div xmlns:php="http://php.net/xsl" id="ZipExporter" class="element ajax clickable class">
 <h1>ZipExporter<a href="../classes/FeaturePhp.Exporter.ZipExporter.html">¶</a>
@@ -209,6 +321,13 @@
 <div class="details collapse"></div>
 <a href="../classes/FeaturePhp.File.LogFile.html" class="more">« More »</a>
 </div>
+<div xmlns:php="http://php.net/xsl" id="RefinedFile" class="element ajax clickable class">
+<h1>RefinedFile<a href="../classes/FeaturePhp.File.RefinedFile.html">¶</a>
+</h1>
+<p class="short_description">A text file generated from a set of roles.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.File.RefinedFile.html" class="more">« More »</a>
+</div>
 <div xmlns:php="http://php.net/xsl" id="StoredFile" class="element ajax clickable class">
 <h1>StoredFile<a href="../classes/FeaturePhp.File.StoredFile.html">¶</a>
 </h1>
@@ -244,12 +363,33 @@
 <div class="details collapse"></div>
 <a href="../classes/FeaturePhp.File.TextFileContent.html" class="more">« More »</a>
 </div>
+<div xmlns:php="http://php.net/xsl" id="AspectGenerator" class="element ajax clickable class">
+<h1>AspectGenerator<a href="../classes/FeaturePhp.Generator.AspectGenerator.html">¶</a>
+</h1>
+<p class="short_description">Registers aspects in an aspect kernel.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Generator.AspectGenerator.html" class="more">« More »</a>
+</div>
 <div xmlns:php="http://php.net/xsl" id="ChunkGenerator" class="element ajax clickable class">
 <h1>ChunkGenerator<a href="../classes/FeaturePhp.Generator.ChunkGenerator.html">¶</a>
 </h1>
 <p class="short_description">Generates text files from multiple chunks.</p>
 <div class="details collapse"></div>
 <a href="../classes/FeaturePhp.Generator.ChunkGenerator.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="CollaborationGenerator" class="element ajax clickable class">
+<h1>CollaborationGenerator<a href="../classes/FeaturePhp.Generator.CollaborationGenerator.html">¶</a>
+</h1>
+<p class="short_description">Composes classes from roles inside collaborations.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Generator.CollaborationGenerator.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="CollaborationGeneratorException" class="element ajax clickable class">
+<h1>CollaborationGeneratorException<a href="../classes/FeaturePhp.Generator.CollaborationGeneratorException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the CollaborationGenerator class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Generator.CollaborationGeneratorException.html" class="more">« More »</a>
 </div>
 <div xmlns:php="http://php.net/xsl" id="CopyGenerator" class="element ajax clickable class">
 <h1>CopyGenerator<a href="../classes/FeaturePhp.Generator.CopyGenerator.html">¶</a>
@@ -264,6 +404,20 @@
 <p class="short_description">Generates no files.</p>
 <div class="details collapse"></div>
 <a href="../classes/FeaturePhp.Generator.EmptyGenerator.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ExtendGenerator" class="element ajax clickable class">
+<h1>ExtendGenerator<a href="../classes/FeaturePhp.Generator.ExtendGenerator.html">¶</a>
+</h1>
+<p class="short_description">Generates text files that can be extended by different artifacts.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Generator.ExtendGenerator.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="FileGenerator" class="element ajax clickable class">
+<h1>FileGenerator<a href="../classes/FeaturePhp.Generator.FileGenerator.html">¶</a>
+</h1>
+<p class="short_description">Generates files from specified files and directories.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Generator.FileGenerator.html" class="more">« More »</a>
 </div>
 <div xmlns:php="http://php.net/xsl" id="Generator" class="element ajax clickable class">
 <h1>Generator<a href="../classes/FeaturePhp.Generator.Generator.html">¶</a>
@@ -307,6 +461,13 @@
 <div class="details collapse"></div>
 <a href="../classes/FeaturePhp.Helper.Logic.html" class="more">« More »</a>
 </div>
+<div xmlns:php="http://php.net/xsl" id="Partition" class="element ajax clickable class">
+<h1>Partition<a href="../classes/FeaturePhp.Helper.Partition.html">¶</a>
+</h1>
+<p class="short_description">Helper class for partitioning an array with an equivalence relation.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Helper.Partition.html" class="more">« More »</a>
+</div>
 <div xmlns:php="http://php.net/xsl" id="Path" class="element ajax clickable class">
 <h1>Path<a href="../classes/FeaturePhp.Helper.Path.html">¶</a>
 </h1>
@@ -320,6 +481,20 @@
 <p class="short_description">Exception thrown from the Path class.</p>
 <div class="details collapse"></div>
 <a href="../classes/FeaturePhp.Helper.PathException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="PhpParser" class="element ajax clickable class">
+<h1>PhpParser<a href="../classes/FeaturePhp.Helper.PhpParser.html">¶</a>
+</h1>
+<p class="short_description">Helper class for parsing PHP files.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Helper.PhpParser.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="PhpParserException" class="element ajax clickable class">
+<h1>PhpParserException<a href="../classes/FeaturePhp.Helper.PhpParserException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the PhpParser class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Helper.PhpParserException.html" class="more">« More »</a>
 </div>
 <div xmlns:php="http://php.net/xsl" id="XmlParser" class="element ajax clickable class">
 <h1>XmlParser<a href="../classes/FeaturePhp.Helper.XmlParser.html">¶</a>
@@ -384,6 +559,13 @@
 <div class="details collapse"></div>
 <a href="../classes/FeaturePhp.Model.Feature.html" class="more">« More »</a>
 </div>
+<div xmlns:php="http://php.net/xsl" id="FeatureException" class="element ajax clickable class">
+<h1>FeatureException<a href="../classes/FeaturePhp.Model.FeatureException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the Feature class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.FeatureException.html" class="more">« More »</a>
+</div>
 <div xmlns:php="http://php.net/xsl" id="Model" class="element ajax clickable class">
 <h1>Model<a href="../classes/FeaturePhp.Model.Model.html">¶</a>
 </h1>
@@ -397,6 +579,20 @@
 <p class="short_description">Exception thrown from the Model class.</p>
 <div class="details collapse"></div>
 <a href="../classes/FeaturePhp.Model.ModelException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ValueFeature" class="element ajax clickable class">
+<h1>ValueFeature<a href="../classes/FeaturePhp.Model.ValueFeature.html">¶</a>
+</h1>
+<p class="short_description">A feature holding a value.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.ValueFeature.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ValueFeatureException" class="element ajax clickable class">
+<h1>ValueFeatureException<a href="../classes/FeaturePhp.Model.ValueFeatureException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the ValueFeature class.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Model.ValueFeatureException.html" class="more">« More »</a>
 </div>
 <div xmlns:php="http://php.net/xsl" id="XmlConfiguration" class="element ajax clickable class">
 <h1>XmlConfiguration<a href="../classes/FeaturePhp.Model.XmlConfiguration.html">¶</a>
@@ -510,6 +706,13 @@
 <div class="details collapse"></div>
 <a href="../classes/FeaturePhp.Specification.DirectorySpecificationException.html" class="more">« More »</a>
 </div>
+<div xmlns:php="http://php.net/xsl" id="ExtendSpecification" class="element ajax clickable class">
+<h1>ExtendSpecification<a href="../classes/FeaturePhp.Specification.ExtendSpecification.html">¶</a>
+</h1>
+<p class="short_description">Settings for specifying an extendable file.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Specification.ExtendSpecification.html" class="more">« More »</a>
+</div>
 <div xmlns:php="http://php.net/xsl" id="FileSpecification" class="element ajax clickable class">
 <h1>FileSpecification<a href="../classes/FeaturePhp.Specification.FileSpecification.html">¶</a>
 </h1>
@@ -523,6 +726,13 @@
 <p class="short_description">Exception thrown from the FileSpecification class.</p>
 <div class="details collapse"></div>
 <a href="../classes/FeaturePhp.Specification.FileSpecificationException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="InvalidReplacementRuleException" class="element ajax clickable class">
+<h1>InvalidReplacementRuleException<a href="../classes/FeaturePhp.Specification.InvalidReplacementRuleException.html">¶</a>
+</h1>
+<p class="short_description">Exception thrown from the ReplacementRule class regarding invalid settings arrays.</p>
+<div class="details collapse"></div>
+<a href="../classes/FeaturePhp.Specification.InvalidReplacementRuleException.html" class="more">« More »</a>
 </div>
 <div xmlns:php="http://php.net/xsl" id="ReplacementRule" class="element ajax clickable class">
 <h1>ReplacementRule<a href="../classes/FeaturePhp.Specification.ReplacementRule.html">¶</a>
@@ -564,8 +774,8 @@
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:41+01:00.<br></footer></div>
 </div>
 </body>
 </html>

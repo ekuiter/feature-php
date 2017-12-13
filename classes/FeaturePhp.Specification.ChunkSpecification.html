@@ -65,8 +65,9 @@
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct() :: Creates a chunk specification."><span class="description">Creates a chunk specification.</span><pre>__construct()</pre></a></li>
 <li class="method public inherited"><a href="#method___construct" title="__construct() :: Creates settings."><span class="description">Creates settings.</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_fromArray" title="fromArray() :: Creates a chunk specification from a plain settings array."><span class="description">Creates a chunk specification from a plain settings array.</span><pre>fromArray()</pre></a></li>
 <li class="method public inherited"><a href="#method_fromArray" title="fromArray() :: Creates settings."><span class="description">Creates settings.</span><pre>fromArray()</pre></a></li>
+<li class="method public "><a href="#method_fromArrayAndSettings" title="fromArrayAndSettings() :: Creates a chunk specification from a plain settings array."><span class="description">Creates a chunk specification from a plain settings array.</span><pre>fromArrayAndSettings()</pre></a></li>
+<li class="method public inherited"><a href="#method_fromArrayAndSettings" title="fromArrayAndSettings() :: Creates a file specification from a plain settings array."><span class="description">Creates a file specification from a plain settings array.</span><pre>fromArrayAndSettings()</pre></a></li>
 <li class="method public inherited"><a href="#method_fromFile" title="fromFile() :: Creates settings from a JSON-encoded file."><span class="description">Creates settings from a JSON-encoded file.</span><pre>fromFile()</pre></a></li>
 <li class="method public inherited"><a href="#method_fromString" title="fromString() :: Creates settings from a JSON-encoded string."><span class="description">Creates settings from a JSON-encoded string.</span><pre>fromString()</pre></a></li>
 <li class="method public inherited"><a href="#method_get" title="get() :: Returns a setting."><span class="description">Returns a setting.</span><pre>get()</pre></a></li>
@@ -78,11 +79,13 @@
 <li class="method public "><a href="#method_getNewline" title="getNewline() :: Returns whether to include new line characters after each chunk."><span class="description">Returns whether to include new line characters after each chunk.</span><pre>getNewline()</pre></a></li>
 <li class="method public inherited"><a href="#method_getOptional" title="getOptional() :: Returns an optional setting, defaulting to a value."><span class="description">Returns an optional setting, defaulting to a value.</span><pre>getOptional()</pre></a></li>
 <li class="method public inherited"><a href="#method_getPath" title="getPath() :: Returns a path in the context of the settings' directory."><span class="description">Returns a path in the context of the settings' directory.</span><pre>getPath()</pre></a></li>
+<li class="method public inherited"><a href="#method_getRelativeSource" title="getRelativeSource() :: Returns the entity's source relative to its settings."><span class="description">Returns the entity's source relative to its settings.</span><pre>getRelativeSource()</pre></a></li>
 <li class="method public inherited"><a href="#method_getSource" title="getSource() :: Returns the entity's source."><span class="description">Returns the entity's source.</span><pre>getSource()</pre></a></li>
 <li class="method public inherited"><a href="#method_getTarget" title="getTarget() :: Returns the entity's target."><span class="description">Returns the entity's target.</span><pre>getTarget()</pre></a></li>
 <li class="method public "><a href="#method_getText" title="getText() :: Returns the chunk's text."><span class="description">Returns the chunk's text.</span><pre>getText()</pre></a></li>
 <li class="method public inherited"><a href="#method_getWith" title="getWith() :: Returns a setting if a predicate is satisfied."><span class="description">Returns a setting if a predicate is satisfied.</span><pre>getWith()</pre></a></li>
 <li class="method public inherited"><a href="#method_inDirectory" title="inDirectory() :: Creates empty settings in the context of a directory."><span class="description">Creates empty settings in the context of a directory.</span><pre>inDirectory()</pre></a></li>
+<li class="method public inherited"><a href="#method_mayCreate" title="mayCreate() :: Returns whether the specification may create its specified file."><span class="description">Returns whether the specification may create its specified file.</span><pre>mayCreate()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header protected">» Protected
@@ -152,20 +155,20 @@ hold general settings for a chunk file and follow the structure:</p>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\FeaturePhp\Specification\FileSpecification</td>
+<td>\FeaturePhp\Specification\ExtendSpecification</td>
 </tr>
 </table>
 <h3>
 <i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct " data-toggle="collapse" data-target=".method___construct .collapse" title="public">
 <h2>Creates a chunk specification.</h2>
-<pre>__construct(array $cfg, string $directory<code> = "."</code>) </pre>
+<pre>__construct(array $cfg, string $directory<code> = "."</code>, \FeaturePhp\Artifact\Artifact $artifact<code> = null</code>) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"><p>The directory may be used to resolve relative paths in the settings.</p></div>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
-<td>\FeaturePhp\Specification\FileSpecification::__construct()</td>
+<td>\FeaturePhp\Specification\ExtendSpecification::__construct()</td>
 </tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
@@ -174,6 +177,10 @@ hold general settings for a chunk file and follow the structure:</p>
 <div class="subelement argument">
 <h4>$directory</h4>
 <code>string</code><p>the directory the settings apply to</p></div>
+<div class="subelement argument">
+<h4>$artifact</h4>
+<code>\FeaturePhp\Artifact\Artifact</code>
+</div>
 </div></div>
 </div>
 <a id="method___construct"></a><div class="element clickable method public method___construct inherited" data-toggle="collapse" data-target=".method___construct .collapse" title="public">
@@ -191,28 +198,6 @@ hold general settings for a chunk file and follow the structure:</p>
 <code>string</code><p>the directory the settings apply to</p></div>
 </div></div>
 </div>
-<a id="method_fromArray"></a><div class="element clickable method public method_fromArray " data-toggle="collapse" data-target=".method_fromArray .collapse" title="public">
-<h2>Creates a chunk specification from a plain settings array.</h2>
-<pre>fromArray(array $cfg, \FeaturePhp\Settings $settings) : \FeaturePhp\Specification\ChunkSpecification</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>The settings context is taken into consideration to generate paths
-relative to the settings.</p></div>
-<table class="table table-bordered"><tr>
-<th>inherited_from</th>
-<td>\FeaturePhp\Specification\FileSpecification::fromArray()</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$cfg</h4>
-<code>array</code><p>a plain settings array</p></div>
-<div class="subelement argument">
-<h4>$settings</h4>
-<code>\FeaturePhp\Settings</code><p>the settings context</p></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>\FeaturePhp\Specification\ChunkSpecification</code></div>
-</div></div>
-</div>
 <a id="method_fromArray"></a><div class="element clickable method public method_fromArray inherited" data-toggle="collapse" data-target=".method_fromArray .collapse" title="public">
 <h2>Creates settings.</h2>
 <pre>fromArray(array $cfg, string $directory<code> = "."</code>) </pre>
@@ -228,6 +213,48 @@ relative to the settings.</p></div>
 <div class="subelement argument">
 <h4>$directory</h4>
 <code>string</code><p>the directory the settings apply to</p></div>
+</div></div>
+</div>
+<a id="method_fromArrayAndSettings"></a><div class="element clickable method public method_fromArrayAndSettings " data-toggle="collapse" data-target=".method_fromArrayAndSettings .collapse" title="public">
+<h2>Creates a chunk specification from a plain settings array.</h2>
+<pre>fromArrayAndSettings(array $cfg, \FeaturePhp\Settings $settings) : \FeaturePhp\Specification\ChunkSpecification</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The settings context is taken into consideration to generate paths
+relative to the settings.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cfg</h4>
+<code>array</code><p>a plain settings array</p></div>
+<div class="subelement argument">
+<h4>$settings</h4>
+<code>\FeaturePhp\Settings</code><p>the settings context</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\FeaturePhp\Specification\ChunkSpecification</code></div>
+</div></div>
+</div>
+<a id="method_fromArrayAndSettings"></a><div class="element clickable method public method_fromArrayAndSettings inherited" data-toggle="collapse" data-target=".method_fromArrayAndSettings .collapse" title="public">
+<h2>Creates a file specification from a plain settings array.</h2>
+<pre>fromArrayAndSettings(array $cfg, \FeaturePhp\Settings $settings, \FeaturePhp\Artifact\Artifact $artifact<code> = null</code>) : \FeaturePhp\Specification\FileSpecification</pre>
+<div class="labels">
+<span class="label">Inherited</span><span class="label">Static</span>
+</div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The settings context is taken into consideration to generate paths
+relative to the settings.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cfg</h4>
+<code>array</code><p>a plain settings array</p></div>
+<div class="subelement argument">
+<h4>$settings</h4>
+<code>\FeaturePhp\Settings</code><p>the settings context</p></div>
+<div class="subelement argument">
+<h4>$artifact</h4>
+<code>\FeaturePhp\Artifact\Artifact</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\FeaturePhp\Specification\FileSpecification</code></div>
 </div></div>
 </div>
 <a id="method_fromFile"></a><div class="element clickable method public method_fromFile inherited" data-toggle="collapse" data-target=".method_fromFile .collapse" title="public">
@@ -386,6 +413,16 @@ If true is given, the class is instantiated from an empty array.</p></div>
 <div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
+<a id="method_getRelativeSource"></a><div class="element clickable method public method_getRelativeSource inherited" data-toggle="collapse" data-target=".method_getRelativeSource .collapse" title="public">
+<h2>Returns the entity's source relative to its settings.</h2>
+<pre>getRelativeSource() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
 <a id="method_getSource"></a><div class="element clickable method public method_getSource inherited" data-toggle="collapse" data-target=".method_getSource .collapse" title="public">
 <h2>Returns the entity's source.</h2>
 <pre>getSource() : string</pre>
@@ -447,6 +484,16 @@ If true is given, the class is instantiated from an empty array.</p></div>
 <div class="subelement argument">
 <h4>$directory</h4>
 <code>string</code><p>the directory the settings apply to</p></div>
+</div></div>
+</div>
+<a id="method_mayCreate"></a><div class="element clickable method public method_mayCreate inherited" data-toggle="collapse" data-target=".method_mayCreate .collapse" title="public">
+<h2>Returns whether the specification may create its specified file.</h2>
+<pre>mayCreate() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
 <a id="method_has"></a><div class="element clickable method protected method_has inherited" data-toggle="collapse" data-target=".method_has .collapse" title="protected">
@@ -552,8 +599,8 @@ is assumed.</p></div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:41+01:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -69,7 +69,9 @@
 <li class="method public "><a href="#method_fromRequest" title="fromRequest() :: Creates an XML configuration from a request variable."><span class="description">Creates an XML configuration from a request variable.</span><pre>fromRequest()</pre></a></li>
 <li class="method public "><a href="#method_fromString" title="fromString() :: Creates an XML configuration from an XML string."><span class="description">Creates an XML configuration from an XML string.</span><pre>fromString()</pre></a></li>
 <li class="method public "><a href="#method_getSelectedFeatureNames" title="getSelectedFeatureNames() :: Returns the XML configuration's selected feature names."><span class="description">Returns the XML configuration's selected feature names.</span><pre>getSelectedFeatureNames()</pre></a></li>
+<li class="method public "><a href="#method_getValues" title="getValues() :: Returns the XML configuration's values."><span class="description">Returns the XML configuration's values.</span><pre>getValues()</pre></a></li>
 <li class="method public "><a href="#method_getXml" title="getXml() :: Returns the XML configuration's underlying XML document."><span class="description">Returns the XML configuration's underlying XML document.</span><pre>getXml()</pre></a></li>
+<li class="method public "><a href="#method_getXmlParser" title="getXmlParser() :: Returns the XML configuration's underlying XML parser."><span class="description">Returns the XML configuration's underlying XML parser.</span><pre>getXmlParser()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -79,7 +81,9 @@
 <li class="nav-header private">» Private
                     <ul>
 <li class="property private "><a href="#property_selectedFeatureNames" title="$selectedFeatureNames() :: "><span class="description">the names of all selected features in the configuration</span><pre>$selectedFeatureNames</pre></a></li>
+<li class="property private "><a href="#property_values" title="$values() :: "><span class="description">names of value features associated with their values</span><pre>$values</pre></a></li>
 <li class="property private "><a href="#property_xml" title="$xml() :: "><span class="description">the underlying XML document</span><pre>$xml</pre></a></li>
+<li class="property private "><a href="#property_xmlParser" title="$xmlParser() :: "><span class="description">the underlying XML parser</span><pre>$xmlParser</pre></a></li>
 </ul>
 </li>
 </ul>
@@ -116,14 +120,14 @@ configuration editor.</p></div>
 <i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct " data-toggle="collapse" data-target=".method___construct .collapse" title="public">
 <h2>Creates an XML configuration.</h2>
-<pre>__construct(\SimpleXMLElement $xml) </pre>
+<pre>__construct(\FeaturePhp\Helper\XmlParser $xmlParser) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$xml</h4>
-<code>\SimpleXMLElement</code>
+<h4>$xmlParser</h4>
+<code>\FeaturePhp\Helper\XmlParser</code>
 </div>
 </div></div>
 </div>
@@ -200,6 +204,16 @@ always validated against the feature model.</p></div>
 <div class="subelement response"><code>array&lt;mixed,string&gt;</code></div>
 </div></div>
 </div>
+<a id="method_getValues"></a><div class="element clickable method public method_getValues " data-toggle="collapse" data-target=".method_getValues .collapse" title="public">
+<h2>Returns the XML configuration's values.</h2>
+<pre>getValues() : array&lt;mixed,string&gt;</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array&lt;mixed,string&gt;</code></div>
+</div></div>
+</div>
 <a id="method_getXml"></a><div class="element clickable method public method_getXml " data-toggle="collapse" data-target=".method_getXml .collapse" title="public">
 <h2>Returns the XML configuration's underlying XML document.</h2>
 <pre>getXml() : \SimpleXMLElement</pre>
@@ -210,11 +224,31 @@ always validated against the feature model.</p></div>
 <div class="subelement response"><code>\SimpleXMLElement</code></div>
 </div></div>
 </div>
+<a id="method_getXmlParser"></a><div class="element clickable method public method_getXmlParser " data-toggle="collapse" data-target=".method_getXmlParser .collapse" title="public">
+<h2>Returns the XML configuration's underlying XML parser.</h2>
+<pre>getXmlParser() : \FeaturePhp\Helper\XmlParser</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\FeaturePhp\Helper\XmlParser</code></div>
+</div></div>
+</div>
 <h3>
 <i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_selectedFeatureNames"> </a><div class="element clickable property private property_selectedFeatureNames" data-toggle="collapse" data-target=".property_selectedFeatureNames .collapse" title="private">
 <h2>the names of all selected features in the configuration</h2>
 <pre>$selectedFeatureNames : array&lt;mixed,string&gt;</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_values"> </a><div class="element clickable property private property_values" data-toggle="collapse" data-target=".property_values .collapse" title="private">
+<h2>names of value features associated with their values</h2>
+<pre>$values : array&lt;mixed,string&gt;</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"></div>
@@ -232,14 +266,24 @@ always validated against the feature model.</p></div>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
+<a id="property_xmlParser"> </a><div class="element clickable property private property_xmlParser" data-toggle="collapse" data-target=".property_xmlParser .collapse" title="private">
+<h2>the underlying XML parser</h2>
+<pre>$xmlParser : \FeaturePhp\Helper\XmlParser</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:42+01:00.<br></footer></div>
 </div>
 </body>
 </html>

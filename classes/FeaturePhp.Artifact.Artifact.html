@@ -68,6 +68,7 @@
 <li class="method public "><a href="#method_getGeneratorSettings" title="getGeneratorSettings() :: Returns the artifact's settings for a given generator."><span class="description">Returns the artifact's settings for a given generator.</span><pre>getGeneratorSettings()</pre></a></li>
 <li class="method public "><a href="#method_getGenerators" title="getGenerators() :: Returns the artifact's settings for all generators."><span class="description">Returns the artifact's settings for all generators.</span><pre>getGenerators()</pre></a></li>
 <li class="method public "><a href="#method_getSettings" title="getSettings() :: Returns the artifact's settings."><span class="description">Returns the artifact's settings.</span><pre>getSettings()</pre></a></li>
+<li class="method public "><a href="#method_isGenerated" title="isGenerated() :: Returns whether the artifact is registered with at least one generator."><span class="description">Returns whether the artifact is registered with at least one generator.</span><pre>isGenerated()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -136,14 +137,14 @@ information is provided by a <a href="../classes/FeaturePhp.Artifact.Settings.ht
 </div>
 <a id="method_getGeneratorSettings"></a><div class="element clickable method public method_getGeneratorSettings " data-toggle="collapse" data-target=".method_getGeneratorSettings .collapse" title="public">
 <h2>Returns the artifact's settings for a given generator.</h2>
-<pre>getGeneratorSettings(\FeaturePhp\Generator\Generator $generator) : \FeaturePhp\Generator\Settings</pre>
+<pre>getGeneratorSettings(string $generator) : \FeaturePhp\Generator\Settings</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"><p>Returns empty settings if no settings are specified for the generator.</p></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$generator</h4>
-<code>\FeaturePhp\Generator\Generator</code>
+<code>string</code>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code>\FeaturePhp\Generator\Settings</code></div>
@@ -167,6 +168,16 @@ information is provided by a <a href="../classes/FeaturePhp.Artifact.Settings.ht
 <div class="long_description"></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>\FeaturePhp\Artifact\Settings</code></div>
+</div></div>
+</div>
+<a id="method_isGenerated"></a><div class="element clickable method public method_isGenerated " data-toggle="collapse" data-target=".method_isGenerated .collapse" title="public">
+<h2>Returns whether the artifact is registered with at least one generator.</h2>
+<pre>isGenerated() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
 </div></div>
 </div>
 <h3>
@@ -197,8 +208,8 @@ information is provided by a <a href="../classes/FeaturePhp.Artifact.Settings.ht
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:42+01:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -67,9 +67,10 @@
 <li class="method public "><a href="#method_getDeselectedFeatures" title="getDeselectedFeatures() :: Returns the configuration's deselected features."><span class="description">Returns the configuration's deselected features.</span><pre>getDeselectedFeatures()</pre></a></li>
 <li class="method public "><a href="#method_getModel" title="getModel() :: Returns the feature model the configuration relates to."><span class="description">Returns the feature model the configuration relates to.</span><pre>getModel()</pre></a></li>
 <li class="method public "><a href="#method_getSelectedFeatures" title="getSelectedFeatures() :: Returns the configuration's selected features."><span class="description">Returns the configuration's selected features.</span><pre>getSelectedFeatures()</pre></a></li>
+<li class="method public "><a href="#method_getValue" title="getValue() :: Returns the configuration's value for a value feature."><span class="description">Returns the configuration's value for a value feature.</span><pre>getValue()</pre></a></li>
 <li class="method public "><a href="#method_getXmlConfiguration" title="getXmlConfiguration() :: Returns the underlying XML configuration."><span class="description">Returns the underlying XML configuration.</span><pre>getXmlConfiguration()</pre></a></li>
 <li class="method public "><a href="#method_isValid" title="isValid() :: Returns whether the configuration is valid."><span class="description">Returns whether the configuration is valid.</span><pre>isValid()</pre></a></li>
-<li class="method public "><a href="#method_renderAnalysis" title="renderAnalysis() :: Analyzes the model and configuration by echoing a web page."><span class="description">Analyzes the model and configuration by echoing a web page.</span><pre>renderAnalysis()</pre></a></li>
+<li class="method public "><a href="#method_renderAnalysis" title="renderAnalysis() :: Analyzes the model and configuration by returning a web page."><span class="description">Analyzes the model and configuration by returning a web page.</span><pre>renderAnalysis()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -161,6 +162,21 @@ The underlying XML configuration has its own class, <a href="../classes/FeatureP
 <div class="subelement response"><code>array&lt;mixed,\FeaturePhp\Model\Feature&gt;</code></div>
 </div></div>
 </div>
+<a id="method_getValue"></a><div class="element clickable method public method_getValue " data-toggle="collapse" data-target=".method_getValue .collapse" title="public">
+<h2>Returns the configuration's value for a value feature.</h2>
+<pre>getValue(\FeaturePhp\Model\ValueFeature $feature) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$feature</h4>
+<code>\FeaturePhp\Model\ValueFeature</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
 <a id="method_getXmlConfiguration"></a><div class="element clickable method public method_getXmlConfiguration " data-toggle="collapse" data-target=".method_getXmlConfiguration .collapse" title="public">
 <h2>Returns the underlying XML configuration.</h2>
 <pre>getXmlConfiguration() : \FeaturePhp\Model\XmlConfiguration</pre>
@@ -182,10 +198,16 @@ The underlying XML configuration has its own class, <a href="../classes/FeatureP
 </div></div>
 </div>
 <a id="method_renderAnalysis"></a><div class="element clickable method public method_renderAnalysis " data-toggle="collapse" data-target=".method_renderAnalysis .collapse" title="public">
-<h2>Analyzes the model and configuration by echoing a web page.</h2>
-<pre>renderAnalysis() </pre>
+<h2>Analyzes the model and configuration by returning a web page.</h2>
+<pre>renderAnalysis(\FeaturePhp\ProductLine\ProductLine $productLine<code> = null</code>) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$productLine</h4>
+<code>\FeaturePhp\ProductLine\ProductLine</code><p>optional product line to render more information</p></div>
+</div></div>
 </div>
 <h3>
 <i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
@@ -235,8 +257,8 @@ The underlying XML configuration has its own class, <a href="../classes/FeatureP
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:42+01:00.<br></footer></div>
 </div>
 </body>
 </html>

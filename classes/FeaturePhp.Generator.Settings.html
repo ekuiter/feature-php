@@ -124,14 +124,39 @@
 <li>files (array) - see <a href="../classes/FeaturePhp.Specification.ChunkSpecification.html">\FeaturePhp\Specification\ChunkSpecification</a></li>
 </ul></li>
 </ul>
-<p>The <a href="../classes/FeaturePhp.Generator.CopyGenerator.html">\FeaturePhp\Generator\CopyGenerator</a> settings inside an artifact's generator settings
-follow the structure:</p>
+<p>or, alternatively:</p>
+<ul>
+<li>root (object)
+<ul>
+<li>filesIfSelected (array) - chunks to add if the artifact's feature is selected</li>
+<li>filesIfDeselected (array) - chunks to add if the artifact's feature is deselected</li>
+</ul></li>
+</ul>
+<p>The <a href="../classes/FeaturePhp.Generator.CopyGenerator.html">\FeaturePhp\Generator\CopyGenerator</a>, <a href="../classes/FeaturePhp.Generator.CollaborationGenerator.html">\FeaturePhp\Generator\CollaborationGenerator</a> and <a href="../classes/FeaturePhp.Generator.AspectGenerator.html">\FeaturePhp\Generator\AspectGenerator</a>
+settings inside an artifact's generator settings follow the structure:</p>
 <ul>
 <li>root (object)
 <ul>
 <li>files (array) - see <a href="../classes/FeaturePhp.Specification.FileSpecification.html">\FeaturePhp\Specification\FileSpecification</a></li>
 <li>directories (array) - see <a href="../classes/FeaturePhp.Specification.DirectorySpecification.html">\FeaturePhp\Specification\DirectorySpecification</a></li>
 </ul></li>
+</ul>
+<p>The <a href="../classes/FeaturePhp.Generator.CopyGenerator.html">\FeaturePhp\Generator\CopyGenerator</a>, <a href="../classes/FeaturePhp.Generator.CollaborationGenerator.html">\FeaturePhp\Generator\CollaborationGenerator</a> and <a href="../classes/FeaturePhp.Generator.AspectGenerator.html">\FeaturePhp\Generator\AspectGenerator</a>
+settings in the product line's generator settings follow the structure:</p>
+<ul>
+<li>root (object)
+<ul>
+<li>exclude (array) - file names to exclude globally, useful for files like .gitignore (to exclude a directory, use &quot;&lt;directory&gt;/*&quot;)</li>
+<li>featureOrder (array) - array of feature names to determine role ordering,
+for collaboration generator only</li>
+<li>feature (string) - a feature that has to be selected to generate the aspect kernel,
+for aspect generator only</li>
+</ul></li>
+</ul>
+<p>The <a href="../classes/FeaturePhp.Generator.RuntimeGenerator.html">\FeaturePhp\Generator\RuntimeGenerator</a> settings inside an artifact's generator settings
+follow the structure:</p>
+<ul>
+<li>root (bool) - true to generate runtime information</li>
 </ul>
 <p>The <a href="../classes/FeaturePhp.Generator.RuntimeGenerator.html">\FeaturePhp\Generator\RuntimeGenerator</a> settings in the product line's generator settings
 follow the structure:</p>
@@ -141,14 +166,22 @@ follow the structure:</p>
 <li>class (string) - the runtime class name</li>
 <li>target (string) - the runtime class file target in the generated product</li>
 <li>getter (string) - the runtime class method for getting feature information</li>
+<li>feature (string) - a feature that has to be selected to generate the runtime class</li>
 </ul></li>
 </ul>
-<p>The <a href="../classes/FeaturePhp.Generator.TemplateGenerator.html">\FeaturePhp\Generator\TemplateGenerator</a> settings inside an artifact's generator settings
-follow the structure:</p>
+<p>The <a href="../classes/FeaturePhp.Generator.TemplateGenerator.html">\FeaturePhp\Generator\TemplateGenerator</a> settings follow the structure:</p>
 <ul>
 <li>root (object)
 <ul>
 <li>files (array) - see <a href="../classes/FeaturePhp.Specification.TemplateSpecification.html">\FeaturePhp\Specification\TemplateSpecification</a></li>
+</ul></li>
+</ul>
+<p>or, alternatively:</p>
+<ul>
+<li>root (object)
+<ul>
+<li>filesIfSelected (array) - rules to add if the artifact's feature is selected</li>
+<li>filesIfDeselected (array) - rules to add if the artifact's feature is deselected</li>
 </ul></li>
 </ul></div>
 <table class="table table-bordered">
@@ -486,8 +519,8 @@ is assumed.</p></div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:41+01:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -72,12 +72,16 @@
 <li class="method public inherited"><a href="#method_getGeneratorMap" title="getGeneratorMap() :: Returns a map from all generator keys to class names."><span class="description">Returns a map from all generator keys to class names.</span><pre>getGeneratorMap()</pre></a></li>
 <li class="method public "><a href="#method_getKey" title="getKey() :: Returns the empty generator's key."><span class="description">Returns the empty generator's key.</span><pre>getKey()</pre></a></li>
 <li class="method public inherited"><a href="#method_getKey" title="getKey() :: Returns the generator's key."><span class="description">Returns the generator's key.</span><pre>getKey()</pre></a></li>
+<li class="method public inherited"><a href="#method_getRegisteredArtifacts" title="getRegisteredArtifacts() :: Returns all registered artifacts (selected and deselected)."><span class="description">Returns all registered artifacts (selected and deselected).</span><pre>getRegisteredArtifacts()</pre></a></li>
 <li class="method public inherited"><a href="#method_getSettings" title="getSettings() :: Returns the generator's settings."><span class="description">Returns the generator's settings.</span><pre>getSettings()</pre></a></li>
 <li class="method public inherited"><a href="#method_hasArtifacts" title="hasArtifacts() :: Returns whether any artifacts are registered with the generator."><span class="description">Returns whether any artifacts are registered with the generator.</span><pre>hasArtifacts()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header protected">» Protected
-                    <ul><li class="method protected inherited"><a href="#method__generateFiles" title="_generateFiles() :: Internal function for generating the files for all registered artifacts."><span class="description">Internal function for generating the files for all registered artifacts.</span><pre>_generateFiles()</pre></a></li></ul>
+                    <ul>
+<li class="method protected inherited"><a href="#method__generateFiles" title="_generateFiles() :: Internal function for generating the files for all registered artifacts."><span class="description">Internal function for generating the files for all registered artifacts.</span><pre>_generateFiles()</pre></a></li>
+<li class="method protected inherited"><a href="#method_isSelectedFeature" title="isSelectedFeature() :: Returns whether a feature's artifact is selected."><span class="description">Returns whether a feature's artifact is selected.</span><pre>isSelectedFeature()</pre></a></li>
+</ul>
 </li>
 <li class="nav-header private">» Private
                     <ul><li class="method private inherited"><a href="#method_getGenerators" title="getGenerators() :: Returns the class names of all generators."><span class="description">Returns the class names of all generators.</span><pre>getGenerators()</pre></a></li></ul>
@@ -247,6 +251,16 @@ for a generator.</p></div>
 <div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
+<a id="method_getRegisteredArtifacts"></a><div class="element clickable method public method_getRegisteredArtifacts inherited" data-toggle="collapse" data-target=".method_getRegisteredArtifacts .collapse" title="public">
+<h2>Returns all registered artifacts (selected and deselected).</h2>
+<pre>getRegisteredArtifacts() : array&lt;mixed,\FeaturePhp\Artifact\Artifact&gt;</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array&lt;mixed,\FeaturePhp\Artifact\Artifact&gt;</code></div>
+</div></div>
+</div>
 <a id="method_getSettings"></a><div class="element clickable method public method_getSettings inherited" data-toggle="collapse" data-target=".method_getSettings .collapse" title="public">
 <h2>Returns the generator's settings.</h2>
 <pre>getSettings() : \FeaturePhp\Generator\Settings</pre>
@@ -272,6 +286,21 @@ for a generator.</p></div>
 <pre>_generateFiles() </pre>
 <div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_isSelectedFeature"></a><div class="element clickable method protected method_isSelectedFeature inherited" data-toggle="collapse" data-target=".method_isSelectedFeature .collapse" title="protected">
+<h2>Returns whether a feature's artifact is selected.</h2>
+<pre>isSelectedFeature(string $featureName) : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$featureName</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
 </div>
 <a id="method_getGenerators"></a><div class="element clickable method private method_getGenerators inherited" data-toggle="collapse" data-target=".method_getGenerators .collapse" title="private">
 <h2>Returns the class names of all generators.</h2>
@@ -343,8 +372,8 @@ for a generator.</p></div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.8.5</a> and<br>
-            generated on 2017-11-29T22:17:05+01:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-12-13T09:13:41+01:00.<br></footer></div>
 </div>
 </body>
 </html>
