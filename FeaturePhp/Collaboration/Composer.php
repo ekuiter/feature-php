@@ -14,7 +14,7 @@ class ComposerException extends \Exception {}
 
 /**
  * Composes roles of the same kind.
- * This implements a non-commutative composer operator for the {@see Role} class.
+ * This implements a non-commutative composition operator for the {@see Role} class.
  * A composer is only applied to roles of the composer's kind.
  * Arbitrary refinements are possible, though the typical use case is implemented
  * by {@see ClassComposer}.

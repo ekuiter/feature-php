@@ -46,15 +46,19 @@ class TemplateFile extends StoredFile implements ExtendFile {
      * A quick way to directly render a template file with some replacement rules.
      * @param string $source
      * @param array[] $rules
+     * @param string $directory
      * @return string
      */
-    public static function render($source, $rules = array()) {
+    public static function render($source, $rules = array(), $directory = null) {
+        if (!$directory)
+            $directory = getcwd();
+        
         return self::fromSpecification(
             fphp\Specification\TemplateSpecification::fromArrayAndSettings(
                 array(
                     "source" => $source,
                     "rules" => $rules
-                ), fphp\Settings::inDirectory(getcwd()))
+                ), fphp\Settings::inDirectory($directory))
         )->getContent()->getSummary();
     }
 
