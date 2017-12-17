@@ -1,21 +1,40 @@
 ## feature-php
 
-This is a work-in-progress [Composer package](https://packagist.org/packages/ekuiter/feature-php)
-for analyzing FeatureIDE feature models and generating tailored variants of software product lines.
+feature-php is a [Composer
+package](https://packagist.org/packages/ekuiter/feature-php) for analyzing and
+implementing feature-oriented software product lines.
 
-(If you'd like to guide the user in creating a configuration in the browser, have a look at
-[ekuiter/feature-configurator](https://github.com/ekuiter/feature-configurator).)
+It can be used to:
 
+- analyze [FeatureIDE](https://featureide.github.io/) feature models and
+  configurations (*domain analysis*)
+- implement features using the following variability mechanisms (*domain
+  implementation*):
+  - runtime variability for PHP code
+  - build-system-like copying of files and directories
+  - preprocessor-like template and chunk systems
+  - feature-oriented programming (mixin-based)
+  - aspect-oriented programming (using [Go!
+    AOP](https://github.com/goaop/framework))
+- generate products and export them (e.g. as a ZIP file) (*product derivation*)
+
+(If you'd like some visual tools for feature models and configurations, have a
+look at
+[ekuiter/feature-configurator](https://github.com/ekuiter/feature-configurator)
+or [ekuiter/feature-model-viz](https://github.com/ekuiter/feature-model-viz).)
 
 ### Requirements
 
-PHP 5.3 is required with the SimpleXML extension. The zip extension is needed for exporting products as ZIP files.
-[nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) is needed for feature- and aspect-oriented programming.
+To use feature-php, PHP 5.3 is required with the SimpleXML extension. The zip
+extension is needed for exporting products as ZIP files.
+[nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) is used for feature- and
+aspect-oriented programming.
 
-### Getting started
+### Usage
 
-Create a `composer.json` file in your project directory if you don't have one yet.
-Add the package to the `require` section:
+Create a `composer.json` file in your project directory if you don't have one
+yet. Add the package to the `require` section:
+
 ```
 {
     "require": {
@@ -23,14 +42,20 @@ Add the package to the `require` section:
     }
 }
 ```
-Then run `composer install` in your project directory. For usage, see the documentation or example below.
 
-### Documentation
+Then run `composer install` in your project directory.
 
-The documentation for feature-php can be found [here](http://ekuiter.github.io/feature-php). A good starting
-point is the [ProductLine](http://ekuiter.github.io/feature-php/classes/FeaturePhp.ProductLine.ProductLine.html)
+For a quick start, look at the example below (or try
+[ekuiter/feature-web](https://github.com/ekuiter/feature-web)).
+
+### API Reference
+
+The API reference for feature-php can be found
+[here](http://ekuiter.github.io/feature-php). A good starting point is the
+[ProductLine](http://ekuiter.github.io/feature-php/classes/FeaturePhp.ProductLine.ProductLine.html)
 class. If you want to learn about configuration files, have a look at the
-[ProductLine\Settings](http://ekuiter.github.io/feature-php/classes/FeaturePhp.ProductLine.Settings.html) class.
+[ProductLine\Settings](http://ekuiter.github.io/feature-php/classes/FeaturePhp.ProductLine.Settings.html)
+class.
 
 ### Example
 
@@ -46,7 +71,7 @@ class. If you want to learn about configuration files, have a look at the
  * Feature models and configurations are expected to be supplied as
  * FeatureIDE XML files, see https://featureide.github.io/.
  * The product line settings can be supplied in various formats, see
- * the feature-php documentation.
+ * the feature-php API reference.
  */
 
 use \FeaturePhp as fphp; // this is just for convenience so we can abbreviate the prefix "FeaturePhp\" below
@@ -77,6 +102,8 @@ try {
         );
     else // if not supplied, use the default configuration
         $configuration = $productLine->getDefaultConfiguration();
+    // used for replacements by the templating system
+    fphp\Specification\ReplacementRule::setConfiguration($configuration);
 
     if (!isset($_REQUEST["generate"])) {
         // output some information on the model and configuration
@@ -106,4 +133,4 @@ try {
 
 ### License
 
-The rules from [uvr2web](https://github.com/ekuiter/uvr2web/blob/master/LICENSE.txt) apply.
+This project is released under the [LGPL v3 license](LICENSE.txt).
