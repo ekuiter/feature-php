@@ -115,8 +115,9 @@ class Configuration {
      * Analyzes the model and configuration by returning a web page.
      * @param \FeaturePhp\ProductLine\ProductLine $productLine
      * optional product line to render more information
+     * @param bool $textOnly whether to render text or HTML
      */
-    public function renderAnalysis($productLine = null) {
-        return (new ConfigurationRenderer($this, $productLine))->render();
+    public function renderAnalysis($productLine = null, $textOnly = false) {
+        return (new ConfigurationRenderer($this, $productLine))->render($textOnly);
     }
 }

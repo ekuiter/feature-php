@@ -30,19 +30,35 @@ abstract class Renderer {
 
     /**
      * Returns the renderer's web page.
+     * @param bool $textOnly whether to render text or HTML
+     * @return string
      */
-    public function render() {
+    public function render($textOnly = false) {
+        if ($textOnly)
+            return $this->renderText();
+        
         $str = $this->getStyle();
         $str .= "<table><tr><td valign='top'>";
-        $str .= $this->_render();
+        $str .= $this->_render(false);
         $str .= "</td></tr></table>";
         return $str;
     }
 
     /**
-     * Internal function for returning the renderer's web page.
+     * Returns the renderer's web page as text only.
+     * This is used by the command-line interface.
+     * @return string
      */
-    abstract protected function _render();
+    public function renderText() {
+        return $this->_render(true);
+    }
+
+    /**
+     * Internal function for returning the renderer's web page.
+     * @param bool $textOnly whether to render text or HTML
+     * @return string
+     */
+    abstract protected function _render($textOnly);
 }
 
 ?>

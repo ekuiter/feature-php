@@ -50,6 +50,8 @@ Then run `composer install` in your project directory.
 For a quick start, look at the example below (or try
 [ekuiter/feature-web](https://github.com/ekuiter/feature-web)).
 
+You can also run the command-line interface with `vendor/bin/feature-php`.
+
 ### API Reference
 
 The API reference for feature-php can be found

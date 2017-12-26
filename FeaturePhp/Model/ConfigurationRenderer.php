@@ -37,30 +37,53 @@ class ConfigurationRenderer extends fphp\Renderer {
 
     /**
      * Returns the model and configuration analysis.
+     * @param bool $textOnly whether to render text or HTML
+     * @return string
      */
-    public function _render() {
-        $str = "<h2>Model Analysis</h2>";
-        $str .= $this->analyzeModel($this->configuration->getModel());
-        $str .= "</td><td valign='top'>";
-        $str .= "<h2>Configuration Analysis</h2>";
-        $str .= $this->analyzeConfiguration($this->configuration);
+    public function _render($textOnly) {
+        $str = "";
+        if ($textOnly)
+            $str .= "\nModel Analysis\n==============\n";
+        else
+            $str .= "<h2>Model Analysis</h2>";
+        $str .= $this->analyzeModel($this->configuration->getModel(), $textOnly);
+        if ($textOnly)
+            $str .= "\nConfiguration Analysis\n======================\n";
+        else
+            $str .= "</td><td valign='top'><h2>Configuration Analysis</h2>";
+        $str .= $this->analyzeConfiguration($this->configuration, $textOnly);
         return $str;
     }
 
     /**
      * Returns a model analysis.
      * @param Model $model
+     * @param bool $textOnly whether to render text or HTML
+     * @return string
      */
-    private function analyzeModel($model) {
+    private function analyzeModel($model, $textOnly) {
         $featureNum = count($model->getFeatures());
         $rootFeatureName = $model->getRootFeature()->getName();
         $constraintNum = count($model->getConstraintSolver()->getConstraints());
         $ruleNum = count($model->getXmlModel()->getRules());
 
-        $str = "<div>";
-        $str .= "<p>The given feature model with the root feature <span class='feature'>$rootFeatureName</span> "
-             . "has the following $featureNum features:</p>";
-        $str .= "<ul>";
+        $str = "";
+        $accentColor = "\033[1;33m";
+        $colorOff = "\033[0m";
+        
+        if ($textOnly)
+            $str .= "The given feature model with the root feature " .
+                 "$accentColor$rootFeatureName$colorOff has the following $featureNum features:\n\n";
+        else {
+            $str .= "<div>";
+            $str .= "<p>The given feature model with the root feature <span class='feature'>$rootFeatureName</span> "
+                 . "has the following $featureNum features:</p>";
+            $str .= "<ul>";
+        }
+
+        $maxLen = 0;
+        foreach ($model->getFeatures() as $feature)
+            $maxLen = strlen($feature->getName()) > $maxLen ? strlen($feature->getName()) : $maxLen;
 
         foreach ($model->getFeatures() as $feature) {
             $description = $feature->getDescription();
@@ -68,40 +91,70 @@ class ConfigurationRenderer extends fphp\Renderer {
                 $class = $this->productLine->getArtifact($feature)->isGenerated() ? "" : "unimplemented";
             else
                 $class = "";
-            $str .= "<li><span class='feature $class'>"
-                 . $feature->getName()
-                 . ($description ? "</span><br /><span style='font-size: 0.8em'>"
-                    . str_replace("\n", "<br />", $description) . "</span>" : "")
-                 . "</li>";
+
+            if ($textOnly) {
+                $color = $class === "unimplemented" ? "" : $accentColor;
+                $str .= sprintf("%s%-{$maxLen}s$colorOff %s\n", $color, $feature->getName(),
+                                fphp\Helper\_String::truncate($description));
+            } else
+                $str .= "<li><span class='feature $class'>"
+                     . $feature->getName()
+                     . ($description ? "</span><br /><span style='font-size: 0.8em'>"
+                        . str_replace("\n", "<br />", $description) . "</span>" : "")
+                     . "</li>";
         }
 
-        $str .= "</ul>";
-        $str .= "<p>There are $constraintNum feature constraints ($ruleNum of them cross-tree constraints).</p>";
-        $str .= "</div>";
+        if ($textOnly)
+            $str .= "\nThere are $constraintNum feature constraints ($ruleNum of them cross-tree constraints).\n";
+        else {
+            $str .= "</ul>";
+            $str .= "<p>There are $constraintNum feature constraints ($ruleNum of them cross-tree constraints).</p>";
+            $str .= "</div>";
+        }
         return $str;
     }
 
     /**
      * Returns a configuration analysis.
      * @param Configuration $configuration
+     * @param bool $textOnly whether to render text or HTML
+     * @return string
      */
-    private function analyzeConfiguration($configuration) {
+    private function analyzeConfiguration($configuration, $textOnly) {
         $validity = $configuration->isValid() ? "valid" : "invalid";
+
+        $str = "";
+        $selectedColor = "\033[1;32m";
+        $deselectedColor = "\033[1;31m";
+        $colorOff = "\033[0m";
         
-        $str = "<div style='font-family: monospace'>";
-        $str .= "<p>The given configuration has the following feature selection:</p>";
-        $str .= "<ul>";
+        if ($textOnly)
+            $str .= "The given configuration has the following feature selection:\n\n";
+        else {
+            $str .= "<div style='font-family: monospace'>";
+            $str .= "<p>The given configuration has the following feature selection:</p>";
+            $str .= "<ul>";
+        }
 
         foreach ($configuration->getModel()->getFeatures() as $feature) {
             $isSelected = Feature::has($configuration->getSelectedFeatures(), $feature);
             $mark = $isSelected ? "x" : "&nbsp;";
             $class = $isSelected ? "selected" : "deselected";
-            $str .= "<li>[$mark] <span class='feature $class'>" . $feature->getName() . "</span></li>";
+
+            if ($textOnly)
+                $str .= "[" . ($isSelected ? "x" : " ") . "] " .
+                     ($isSelected ? $selectedColor : $deselectedColor) . $feature->getName() . "$colorOff\n";
+            else
+                $str .= "<li>[$mark] <span class='feature $class'>" . $feature->getName() . "</span></li>";
         }
 
-        $str .= "</ul>";
-        $str .= "<p>This configuration is $validity.</p>";
-        $str .= "</div>";
+        if ($textOnly)
+            $str .= "\nThis configuration is $validity.\n";
+        else {
+            $str .= "</ul>";
+            $str .= "<p>This configuration is $validity.</p>";
+            $str .= "</div>";
+        }
         return $str;
     }
 }

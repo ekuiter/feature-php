@@ -1,0 +1,71 @@
+#!/usr/bin/env php
+<?php
+
+use \FeaturePhp as fphp;
+
+if (is_dir($vendor = __DIR__ . "/../vendor"))
+    require "$vendor/autoload.php";
+else if (is_dir($vendor = __DIR__ . "/../../.."))
+    require "$vendor/autoload.php";
+else
+    die("Could not load feature-php. Did you run 'composer install'?");
+
+if (!class_exists("\FeaturePhp\ProductLine\ProductLine"))
+    die("Could not find feature-php. Did you run 'composer install'?");
+
+$options = getopt("s:c:ge:", array("settings:", "configuration:", "generate", "export:"));
+
+if (!isset($options["s"]) && !isset($options["settings"]))
+    die(<<<USAGE
+feature-php analyzes software product lines and generates tailored products.
+
+usage: feature-php --settings <productLine.json> [--configuration <configuration.xml>] [--generate] [--export <exportDirectory>]
+
+options:
+    -s, --settings       product line settings file
+    -c, --configuration  configuration file (default configuration if omitted)
+    -g, --generate       whether to generate a product (analysis if omitted)
+    -e, --export         export the generated product to a directory
+USAGE
+    );
+
+if (isset($options["s"]))
+    $options["settings"] = $options["s"];
+if (isset($options["c"]))
+    $options["configuration"] = $options["c"];
+if (isset($options["g"]))
+    $options["generate"] = $options["g"];
+if (isset($options["e"]))
+    $options["export"] = $options["e"];
+
+$settingsFile = $options["settings"];
+$configurationFile = isset($options["configuration"]) ? $options["configuration"] : null;
+$shouldGenerate = isset($options["generate"]);
+$exportDirectory = isset($options["export"]) ? $options["export"] : null;
+
+try {
+    $productLine = new fphp\ProductLine\ProductLine(
+        fphp\ProductLine\Settings::fromFile($settingsFile));
+
+    if ($configurationFile)
+        $configuration = new fphp\Model\Configuration(
+            $productLine->getModel(),
+            fphp\Model\XmlConfiguration::fromFile($configurationFile)
+        );
+    else
+        $configuration = $productLine->getDefaultConfiguration();
+    fphp\Specification\ReplacementRule::setConfiguration($configuration);
+
+    if ($exportDirectory) {
+        $productLine->getProduct($configuration)->export(
+            new fphp\Exporter\LocalExporter($exportDirectory));
+        echo "Exported product to " . realpath($exportDirectory) . ".\n";
+    } else if ($shouldGenerate)
+        echo $productLine->getProduct($configuration)->renderAnalysis(true);
+    else
+        echo $configuration->renderAnalysis($productLine, true);
+} catch (Exception $e) {
+    echo get_class($e) . ": " . $e->getMessage();
+}
+
+?>

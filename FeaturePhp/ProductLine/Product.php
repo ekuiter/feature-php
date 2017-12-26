@@ -125,9 +125,10 @@ class Product {
 
     /**
      * Analyzes the product by returning a web page.
+     * @param bool $textOnly whether to render text or HTML
      */
-    public function renderAnalysis() {
-        return (new ProductRenderer($this))->render();
+    public function renderAnalysis($textOnly = false) {
+        return (new ProductRenderer($this))->render($textOnly);
     }
 }
 
