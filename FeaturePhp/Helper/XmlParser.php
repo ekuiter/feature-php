@@ -49,13 +49,13 @@ class XmlParser {
      */
     public function parseString($str) {
         if (!extension_loaded("SimpleXML"))
-            throw new XmlParserException("SimpleXML extension not loaded, can not use XmlParser");
+            throw new XmlParserException("SimpleXML extension not loaded, can not parse XML");
         
         libxml_use_internal_errors(true);
         $xml = simplexml_load_string($str);
         
         if ($xml === false) {
-            $msg = "The following XML errors occured:";
+            $msg = "The following XML errors occurred while parsing:";
             foreach (libxml_get_errors() as $error)
                 $msg .= "\n" . $error->message;
             throw new XmlParserException($msg);
@@ -76,6 +76,34 @@ class XmlParser {
             throw new XmlParserException("file $fileName does not exist");
         
         return $this->parseString(file_get_contents($fileName));
+    }
+
+    /**
+     * Validates XML using a schema.
+     * @param string $schemaFile
+     * @return XmlParser
+     */
+    public function validate($schemaFile) {
+        if (!$this->xmlString)
+            throw new XmlParserException("attempting to validate before parsing");
+            
+        if (!extension_loaded("DOM")) {
+            trigger_error("DOM extension not loaded, will not validate XML", E_USER_NOTICE);
+            return $this;
+        }
+
+        libxml_use_internal_errors(true);
+        $document = new \DOMDocument();
+        $document->loadXML($this->xmlString);
+        
+        if (!$document->schemaValidate($schemaFile)) {
+            $msg = "The following XML errors occurred while validating:";
+            foreach (libxml_get_errors() as $error)
+                $msg .= "\n" . $error->message;
+            throw new XmlParserException($msg);
+        }
+
+        return $this;
     }
 
     /**

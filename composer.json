@@ -12,7 +12,8 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "nikic/php-parser": "^3.1"
+        "nikic/php-parser": "^3.1",
+        "ekuiter/feature-schema": "dev-master"
     },
     "autoload": {
         "psr-4": {

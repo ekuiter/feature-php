@@ -25,10 +25,12 @@ or [ekuiter/feature-model-viz](https://github.com/ekuiter/feature-model-viz).)
 
 ### Requirements
 
-To use feature-php, PHP 5.3 is required with the SimpleXML extension. The zip
-extension is needed for exporting products as ZIP files.
-[nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) is used for feature- and
-aspect-oriented programming.
+To use feature-php, PHP 5.3 is required with the SimpleXML extension. The DOM
+extension and
+[ekuiter/feature-schema](https://github.com/ekuiter/feature-schema) is used for
+validating XML data and the zip extension is needed for exporting products as
+ZIP files. [nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) is used for
+feature- and aspect-oriented programming.
 
 ### Usage
 

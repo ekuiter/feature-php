@@ -52,7 +52,9 @@ class XmlConfiguration {
      */
     public function __construct($xmlParser) {
         $this->xmlParser = $xmlParser;
-        $this->xml = $xml = $xmlParser->getXml();
+        $this->xml = $xml = $xmlParser
+                   ->validate("vendor/ekuiter/feature-schema/configuration.xsd")
+                   ->getXml();
         $this->selectedFeatureNames = array();
         $this->values = array();
 
