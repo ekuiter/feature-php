@@ -69,13 +69,15 @@ class AspectGenerator extends FileGenerator {
      */
     protected function processFileSpecification($artifact, $fileSpecification) {
         $this->aspectKernel->addAspect(new fphp\Aspect\Aspect($artifact, $fileSpecification));
+        $this->tracingLinks[] = new fphp\Artifact\TracingLink(
+            "aspect", $artifact, $fileSpecification->getSourcePlace(), $fileSpecification->getTargetPlace());
         $this->logFile->log($artifact, "added aspect at \"{$fileSpecification->getTarget()}\"");
     }
 
     /**
      * Generates the aspect files and the aspect kernel.
      */
-    public function _generateFiles() {
+    protected function _generateFiles() {
         if ($this->feature && !$this->isSelectedFeature($this->feature)) {
             $this->logFile->log(null, "did not add aspect kernel because \"$this->feature\" is not selected");
             return;

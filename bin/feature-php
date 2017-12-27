@@ -13,19 +13,21 @@ else
 if (!class_exists("\FeaturePhp\ProductLine\ProductLine"))
     die("Could not find feature-php. Did you run 'composer install'?");
 
-$options = getopt("s:c:ge:", array("settings:", "configuration:", "generate", "export:"));
+$options = getopt("s:c:ge:t:", array("settings:", "configuration:", "generate", "export:", "trace:"));
 
 if (!isset($options["s"]) && !isset($options["settings"]))
     die(<<<USAGE
 feature-php analyzes software product lines and generates tailored products.
 
-usage: feature-php --settings <productLine.json> [--configuration <configuration.xml>] [--generate] [--export <exportDirectory>]
+usage: feature-php --settings <productLine.json> [--configuration <configuration.xml>]
+                   [--generate] [--export <exportDirectory>] [--trace <feature>]
 
 options:
     -s, --settings       product line settings file
     -c, --configuration  configuration file (default configuration if omitted)
     -g, --generate       whether to generate a product (analysis if omitted)
     -e, --export         export the generated product to a directory
+    -t, --trace          a feature to trace
 USAGE
     );
 
@@ -37,11 +39,14 @@ if (isset($options["g"]))
     $options["generate"] = $options["g"];
 if (isset($options["e"]))
     $options["export"] = $options["e"];
+if (isset($options["t"]))
+    $options["trace"] = $options["t"];
 
 $settingsFile = $options["settings"];
 $configurationFile = isset($options["configuration"]) ? $options["configuration"] : null;
 $shouldGenerate = isset($options["generate"]);
 $exportDirectory = isset($options["export"]) ? $options["export"] : null;
+$feature = isset($options["trace"]) ? $options["trace"] : null;
 
 try {
     $productLine = new fphp\ProductLine\ProductLine(
@@ -60,6 +65,9 @@ try {
         $productLine->getProduct($configuration)->export(
             new fphp\Exporter\LocalExporter($exportDirectory));
         echo "Exported product to " . realpath($exportDirectory) . ".\n";
+    } else if ($feature) {
+        $artifact = $productLine->getArtifact($productLine->getFeature($feature));
+        echo $productLine->renderTracingLinkAnalysis($artifact, true);
     } else if ($shouldGenerate)
         echo $productLine->getProduct($configuration)->renderAnalysis(true);
     else

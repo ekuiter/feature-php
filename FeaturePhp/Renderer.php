@@ -14,6 +14,16 @@ use \FeaturePhp as fphp;
  */
 abstract class Renderer {
     /**
+     * @var string $accentColor accent color for text only rendering
+     */
+    protected $accentColor = "\033[1;33m";
+
+    /**
+     * @var string $defaultColor default color for text only rendering
+     */
+    protected $defaultColor = "\033[0m";
+    
+    /**
      * Returns a simple stylesheet.
      * @return string
      */

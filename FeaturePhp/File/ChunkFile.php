@@ -60,9 +60,14 @@ class ChunkFile extends TextFile implements ExtendFile {
      * This is expected to be called only be a {@see \FeaturePhp\Generator\ChunkGenerator}.
      * Only uses the text of the chunk specification.
      * @param \FeaturePhp\Specification\ChunkSpecification $chunkSpecification
+     * @return \FeaturePhp\Place\Place[]
      */
     public function extend($chunkSpecification) {
+        $linesBefore = count(explode("\n", $this->content));
         $this->append($chunkSpecification->getText() . $this->newline);
+        $linesAfter = count(explode("\n", $this->content));
+        return array(new fphp\Artifact\ChunkPlace(
+            $chunkSpecification->getTarget(), $linesBefore, $linesAfter - 1));
     }
 
     /**

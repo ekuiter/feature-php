@@ -8,6 +8,11 @@ namespace FeaturePhp\Generator;
 use \FeaturePhp as fphp;
 
 /**
+ * Exception thrown from the CollaborationGenerator class.
+ */
+class RuntimeGeneratorException extends \Exception {}
+
+/**
  * Generates a file with runtime information.
  * An artifact can register a runtime generator to provide information about
  * its corresponding feature (selected or deselected) at runtime. If used,
@@ -79,7 +84,7 @@ class RuntimeGenerator extends Generator {
      * You can override this to add runtime information for other languages.
      * If a feature was supplied, only generates if that feature is selected.
      */
-    public function _generateFiles() {
+    protected function _generateFiles() {
         if ($this->feature && !$this->isSelectedFeature($this->feature)) {
             $this->logFile->log(null, "did not add runtime information because \"$this->feature\" is not selected");
             return;
@@ -98,6 +103,44 @@ class RuntimeGenerator extends Generator {
                     )
                 ), Settings::inDirectory(__DIR__))
         );
+    }
+
+    /**
+     * Returns tracing links for all calls of the runtime class.
+     * @param \FeaturePhp\File\File[] $files
+     * @param \FeaturePhp\ProductLine\ProductLine $productLine
+     * @return \FeaturePhp\Artifact\TracingLink[]
+     */
+    public function traceRuntimeCalls($files, $productLine) {
+        $runtimeCalls = array();
+        
+        foreach ($files as $file) {            
+            $content = $file->getContent();
+            if ($content instanceof fphp\File\StoredFileContent) {
+                $fileSource = $content->getFileSource();
+                $content = file_get_contents($fileSource);
+            } else {
+                $fileSource = "(text file)";
+                $content = $content->getSummary();
+            }
+            
+            foreach (explode("\n", $content) as $idx => $line)
+                if (strstr($line, "$this->class::$this->getter")) {
+                    preg_match("/$this->class::$this->getter\(\"(.*?)\"\)/", $line, $matches);
+                    try {
+                        $feature = $productLine->getFeature($matches[1]);
+                    } catch (fphp\Model\ModelException $e) {
+                        throw new RuntimeGeneratorException("invalid runtime feature \"$matches[1]\"");
+                    }
+                    $runtimeCalls[] = new fphp\Artifact\TracingLink(
+                        "runtime",
+                        $productLine->getArtifact($feature),
+                        new fphp\Artifact\LinePlace($fileSource, $idx + 1),
+                        new fphp\Artifact\LinePlace($file->getTarget(), $idx + 1));
+                }
+        }
+        
+        return $runtimeCalls;
     }
 }
 

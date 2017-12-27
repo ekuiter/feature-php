@@ -64,13 +64,15 @@ class CollaborationGenerator extends FileGenerator {
         if (!$collaboration)
             $this->collaborations[] = $collaboration = new fphp\Collaboration\Collaboration($artifact);
         $collaboration->addRoleFromFileSpecification($fileSpecification);
+        $this->tracingLinks[] = new fphp\Artifact\TracingLink(
+            "role", $artifact, $fileSpecification->getSourcePlace(), $fileSpecification->getTargetPlace());
         $this->logFile->log($artifact, "using role at \"{$fileSpecification->getTarget()}\"");
     }
 
     /**
      * Generates the refined files.
      */
-    public function _generateFiles() {
+    protected function _generateFiles() {
         foreach ($this->getRegisteredArtifacts() as $artifact) {
             $featureName = $artifact->getFeature()->getName();
             if (array_search($featureName, $this->featureOrder) === false)

@@ -35,12 +35,13 @@ class Product {
      * Throws {@see \FeaturePhp\ProductLine\ProductException} if the configuration is invalid.
      * @param ProductLine $productLine
      * @param \FeaturePhp\Model\Configuration $configuration
+     * @param bool $allowInvalid whether to throw an exception if the configuration is invalid
      */
-    public function __construct($productLine, $configuration) {
+    public function __construct($productLine, $configuration, $allowInvalid = false) {
         $this->productLine = $productLine;
         $this->configuration = $configuration;
         
-        if (!$this->configuration->isValid())
+        if (!$allowInvalid && !$this->configuration->isValid())
             throw new ProductException("the given configuration is not valid");
     }
 
@@ -90,12 +91,13 @@ class Product {
     }
 
     /**
-     * Generates the product's files.
+     * Returns elements generated for the product.
      * To do this, every artifact is registered with the generators it specifies.
-     * Then every generator generates some files. Finally all the files are merged.
-     * @return \FeaturePhp\File\File[]
+     * Then every generator generates some elements. Finally all the elements are merged.
+     * @param callable $func
+     * @return mixed[]
      */
-    public function generateFiles() {
+    private function getGeneratorElements($func) {
         $allGenerators = $this->getAllGenerators();
 
         foreach ($this->configuration->getSelectedFeatures() as $feature)
@@ -104,14 +106,35 @@ class Product {
         foreach ($this->configuration->getDeselectedFeatures() as $feature)
             $this->addArtifactToUsedGenerators($allGenerators, $feature, "addDeselectedArtifact");
 
-        $files = array();
+        $elements = array();
         foreach ($allGenerators as $generator)
             if ($generator->hasArtifacts())
-                $files = array_merge($files, $generator->generateFiles());
+                $elements = array_merge($elements, call_user_func(array($generator, $func)));
+        return $elements;
+    }
 
+    /**
+     * Generates the product's files.
+     * @return \FeaturePhp\File\File[]
+     */
+    public function generateFiles() {
+        $files = $this->getGeneratorElements("generateFiles");
         $files = fphp\Helper\_Array::assertNoDuplicates($files, "getTarget");
         $files = fphp\Helper\_Array::sortByKey($files, "getTarget");
         return $files;
+    }
+
+    /**
+     * Returns tracing links for the product.
+     * @return \FeaturePhp\Artifact\TracingLink[]
+     */
+    public function trace() {
+        $tracingLinks = array_merge(
+            $this->getGeneratorElements("trace"),
+            $this->getAllGenerators()["runtime"]->traceRuntimeCalls($this->generateFiles(), $this->productLine)
+        );
+        $tracingLinks = fphp\Helper\_Array::sortByKey($tracingLinks, "getFeatureName");
+        return $tracingLinks;
     }
 
     /**
@@ -126,6 +149,7 @@ class Product {
     /**
      * Analyzes the product by returning a web page.
      * @param bool $textOnly whether to render text or HTML
+     * @return string
      */
     public function renderAnalysis($textOnly = false) {
         return (new ProductRenderer($this))->render($textOnly);

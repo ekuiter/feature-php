@@ -67,9 +67,29 @@ class TemplateFile extends StoredFile implements ExtendFile {
      * This is expected to be called only be a {@see \FeaturePhp\Generator\TemplateGenerator}.
      * Only uses the rules of the template specification.
      * @param \FeaturePhp\Specification\TemplateSpecification $templateSpecification
+     * @return \FeaturePhp\Place\Place[]
      */
     public function extend($templateSpecification) {
-        $this->rules = array_merge($this->rules, $templateSpecification->getRules());
+        $rules = $templateSpecification->getRules();
+        $this->rules = array_merge($this->rules, $rules);
+
+        $places = array();
+        $oldContent = file_get_contents($this->fileSource);
+        foreach ($rules as $rule) {
+            $newContent = $rule->apply($oldContent);
+            foreach (fphp\Helper\Diff::compare($oldContent, $newContent) as $diff)
+                if ($diff[1] === fphp\Helper\Diff::INSERTED) {
+                    $lineNumber = "?";
+                    foreach (explode("\n", $newContent) as $idx => $line)
+                        if ($line === $diff[0])
+                            $lineNumber = $idx + 1;
+                    $places[] = array(
+                        new fphp\Artifact\LinePlace($templateSpecification->getSource(), $lineNumber),
+                        new fphp\Artifact\LinePlace($templateSpecification->getTarget(), $lineNumber)
+                    );
+                }
+        }
+        return $places;
     }
 
     /**

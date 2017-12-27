@@ -33,7 +33,7 @@ class EmptyGenerator extends Generator {
     /**
      * Generates no files, but logs all registered selected artifacts.
      */
-    public function _generateFiles() {
+    protected function _generateFiles() {
         foreach ($this->selectedArtifacts as $artifact)
             $this->logFile->log($artifact, "nothing generated");
     }

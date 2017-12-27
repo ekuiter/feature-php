@@ -33,6 +33,8 @@ class CopyGenerator extends FileGenerator {
      */
     protected function processFileSpecification($artifact, $fileSpecification) {
         $this->files[] = fphp\File\StoredFile::fromSpecification($fileSpecification);
+        $this->tracingLinks[] = new fphp\Artifact\TracingLink(
+            "file", $artifact, $fileSpecification->getSourcePlace(), $fileSpecification->getTargetPlace());
         $this->logFile->log($artifact, "added file \"{$fileSpecification->getTarget()}\"");
     }
 }

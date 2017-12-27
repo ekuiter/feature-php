@@ -62,6 +62,16 @@ class ProductLine {
     }
 
     /**
+     * Returns a feature in the product line's model with a given name.
+     * @param string $featureName
+     * @param bool $permissive
+     * @return \FeaturePhp\Model\Feature
+     */
+    public function getFeature($featureName, $permissive = false) {
+        return $this->getModel()->getFeature($featureName, $permissive);
+    }
+
+    /**
      * Returns the product line's artifact for a feature.
      * @param \FeaturePhp\Model\Feature $feature
      * @return \FeaturePhp\Artifact\Artifact
@@ -89,6 +99,30 @@ class ProductLine {
         if (!$configuration)
             $configuration = $this->defaultConfiguration;
         return new Product($this, $configuration);
+    }
+
+    /**
+     * Returns tracing links for an artifact.
+     * @param \FeaturePhp\Artifact\Artifact $artifact
+     * @return \FeaturePhp\Artifact\TracingLink[]
+     */
+    public function trace($artifact) {
+        $featureName = str_replace("\"", "&quot;", $artifact->getFeature()->getName());
+        $xmlConfiguration = fphp\Model\XmlConfiguration::fromString(
+            '<configuration><feature name="' . $featureName . '" automatic="undefined" manual="selected"/></configuration>');
+        $configuration = new fphp\Model\Configuration($this->getModel(), $xmlConfiguration);
+        $product = new Product($this, $configuration, true);
+        return $product->trace();
+    }
+
+    /**
+     * Analyzes an artifact's tracing links by returning a web page.
+     * @param \FeaturePhp\Artifact\Artifact $artifact
+     * @param bool $textOnly whether to render text or HTML
+     * @return string
+     */
+    public function renderTracingLinkAnalysis($artifact, $textOnly = false) {
+        return (new fphp\Artifact\TracingLinkRenderer($this->trace($artifact)))->render($textOnly);
     }
 }
 

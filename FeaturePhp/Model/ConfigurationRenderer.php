@@ -68,22 +68,17 @@ class ConfigurationRenderer extends fphp\Renderer {
         $ruleNum = count($model->getXmlModel()->getRules());
 
         $str = "";
-        $accentColor = "\033[1;33m";
-        $colorOff = "\033[0m";
+        $maxLen = fphp\Helper\_String::getMaxLength($model->getFeatures(), "getName");
         
         if ($textOnly)
             $str .= "The given feature model with the root feature " .
-                 "$accentColor$rootFeatureName$colorOff has the following $featureNum features:\n\n";
+                 "$this->accentColor$rootFeatureName$this->defaultColor has the following $featureNum features:\n\n";
         else {
             $str .= "<div>";
             $str .= "<p>The given feature model with the root feature <span class='feature'>$rootFeatureName</span> "
                  . "has the following $featureNum features:</p>";
             $str .= "<ul>";
         }
-
-        $maxLen = 0;
-        foreach ($model->getFeatures() as $feature)
-            $maxLen = strlen($feature->getName()) > $maxLen ? strlen($feature->getName()) : $maxLen;
 
         foreach ($model->getFeatures() as $feature) {
             $description = $feature->getDescription();
@@ -93,8 +88,8 @@ class ConfigurationRenderer extends fphp\Renderer {
                 $class = "";
 
             if ($textOnly) {
-                $color = $class === "unimplemented" ? "" : $accentColor;
-                $str .= sprintf("%s%-{$maxLen}s$colorOff %s\n", $color, $feature->getName(),
+                $color = $class === "unimplemented" ? "" : $this->accentColor;
+                $str .= sprintf("%s%-{$maxLen}s$this->defaultColor %s\n", $color, $feature->getName(),
                                 fphp\Helper\_String::truncate($description));
             } else
                 $str .= "<li><span class='feature $class'>"
@@ -126,7 +121,6 @@ class ConfigurationRenderer extends fphp\Renderer {
         $str = "";
         $selectedColor = "\033[1;32m";
         $deselectedColor = "\033[1;31m";
-        $colorOff = "\033[0m";
         
         if ($textOnly)
             $str .= "The given configuration has the following feature selection:\n\n";
@@ -143,7 +137,7 @@ class ConfigurationRenderer extends fphp\Renderer {
 
             if ($textOnly)
                 $str .= "[" . ($isSelected ? "x" : " ") . "] " .
-                     ($isSelected ? $selectedColor : $deselectedColor) . $feature->getName() . "$colorOff\n";
+                     ($isSelected ? $selectedColor : $deselectedColor) . $feature->getName() . "$this->defaultColor\n";
             else
                 $str .= "<li>[$mark] <span class='feature $class'>" . $feature->getName() . "</span></li>";
         }

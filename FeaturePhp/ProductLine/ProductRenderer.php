@@ -20,12 +20,23 @@ class ProductRenderer extends fphp\Renderer {
     private $product;
 
     /**
+     * @var \FeaturePhp\File\File[] $files the product's files
+     */
+    private $files;
+
+    /**
+     * @var \FeaturePhp\Artifact\TracingLink[] $tracingLinks the product's tracing links
+     */
+    private $tracingLinks;
+
+    /**
      * Creates a product renderer.
      * @param Product $product
      */
     public function __construct($product) {            
         $this->product = $product;
         $this->files = $this->product->generateFiles();
+        $this->tracingLinks = $this->product->trace();
     }
 
     /**
@@ -38,8 +49,7 @@ class ProductRenderer extends fphp\Renderer {
         $fileNum = count($this->files);
 
         $str = "";
-        $accentColor = "\033[1;33m";
-        $colorOff = "\033[0m";
+        $maxLen = fphp\Helper\_String::getMaxLength($this->files, "getTarget");
 
         if ($textOnly)
             $str .= "\nProduct Analysis\n================\n" .
@@ -51,14 +61,10 @@ class ProductRenderer extends fphp\Renderer {
             $str .= "<ul>";
         }
 
-        $maxLen = 0;
-        foreach ($this->files as $file)
-            $maxLen = strlen($file->getTarget()) > $maxLen ? strlen($file->getTarget()) : $maxLen;
-
         foreach ($this->files as $file) {
             $summary = $file->getContent()->getSummary();
             if ($textOnly) {
-                $str .= sprintf("$accentColor%-{$maxLen}s$colorOff %s\n", $file->getTarget(),
+                $str .= sprintf("$this->accentColor%-{$maxLen}s$this->defaultColor %s\n", $file->getTarget(),
                                 fphp\Helper\_String::truncate($summary));
             } else
                 $str .= "<li><span class='fileName' onclick='var style = this.parentElement.children[1].style;
@@ -73,6 +79,8 @@ class ProductRenderer extends fphp\Renderer {
             $str .= "</ul>";
             $str .= "</div>";
         }
+
+        $str .= (new fphp\Artifact\TracingLinkRenderer($this->tracingLinks))->render($textOnly);
         return $str;
     }
 }

@@ -63,7 +63,13 @@ abstract class ExtendGenerator extends Generator {
                 $specification = $this->getSpecification($file, $settings, $artifact);
                 $extendableFile = $this->getExtendableFile($specification);
                 if ($extendableFile && $extend) {
-                    $extendableFile->extend($specification);
+                    $places = $extendableFile->extend($specification);
+                    foreach ($places as $placePair) {
+                        if (!is_array($placePair))
+                            $placePair = array(new \FeaturePhp\Artifact\SettingsPlace($artifact), $placePair);
+                        $this->tracingLinks[] = new fphp\Artifact\TracingLink(
+                            static::getKey() === "template" ? "rule" : "chunk", $artifact, $placePair[0], $placePair[1]);
+                    }
                     $this->logFile->log($artifact, "extended file \"{$specification->getTarget()}\"");
                 }
             }
@@ -73,7 +79,7 @@ abstract class ExtendGenerator extends Generator {
     /**
      * Generates the extendable files.
      */
-    public function _generateFiles() {            
+    protected function _generateFiles() {
         $this->generateFilesForArtifacts($this->selectedArtifacts, "getFileSettingsForSelected", false);
         $this->generateFilesForArtifacts($this->deselectedArtifacts, "getFileSettingsForDeselected", false);
         

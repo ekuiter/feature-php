@@ -42,7 +42,7 @@ abstract class FileGenerator extends Generator {
     /**
      * Processes the files and directories.
      */
-    public function _generateFiles() {        
+    protected function _generateFiles() {
         foreach ($this->selectedArtifacts as $artifact) {
             $settings = $artifact->getGeneratorSettings(static::getKey());
 

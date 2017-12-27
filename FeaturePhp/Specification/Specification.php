@@ -59,6 +59,22 @@ abstract class Specification extends fphp\Settings {
     public function getTarget() {
         return $this->get("target");
     }
+
+    /**
+     * Returns the entity's source place.
+     * @return \FeaturePhp\Artifact\Place
+     */
+    public function getSourcePlace() {
+        return new fphp\Artifact\Place($this->getSource());
+    }
+
+    /**
+     * Returns the entity's target place.
+     * @return \FeaturePhp\Artifact\Place
+     */
+    public function getTargetPlace() {
+        return new fphp\Artifact\Place($this->getTarget());
+    }
 }
 
 ?>

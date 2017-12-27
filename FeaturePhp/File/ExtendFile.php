@@ -17,6 +17,7 @@ interface ExtendFile {
      * Extends the file.
      * This is expected to be called only be a {@see \FeaturePhp\Generator\ExtendGenerator}.
      * @param \FeaturePhp\Specification\Specification $specification
+     * @return \FeaturePhp\Place\Place[] modified places in the target file
      */
     public function extend($specification);
 }

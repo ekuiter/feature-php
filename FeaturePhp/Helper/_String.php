@@ -35,6 +35,21 @@ class _String {
         $text = $text . "...";
         return $text;
     }
+
+    /**
+     * Returns the maximum member length of an array of objects.
+     * @param array $array
+     * @param callable $key
+     * @return int
+     */
+    public static function getMaxLength($array, $key) {
+        $maxLen = 0;
+        foreach ($array as $element) {
+            $str = call_user_func(array($element, $key));
+            $maxLen = strlen($str) > $maxLen ? strlen($str) : $maxLen;
+        }
+        return $maxLen;
+    }
 }
 
 ?>

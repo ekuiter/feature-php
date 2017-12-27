@@ -27,6 +27,14 @@ class StoredFileContent extends FileContent {
     }
 
     /**
+     * Returns the stored file's file source.
+     * @return string
+     */
+    public function getFileSource() {
+        return $this->fileSource;
+    }
+
+    /**
      * Returns the stored file's path as a summary.
      * This returns no content of the stored file.
      * @return string
