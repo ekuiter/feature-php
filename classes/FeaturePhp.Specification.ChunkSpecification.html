@@ -81,7 +81,9 @@
 <li class="method public inherited"><a href="#method_getPath" title="getPath() :: Returns a path in the context of the settings' directory."><span class="description">Returns a path in the context of the settings' directory.</span><pre>getPath()</pre></a></li>
 <li class="method public inherited"><a href="#method_getRelativeSource" title="getRelativeSource() :: Returns the entity's source relative to its settings."><span class="description">Returns the entity's source relative to its settings.</span><pre>getRelativeSource()</pre></a></li>
 <li class="method public inherited"><a href="#method_getSource" title="getSource() :: Returns the entity's source."><span class="description">Returns the entity's source.</span><pre>getSource()</pre></a></li>
+<li class="method public inherited"><a href="#method_getSourcePlace" title="getSourcePlace() :: Returns the entity's source place."><span class="description">Returns the entity's source place.</span><pre>getSourcePlace()</pre></a></li>
 <li class="method public inherited"><a href="#method_getTarget" title="getTarget() :: Returns the entity's target."><span class="description">Returns the entity's target.</span><pre>getTarget()</pre></a></li>
+<li class="method public inherited"><a href="#method_getTargetPlace" title="getTargetPlace() :: Returns the entity's target place."><span class="description">Returns the entity's target place.</span><pre>getTargetPlace()</pre></a></li>
 <li class="method public "><a href="#method_getText" title="getText() :: Returns the chunk's text."><span class="description">Returns the chunk's text.</span><pre>getText()</pre></a></li>
 <li class="method public inherited"><a href="#method_getWith" title="getWith() :: Returns a setting if a predicate is satisfied."><span class="description">Returns a setting if a predicate is satisfied.</span><pre>getWith()</pre></a></li>
 <li class="method public inherited"><a href="#method_inDirectory" title="inDirectory() :: Creates empty settings in the context of a directory."><span class="description">Creates empty settings in the context of a directory.</span><pre>inDirectory()</pre></a></li>
@@ -217,7 +219,7 @@ hold general settings for a chunk file and follow the structure:</p>
 </div>
 <a id="method_fromArrayAndSettings"></a><div class="element clickable method public method_fromArrayAndSettings " data-toggle="collapse" data-target=".method_fromArrayAndSettings .collapse" title="public">
 <h2>Creates a chunk specification from a plain settings array.</h2>
-<pre>fromArrayAndSettings(array $cfg, \FeaturePhp\Settings $settings) : \FeaturePhp\Specification\ChunkSpecification</pre>
+<pre>fromArrayAndSettings(array $cfg, \FeaturePhp\Settings $settings, \FeaturePhp\Artifact\Artifact $artifact<code> = null</code>) : \FeaturePhp\Specification\ChunkSpecification</pre>
 <div class="labels"><span class="label">Static</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"><p>The settings context is taken into consideration to generate paths
@@ -229,6 +231,9 @@ relative to the settings.</p></div>
 <div class="subelement argument">
 <h4>$settings</h4>
 <code>\FeaturePhp\Settings</code><p>the settings context</p></div>
+<div class="subelement argument">
+<h4>$artifact</h4>
+<code>\FeaturePhp\Artifact\Artifact</code><p>is ignored</p></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>\FeaturePhp\Specification\ChunkSpecification</code></div>
 </div></div>
@@ -433,6 +438,16 @@ If true is given, the class is instantiated from an empty array.</p></div>
 <div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
+<a id="method_getSourcePlace"></a><div class="element clickable method public method_getSourcePlace inherited" data-toggle="collapse" data-target=".method_getSourcePlace .collapse" title="public">
+<h2>Returns the entity's source place.</h2>
+<pre>getSourcePlace() : \FeaturePhp\Artifact\Place</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\FeaturePhp\Artifact\Place</code></div>
+</div></div>
+</div>
 <a id="method_getTarget"></a><div class="element clickable method public method_getTarget inherited" data-toggle="collapse" data-target=".method_getTarget .collapse" title="public">
 <h2>Returns the entity's target.</h2>
 <pre>getTarget() : string</pre>
@@ -441,6 +456,16 @@ If true is given, the class is instantiated from an empty array.</p></div>
 <div class="long_description"></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getTargetPlace"></a><div class="element clickable method public method_getTargetPlace inherited" data-toggle="collapse" data-target=".method_getTargetPlace .collapse" title="public">
+<h2>Returns the entity's target place.</h2>
+<pre>getTargetPlace() : \FeaturePhp\Artifact\Place</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\FeaturePhp\Artifact\Place</code></div>
 </div></div>
 </div>
 <a id="method_getText"></a><div class="element clickable method public method_getText " data-toggle="collapse" data-target=".method_getText .collapse" title="public">
@@ -600,7 +625,7 @@ is assumed.</p></div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
-            generated on 2017-12-13T09:13:41+01:00.<br></footer></div>
+            generated on 2017-12-27T17:47:01+01:00.<br></footer></div>
 </div>
 </body>
 </html>

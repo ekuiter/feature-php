@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>feature-php » \FeaturePhp\Helper\PhpParser</title>
+<title>feature-php » \FeaturePhp\Helper\Diff</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -62,25 +62,28 @@
 <ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list">
 <li class="nav-header">
 <i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul><li class="method public "><a href="#method_compare" title="compare() :: Returns the diff for two strings."><span class="description">Returns the diff for two strings.</span><pre>compare()</pre></a></li></ul>
+</li>
+<li class="nav-header private">» Private
                     <ul>
-<li class="method public "><a href="#method_astToString" title="astToString() :: Returns an abstract syntax tree's code."><span class="description">Returns an abstract syntax tree's code.</span><pre>astToString()</pre></a></li>
-<li class="method public "><a href="#method_getAst" title="getAst() :: Returns the code's abstract syntax tree."><span class="description">Returns the code's abstract syntax tree.</span><pre>getAst()</pre></a></li>
-<li class="method public "><a href="#method_getExactlyOneClass" title="getExactlyOneClass() :: Asserts that the code defines one class and returns it."><span class="description">Asserts that the code defines one class and returns it.</span><pre>getExactlyOneClass()</pre></a></li>
-<li class="method public "><a href="#method_parseFile" title="parseFile() :: Parses a PHP file."><span class="description">Parses a PHP file.</span><pre>parseFile()</pre></a></li>
-<li class="method public "><a href="#method_parseString" title="parseString() :: Parses a PHP string."><span class="description">Parses a PHP string.</span><pre>parseString()</pre></a></li>
+<li class="method private "><a href="#method_computeTable" title="computeTable() :: Returns the table of longest common subsequence lengths for the specified
+sequences."><span class="description">Returns the table of longest common subsequence lengths for the specified
+sequences.</span><pre>computeTable()</pre></a></li>
+<li class="method private "><a href="#method_generatePartialDiff" title="generatePartialDiff() :: Returns the partial diff for the specificed sequences, in reverse order."><span class="description">Returns the partial diff for the specificed sequences, in reverse order.</span><pre>generatePartialDiff()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
-<i title="Properties" class="icon-custom icon-property"></i> Properties
-                    <ul></ul>
-</li>
-<li class="nav-header private">» Private
-                    <ul><li class="property private "><a href="#property_ast" title="$ast() :: "><span class="description">the code's abstract syntax tree</span><pre>$ast</pre></a></li></ul>
+<i title="Constants" class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_DELETED" title="DELETED() :: "><span class="description">DELETED</span><pre>DELETED</pre></a></li>
+<li class="constant  "><a href="#constant_INSERTED" title="INSERTED() :: "><span class="description">INSERTED</span><pre>INSERTED</pre></a></li>
+<li class="constant  "><a href="#constant_UNMODIFIED" title="UNMODIFIED() :: "><span class="description">UNMODIFIED</span><pre>UNMODIFIED</pre></a></li>
+</ul>
 </li>
 </ul>
 </div>
 <div class="span8">
-<a xmlns:php="http://php.net/xsl" id="\FeaturePhp\Helper\PhpParser"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
+<a xmlns:php="http://php.net/xsl" id="\FeaturePhp\Helper\Diff"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
 <li>
 <a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
@@ -89,98 +92,108 @@
 <span class="divider">\</span><a href="../namespaces/FeaturePhp.Helper.html">Helper</a>
 </li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/FeaturePhp.Helper.PhpParser.html">PhpParser</a>
+<span class="divider">\</span><a href="../classes/FeaturePhp.Helper.Diff.html">Diff</a>
 </li>
 </ul>
 <div xmlns:php="http://php.net/xsl" class="element class">
-<p class="short_description">Helper class for parsing PHP files.</p>
+<p class="short_description">A class containing functions for computing diffs and formatting the output.</p>
 <div class="details">
-<div class="long_description"></div>
+<div class="long_description"><p>Created by Stephen Morley - <a href="http://stephenmorley.org/">http://stephenmorley.org/</a> - and released under the
+terms of the CC0 1.0 Universal legal code:
+<a href="http://creativecommons.org/publicdomain/zero/1.0/legalcode">http://creativecommons.org/publicdomain/zero/1.0/legalcode</a></p></div>
 <table class="table table-bordered"><tr>
 <th>package</th>
 <td><a href="../packages/Default.html">Default</a></td>
 </tr></table>
 <h3>
 <i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
-<a id="method_astToString"></a><div class="element clickable method public method_astToString " data-toggle="collapse" data-target=".method_astToString .collapse" title="public">
-<h2>Returns an abstract syntax tree's code.</h2>
-<pre>astToString(array&lt;mixed,array&gt; $ast) : string</pre>
+<a id="method_compare"></a><div class="element clickable method public method_compare " data-toggle="collapse" data-target=".method_compare .collapse" title="public">
+<h2>Returns the diff for two strings.</h2>
+<pre>compare(string $string1, string $string2, boolean $compareCharacters<code> = false</code>) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The return value is an array, each of
+whose values is an array containing two values: a line (or character, if
+$compareCharacters is true), and one of the constants DIFF::UNMODIFIED (the
+line or character is in both strings), DIFF::DELETED (the line or character
+is only in the first string), and DIFF::INSERTED (the line or character is
+only in the second string).</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$string1</h4>
+<code>string</code><p>the first string</p></div>
+<div class="subelement argument">
+<h4>$string2</h4>
+<code>string</code><p>the second string</p></div>
+<div class="subelement argument">
+<h4>$compareCharacters</h4>
+<code>boolean</code><p>true to compare characters, and false to compare
+lines; this optional parameter defaults to false</p></div>
+</div></div>
+</div>
+<a id="method_computeTable"></a><div class="element clickable method private method_computeTable " data-toggle="collapse" data-target=".method_computeTable .collapse" title="private">
+<h2>Returns the table of longest common subsequence lengths for the specified
+sequences.</h2>
+<pre>computeTable(mixed $sequence1, mixed $sequence2, mixed $start, mixed $end1, mixed $end2) </pre>
 <div class="labels"><span class="label">Static</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$ast</h4>
-<code>array&lt;mixed,array&gt;</code>
-</div>
-<h3>Returns</h3>
-<div class="subelement response"><code>string</code></div>
+<h4>$sequence1</h4>
+<code>mixed</code><p>the first sequence</p></div>
+<div class="subelement argument">
+<h4>$sequence2</h4>
+<code>mixed</code><p>the second sequence</p></div>
+<div class="subelement argument">
+<h4>$start</h4>
+<code>mixed</code><p>the starting index</p></div>
+<div class="subelement argument">
+<h4>$end1</h4>
+<code>mixed</code><p>the ending index for the first sequence</p></div>
+<div class="subelement argument">
+<h4>$end2</h4>
+<code>mixed</code><p>the ending index for the second sequence</p></div>
 </div></div>
 </div>
-<a id="method_getAst"></a><div class="element clickable method public method_getAst " data-toggle="collapse" data-target=".method_getAst .collapse" title="public">
-<h2>Returns the code's abstract syntax tree.</h2>
-<pre>getAst() : array&lt;mixed,array&gt;</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>array&lt;mixed,array&gt;</code></div>
-</div></div>
-</div>
-<a id="method_getExactlyOneClass"></a><div class="element clickable method public method_getExactlyOneClass " data-toggle="collapse" data-target=".method_getExactlyOneClass .collapse" title="public">
-<h2>Asserts that the code defines one class and returns it.</h2>
-<pre>getExactlyOneClass(string $fileSource) : \PhpParser\Node\Stmt\Class_</pre>
-<div class="labels"></div>
+<a id="method_generatePartialDiff"></a><div class="element clickable method private method_generatePartialDiff " data-toggle="collapse" data-target=".method_generatePartialDiff .collapse" title="private">
+<h2>Returns the partial diff for the specificed sequences, in reverse order.</h2>
+<pre>generatePartialDiff(mixed $table, mixed $sequence1, mixed $sequence2, mixed $start) </pre>
+<div class="labels"><span class="label">Static</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$fileSource</h4>
-<code>string</code>
-</div>
-<h3>Returns</h3>
-<div class="subelement response"><code>\PhpParser\Node\Stmt\Class_</code></div>
-</div></div>
-</div>
-<a id="method_parseFile"></a><div class="element clickable method public method_parseFile " data-toggle="collapse" data-target=".method_parseFile .collapse" title="public">
-<h2>Parses a PHP file.</h2>
-<pre>parseFile(string $fileName) : \FeaturePhp\Helper\PhpParser</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
+<h4>$table</h4>
+<code>mixed</code><p>the table returned by the computeTable function</p></div>
 <div class="subelement argument">
-<h4>$fileName</h4>
-<code>string</code>
-</div>
-<h3>Returns</h3>
-<div class="subelement response"><code>\FeaturePhp\Helper\PhpParser</code></div>
-</div></div>
-</div>
-<a id="method_parseString"></a><div class="element clickable method public method_parseString " data-toggle="collapse" data-target=".method_parseString .collapse" title="public">
-<h2>Parses a PHP string.</h2>
-<pre>parseString(string $str) : \FeaturePhp\Helper\PhpParser</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
+<h4>$sequence1</h4>
+<code>mixed</code><p>the first sequence</p></div>
 <div class="subelement argument">
-<h4>$str</h4>
-<code>string</code>
-</div>
-<h3>Returns</h3>
-<div class="subelement response"><code>\FeaturePhp\Helper\PhpParser</code></div>
+<h4>$sequence2</h4>
+<code>mixed</code><p>the second sequence</p></div>
+<div class="subelement argument">
+<h4>$start</h4>
+<code>mixed</code><p>the starting index</p></div>
 </div></div>
 </div>
 <h3>
-<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
-<a id="property_ast"> </a><div class="element clickable property private property_ast" data-toggle="collapse" data-target=".property_ast .collapse" title="private">
-<h2>the code's abstract syntax tree</h2>
-<pre>$ast : array&lt;mixed,array&gt;</pre>
-<div class="row collapse"><div class="detail-description">
-<h3>Default</h3>
-<div class="subelement argument"><code>null</code></div>
-</div></div>
+<i title="Constants" class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_DELETED"> </a><div class="element clickable constant  constant_DELETED" data-toggle="collapse" data-target=".constant_DELETED .collapse" title="">
+<h2>DELETED</h2>
+<pre>DELETED = 1 </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_INSERTED"> </a><div class="element clickable constant  constant_INSERTED" data-toggle="collapse" data-target=".constant_INSERTED .collapse" title="">
+<h2>INSERTED</h2>
+<pre>INSERTED = 2 </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_UNMODIFIED"> </a><div class="element clickable constant  constant_UNMODIFIED" data-toggle="collapse" data-target=".constant_UNMODIFIED .collapse" title="">
+<h2>UNMODIFIED</h2>
+<pre>UNMODIFIED = 0 </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>

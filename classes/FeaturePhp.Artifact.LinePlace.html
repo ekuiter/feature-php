@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>feature-php » \FeaturePhp\File\TextFile</title>
+<title>feature-php » \FeaturePhp\Artifact\LinePlace</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -63,12 +63,11 @@
 <li class="nav-header">
 <i title="Methods" class="icon-custom icon-method"></i> Methods
                     <ul>
-<li class="method public "><a href="#method___construct" title="__construct() :: Creates a text file."><span class="description">Creates a text file.</span><pre>__construct()</pre></a></li>
-<li class="method public inherited"><a href="#method___construct" title="__construct() :: Creates a file."><span class="description">Creates a file.</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_append" title="append() :: Appends text content to the file."><span class="description">Appends text content to the file.</span><pre>append()</pre></a></li>
-<li class="method public "><a href="#method_getContent" title="getContent() :: Returns the text file's content."><span class="description">Returns the text file's content.</span><pre>getContent()</pre></a></li>
-<li class="method public inherited"><a href="#method_getContent" title="getContent() :: Returns the file's content."><span class="description">Returns the file's content.</span><pre>getContent()</pre></a></li>
-<li class="method public inherited"><a href="#method_getTarget" title="getTarget() :: Returns the file's target."><span class="description">Returns the file's target.</span><pre>getTarget()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct() :: Creates a line place."><span class="description">Creates a line place.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#method___construct" title="__construct() :: Creates a place."><span class="description">Creates a place.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#method_getFilePath" title="getFilePath() :: Returns the place's file path."><span class="description">Returns the place's file path.</span><pre>getFilePath()</pre></a></li>
+<li class="method public "><a href="#method_getSummary" title="getSummary() :: Returns a summary of the line place."><span class="description">Returns a summary of the line place.</span><pre>getSummary()</pre></a></li>
+<li class="method public inherited"><a href="#method_getSummary" title="getSummary() :: Returns a summary of the place."><span class="description">Returns a summary of the place.</span><pre>getSummary()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -76,31 +75,30 @@
                     <ul></ul>
 </li>
 <li class="nav-header protected">» Protected
-                    <ul>
-<li class="property protected "><a href="#property_content" title="$content() :: "><span class="description">the content as text (usually UTF-8)</span><pre>$content</pre></a></li>
-<li class="property protected "><a href="#property_fileTarget" title="$fileTarget() :: "><span class="description">the file target in the generated product</span><pre>$fileTarget</pre></a></li>
-</ul>
+                    <ul><li class="property protected "><a href="#property_filePath" title="$filePath() :: "><span class="description">the described file</span><pre>$filePath</pre></a></li></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="property private "><a href="#property_line" title="$line() :: "><span class="description">the line of the file</span><pre>$line</pre></a></li></ul>
 </li>
 </ul>
 </div>
 <div class="span8">
-<a xmlns:php="http://php.net/xsl" id="\FeaturePhp\File\TextFile"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
+<a xmlns:php="http://php.net/xsl" id="\FeaturePhp\Artifact\LinePlace"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
 <li>
 <a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/FeaturePhp.html">FeaturePhp</a></li>
 <li>
-<span class="divider">\</span><a href="../namespaces/FeaturePhp.File.html">File</a>
+<span class="divider">\</span><a href="../namespaces/FeaturePhp.Artifact.html">Artifact</a>
 </li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/FeaturePhp.File.TextFile.html">TextFile</a>
+<span class="divider">\</span><a href="../classes/FeaturePhp.Artifact.LinePlace.html">LinePlace</a>
 </li>
 </ul>
 <div xmlns:php="http://php.net/xsl" class="element class">
-<p class="short_description">A file containing arbitrary text.</p>
+<p class="short_description">A line place describes a line of an artifact's file.</p>
 <div class="details">
-<div class="long_description"><p>A text file may be manipulated, in contrast to a <a href="../classes/FeaturePhp.File.StoredFile.html">\FeaturePhp\File\StoredFile</a>.
-In particular, it may not be used for binary data such as images.</p></div>
+<div class="long_description"><p>It can provide feature traceability for lines of files.</p></div>
 <table class="table table-bordered">
 <tr>
 <th>package</th>
@@ -108,84 +106,72 @@ In particular, it may not be used for binary data such as images.</p></div>
 </tr>
 <tr>
 <th>inherited_from</th>
-<td>\FeaturePhp\File\File</td>
+<td>\FeaturePhp\Artifact\Place</td>
 </tr>
 </table>
 <h3>
 <i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct " data-toggle="collapse" data-target=".method___construct .collapse" title="public">
-<h2>Creates a text file.</h2>
-<pre>__construct(string $fileTarget, string $content<code> = null</code>) </pre>
+<h2>Creates a line place.</h2>
+<pre>__construct(string $filePath, integer $line) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
-<td>\FeaturePhp\File\File::__construct()</td>
+<td>\FeaturePhp\Artifact\Place::__construct()</td>
 </tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$fileTarget</h4>
+<h4>$filePath</h4>
 <code>string</code>
 </div>
 <div class="subelement argument">
-<h4>$content</h4>
-<code>string</code><p>initial content of the file</p></div>
+<h4>$line</h4>
+<code>integer</code>
+</div>
 </div></div>
 </div>
 <a id="method___construct"></a><div class="element clickable method public method___construct inherited" data-toggle="collapse" data-target=".method___construct .collapse" title="public">
-<h2>Creates a file.</h2>
-<pre>__construct(string $fileTarget) </pre>
+<h2>Creates a place.</h2>
+<pre>__construct(string $filePath) </pre>
 <div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$fileTarget</h4>
+<h4>$filePath</h4>
 <code>string</code>
 </div>
 </div></div>
 </div>
-<a id="method_append"></a><div class="element clickable method public method_append " data-toggle="collapse" data-target=".method_append .collapse" title="public">
-<h2>Appends text content to the file.</h2>
-<pre>append(string $content) </pre>
+<a id="method_getFilePath"></a><div class="element clickable method public method_getFilePath inherited" data-toggle="collapse" data-target=".method_getFilePath .collapse" title="public">
+<h2>Returns the place's file path.</h2>
+<pre>getFilePath() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getSummary"></a><div class="element clickable method public method_getSummary " data-toggle="collapse" data-target=".method_getSummary .collapse" title="public">
+<h2>Returns a summary of the line place.</h2>
+<pre>getSummary() : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$content</h4>
-<code>string</code>
-</div>
-</div></div>
-</div>
-<a id="method_getContent"></a><div class="element clickable method public method_getContent " data-toggle="collapse" data-target=".method_getContent .collapse" title="public">
-<h2>Returns the text file's content.</h2>
-<pre>getContent() : \FeaturePhp\File\TextFileContent</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>For details see <a href="../classes/FeaturePhp.File.FileContent.html">\FeaturePhp\File\FileContent</a>.</p></div>
 <table class="table table-bordered"><tr>
 <th>inherited_from</th>
-<td>\FeaturePhp\File\File::getContent()</td>
+<td>\FeaturePhp\Artifact\Place::getSummary()</td>
 </tr></table>
 <h3>Returns</h3>
-<div class="subelement response"><code>\FeaturePhp\File\TextFileContent</code></div>
+<div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
-<a id="method_getContent"></a><div class="element clickable method public method_getContent inherited" data-toggle="collapse" data-target=".method_getContent .collapse" title="public">
-<h2>Returns the file's content.</h2>
-<pre>getContent() : \FeaturePhp\File\FileContent</pre>
-<div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>For details see <a href="../classes/FeaturePhp.File.FileContent.html">\FeaturePhp\File\FileContent</a>.</p></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>\FeaturePhp\File\FileContent</code></div>
-</div></div>
-</div>
-<a id="method_getTarget"></a><div class="element clickable method public method_getTarget inherited" data-toggle="collapse" data-target=".method_getTarget .collapse" title="public">
-<h2>Returns the file's target.</h2>
-<pre>getTarget() : string</pre>
+<a id="method_getSummary"></a><div class="element clickable method public method_getSummary inherited" data-toggle="collapse" data-target=".method_getSummary .collapse" title="public">
+<h2>Returns a summary of the place.</h2>
+<pre>getSummary() : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -195,9 +181,9 @@ In particular, it may not be used for binary data such as images.</p></div>
 </div>
 <h3>
 <i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
-<a id="property_content"> </a><div class="element clickable property protected property_content" data-toggle="collapse" data-target=".property_content .collapse" title="protected">
-<h2>the content as text (usually UTF-8)</h2>
-<pre>$content : string</pre>
+<a id="property_filePath"> </a><div class="element clickable property protected property_filePath" data-toggle="collapse" data-target=".property_filePath .collapse" title="protected">
+<h2>the described file</h2>
+<pre>$filePath : string</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"></div>
@@ -205,9 +191,9 @@ In particular, it may not be used for binary data such as images.</p></div>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
-<a id="property_fileTarget"> </a><div class="element clickable property protected property_fileTarget" data-toggle="collapse" data-target=".property_fileTarget .collapse" title="protected">
-<h2>the file target in the generated product</h2>
-<pre>$fileTarget : string</pre>
+<a id="property_line"> </a><div class="element clickable property private property_line" data-toggle="collapse" data-target=".property_line .collapse" title="private">
+<h2>the line of the file</h2>
+<pre>$line : integer</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"></div>

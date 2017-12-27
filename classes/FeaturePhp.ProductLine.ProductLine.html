@@ -66,11 +66,14 @@
 <li class="method public "><a href="#method___construct" title="__construct() :: Creates a product line."><span class="description">Creates a product line.</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#method_getArtifact" title="getArtifact() :: Returns the product line's artifact for a feature."><span class="description">Returns the product line's artifact for a feature.</span><pre>getArtifact()</pre></a></li>
 <li class="method public "><a href="#method_getDefaultConfiguration" title="getDefaultConfiguration() :: Returns the product line's default configuration."><span class="description">Returns the product line's default configuration.</span><pre>getDefaultConfiguration()</pre></a></li>
+<li class="method public "><a href="#method_getFeature" title="getFeature() :: Returns a feature in the product line's model with a given name."><span class="description">Returns a feature in the product line's model with a given name.</span><pre>getFeature()</pre></a></li>
 <li class="method public "><a href="#method_getGeneratorSettings" title="getGeneratorSettings() :: Returns the product line's settings for a generator."><span class="description">Returns the product line's settings for a generator.</span><pre>getGeneratorSettings()</pre></a></li>
 <li class="method public "><a href="#method_getModel" title="getModel() :: Returns the product line's model."><span class="description">Returns the product line's model.</span><pre>getModel()</pre></a></li>
 <li class="method public "><a href="#method_getName" title="getName() :: Returns the product line's name."><span class="description">Returns the product line's name.</span><pre>getName()</pre></a></li>
 <li class="method public "><a href="#method_getProduct" title="getProduct() :: Returns a product of the product line for a configuration."><span class="description">Returns a product of the product line for a configuration.</span><pre>getProduct()</pre></a></li>
 <li class="method public "><a href="#method_getSettings" title="getSettings() :: Returns the product line's settings."><span class="description">Returns the product line's settings.</span><pre>getSettings()</pre></a></li>
+<li class="method public "><a href="#method_renderTracingLinkAnalysis" title="renderTracingLinkAnalysis() :: Analyzes an artifact's tracing links by returning a web page."><span class="description">Analyzes an artifact's tracing links by returning a web page.</span><pre>renderTracingLinkAnalysis()</pre></a></li>
+<li class="method public "><a href="#method_trace" title="trace() :: Returns tracing links for an artifact."><span class="description">Returns tracing links for an artifact.</span><pre>trace()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -147,6 +150,25 @@ All of these are provided using <a href="../classes/FeaturePhp.ProductLine.Setti
 <div class="subelement response"><code>\FeaturePhp\Model\Configuration</code></div>
 </div></div>
 </div>
+<a id="method_getFeature"></a><div class="element clickable method public method_getFeature " data-toggle="collapse" data-target=".method_getFeature .collapse" title="public">
+<h2>Returns a feature in the product line's model with a given name.</h2>
+<pre>getFeature(string $featureName, boolean $permissive<code> = false</code>) : \FeaturePhp\Model\Feature</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$featureName</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$permissive</h4>
+<code>boolean</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\FeaturePhp\Model\Feature</code></div>
+</div></div>
+</div>
 <a id="method_getGeneratorSettings"></a><div class="element clickable method public method_getGeneratorSettings " data-toggle="collapse" data-target=".method_getGeneratorSettings .collapse" title="public">
 <h2>Returns the product line's settings for a generator.</h2>
 <pre>getGeneratorSettings(string $generator) : \FeaturePhp\Generator\Settings</pre>
@@ -207,6 +229,39 @@ All of these are provided using <a href="../classes/FeaturePhp.ProductLine.Setti
 <div class="subelement response"><code>\FeaturePhp\ProductLine\Settings</code></div>
 </div></div>
 </div>
+<a id="method_renderTracingLinkAnalysis"></a><div class="element clickable method public method_renderTracingLinkAnalysis " data-toggle="collapse" data-target=".method_renderTracingLinkAnalysis .collapse" title="public">
+<h2>Analyzes an artifact's tracing links by returning a web page.</h2>
+<pre>renderTracingLinkAnalysis(\FeaturePhp\Artifact\Artifact $artifact, boolean $textOnly<code> = false</code>) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$artifact</h4>
+<code>\FeaturePhp\Artifact\Artifact</code>
+</div>
+<div class="subelement argument">
+<h4>$textOnly</h4>
+<code>boolean</code><p>whether to render text or HTML</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_trace"></a><div class="element clickable method public method_trace " data-toggle="collapse" data-target=".method_trace .collapse" title="public">
+<h2>Returns tracing links for an artifact.</h2>
+<pre>trace(\FeaturePhp\Artifact\Artifact $artifact) : array&lt;mixed,\FeaturePhp\Artifact\TracingLink&gt;</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$artifact</h4>
+<code>\FeaturePhp\Artifact\Artifact</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array&lt;mixed,\FeaturePhp\Artifact\TracingLink&gt;</code></div>
+</div></div>
+</div>
 <h3>
 <i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_settings"> </a><div class="element clickable property private property_settings" data-toggle="collapse" data-target=".property_settings .collapse" title="private">
@@ -226,7 +281,7 @@ All of these are provided using <a href="../classes/FeaturePhp.ProductLine.Setti
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
-            generated on 2017-12-13T09:13:42+01:00.<br></footer></div>
+            generated on 2017-12-27T17:47:02+01:00.<br></footer></div>
 </div>
 </body>
 </html>

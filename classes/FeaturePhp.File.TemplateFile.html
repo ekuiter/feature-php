@@ -160,7 +160,7 @@ parts of the file to be replaced, enabling simple feature-based templating syste
 </div>
 <a id="method_extend"></a><div class="element clickable method public method_extend " data-toggle="collapse" data-target=".method_extend .collapse" title="public">
 <h2>Adds rules to the template file.</h2>
-<pre>extend(\FeaturePhp\Specification\TemplateSpecification $templateSpecification) </pre>
+<pre>extend(\FeaturePhp\Specification\TemplateSpecification $templateSpecification) : array&lt;mixed,\FeaturePhp\Place\Place&gt;</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"><p>This is expected to be called only be a <a href="../classes/FeaturePhp.Generator.TemplateGenerator.html">\FeaturePhp\Generator\TemplateGenerator</a>.
@@ -174,6 +174,8 @@ Only uses the rules of the template specification.</p></div>
 <h4>$templateSpecification</h4>
 <code>\FeaturePhp\Specification\TemplateSpecification</code>
 </div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array&lt;mixed,\FeaturePhp\Place\Place&gt;</code></div>
 </div></div>
 </div>
 <a id="method_fromSpecification"></a><div class="element clickable method public method_fromSpecification " data-toggle="collapse" data-target=".method_fromSpecification .collapse" title="public">
@@ -248,7 +250,7 @@ Only uses the rules of the template specification.</p></div>
 </div>
 <a id="method_render"></a><div class="element clickable method public method_render " data-toggle="collapse" data-target=".method_render .collapse" title="public">
 <h2>A quick way to directly render a template file with some replacement rules.</h2>
-<pre>render(string $source, array&lt;mixed,array&gt; $rules<code> = array()</code>) : string</pre>
+<pre>render(string $source, array&lt;mixed,array&gt; $rules<code> = array()</code>, string $directory<code> = null</code>) : string</pre>
 <div class="labels"><span class="label">Static</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -260,6 +262,10 @@ Only uses the rules of the template specification.</p></div>
 <div class="subelement argument">
 <h4>$rules</h4>
 <code>array&lt;mixed,array&gt;</code>
+</div>
+<div class="subelement argument">
+<h4>$directory</h4>
+<code>string</code>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
@@ -304,7 +310,7 @@ Only uses the rules of the template specification.</p></div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
-            generated on 2017-12-13T09:13:41+01:00.<br></footer></div>
+            generated on 2017-12-27T17:47:01+01:00.<br></footer></div>
 </div>
 </body>
 </html>

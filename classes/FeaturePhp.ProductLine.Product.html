@@ -69,12 +69,14 @@
 <li class="method public "><a href="#method_getConfiguration" title="getConfiguration() :: Returns the product's configuration."><span class="description">Returns the product's configuration.</span><pre>getConfiguration()</pre></a></li>
 <li class="method public "><a href="#method_getProductLine" title="getProductLine() :: Returns the product's product line."><span class="description">Returns the product's product line.</span><pre>getProductLine()</pre></a></li>
 <li class="method public "><a href="#method_renderAnalysis" title="renderAnalysis() :: Analyzes the product by returning a web page."><span class="description">Analyzes the product by returning a web page.</span><pre>renderAnalysis()</pre></a></li>
+<li class="method public "><a href="#method_trace" title="trace() :: Returns tracing links for the product."><span class="description">Returns tracing links for the product.</span><pre>trace()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header private">» Private
                     <ul>
 <li class="method private "><a href="#method_addArtifactToUsedGenerators" title="addArtifactToUsedGenerators() :: Adds a feature's artifact to all generators it specifies."><span class="description">Adds a feature's artifact to all generators it specifies.</span><pre>addArtifactToUsedGenerators()</pre></a></li>
 <li class="method private "><a href="#method_getAllGenerators" title="getAllGenerators() :: Returns all generators."><span class="description">Returns all generators.</span><pre>getAllGenerators()</pre></a></li>
+<li class="method private "><a href="#method_getGeneratorElements" title="getGeneratorElements() :: Returns elements generated for the product."><span class="description">Returns elements generated for the product.</span><pre>getGeneratorElements()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -117,7 +119,7 @@ A product can be analyzed, generated (or derived) and exported automatically.</p
 <i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct " data-toggle="collapse" data-target=".method___construct .collapse" title="public">
 <h2>Creates a product.</h2>
-<pre>__construct(\FeaturePhp\ProductLine\ProductLine $productLine, \FeaturePhp\Model\Configuration $configuration) </pre>
+<pre>__construct(\FeaturePhp\ProductLine\ProductLine $productLine, \FeaturePhp\Model\Configuration $configuration, boolean $allowInvalid<code> = false</code>) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"><p>Throws <a href="../classes/FeaturePhp.ProductLine.ProductException.html">\FeaturePhp\ProductLine\ProductException</a> if the configuration is invalid.</p></div>
@@ -130,6 +132,9 @@ A product can be analyzed, generated (or derived) and exported automatically.</p
 <h4>$configuration</h4>
 <code>\FeaturePhp\Model\Configuration</code>
 </div>
+<div class="subelement argument">
+<h4>$allowInvalid</h4>
+<code>boolean</code><p>whether to throw an exception if the configuration is invalid</p></div>
 </div></div>
 </div>
 <a id="method_export"></a><div class="element clickable method public method_export " data-toggle="collapse" data-target=".method_export .collapse" title="public">
@@ -150,8 +155,7 @@ A product can be analyzed, generated (or derived) and exported automatically.</p
 <pre>generateFiles() : array&lt;mixed,\FeaturePhp\File\File&gt;</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>To do this, every artifact is registered with the generators it specifies.
-Then every generator generates some files. Finally all the files are merged.</p></div>
+<div class="long_description"></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>array&lt;mixed,\FeaturePhp\File\File&gt;</code></div>
 </div></div>
@@ -178,9 +182,27 @@ Then every generator generates some files. Finally all the files are merged.</p>
 </div>
 <a id="method_renderAnalysis"></a><div class="element clickable method public method_renderAnalysis " data-toggle="collapse" data-target=".method_renderAnalysis .collapse" title="public">
 <h2>Analyzes the product by returning a web page.</h2>
-<pre>renderAnalysis() </pre>
+<pre>renderAnalysis(boolean $textOnly<code> = false</code>) : string</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$textOnly</h4>
+<code>boolean</code><p>whether to render text or HTML</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_trace"></a><div class="element clickable method public method_trace " data-toggle="collapse" data-target=".method_trace .collapse" title="public">
+<h2>Returns tracing links for the product.</h2>
+<pre>trace() : array&lt;mixed,\FeaturePhp\Artifact\TracingLink&gt;</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array&lt;mixed,\FeaturePhp\Artifact\TracingLink&gt;</code></div>
+</div></div>
 </div>
 <a id="method_addArtifactToUsedGenerators"></a><div class="element clickable method private method_addArtifactToUsedGenerators " data-toggle="collapse" data-target=".method_addArtifactToUsedGenerators .collapse" title="private">
 <h2>Adds a feature's artifact to all generators it specifies.</h2>
@@ -213,6 +235,22 @@ selected or deselected to support generating code for both cases.</p></div>
 <div class="subelement response"><code>array&lt;mixed,\FeaturePhp\Generator\Generator&gt;</code></div>
 </div></div>
 </div>
+<a id="method_getGeneratorElements"></a><div class="element clickable method private method_getGeneratorElements " data-toggle="collapse" data-target=".method_getGeneratorElements .collapse" title="private">
+<h2>Returns elements generated for the product.</h2>
+<pre>getGeneratorElements(callable $func) : array&lt;mixed,mixed&gt;</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>To do this, every artifact is registered with the generators it specifies.
+Then every generator generates some elements. Finally all the elements are merged.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$func</h4>
+<code>callable</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array&lt;mixed,mixed&gt;</code></div>
+</div></div>
+</div>
 <h3>
 <i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_configuration"> </a><div class="element clickable property private property_configuration" data-toggle="collapse" data-target=".property_configuration .collapse" title="private">
@@ -242,7 +280,7 @@ selected or deselected to support generating code for both cases.</p></div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
-            generated on 2017-12-13T09:13:42+01:00.<br></footer></div>
+            generated on 2017-12-27T17:47:02+01:00.<br></footer></div>
 </div>
 </body>
 </html>

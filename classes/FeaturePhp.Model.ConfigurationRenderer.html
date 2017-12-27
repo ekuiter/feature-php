@@ -66,6 +66,7 @@
 <li class="method public "><a href="#method___construct" title="__construct() :: Creates a configuration renderer."><span class="description">Creates a configuration renderer.</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#method__render" title="_render() :: Returns the model and configuration analysis."><span class="description">Returns the model and configuration analysis.</span><pre>_render()</pre></a></li>
 <li class="method public inherited"><a href="#method_render" title="render() :: Returns the renderer's web page."><span class="description">Returns the renderer's web page.</span><pre>render()</pre></a></li>
+<li class="method public inherited"><a href="#method_renderText" title="renderText() :: Returns the renderer's web page as text only."><span class="description">Returns the renderer's web page as text only.</span><pre>renderText()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header protected">» Protected
@@ -83,6 +84,12 @@
 <li class="nav-header">
 <i title="Properties" class="icon-custom icon-property"></i> Properties
                     <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected "><a href="#property_accentColor" title="$accentColor() :: "><span class="description">accent color for text only rendering</span><pre>$accentColor</pre></a></li>
+<li class="property protected "><a href="#property_defaultColor" title="$defaultColor() :: "><span class="description">default color for text only rendering</span><pre>$defaultColor</pre></a></li>
+</ul>
 </li>
 <li class="nav-header private">» Private
                     <ul>
@@ -143,7 +150,7 @@ the configuration's validity.</p></div>
 </div>
 <a id="method__render"></a><div class="element clickable method public method__render " data-toggle="collapse" data-target=".method__render .collapse" title="public">
 <h2>Returns the model and configuration analysis.</h2>
-<pre>_render() </pre>
+<pre>_render(boolean $textOnly) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -151,19 +158,51 @@ the configuration's validity.</p></div>
 <th>inherited_from</th>
 <td>\FeaturePhp\Renderer::_render()</td>
 </tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$textOnly</h4>
+<code>boolean</code><p>whether to render text or HTML</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
 <a id="method_render"></a><div class="element clickable method public method_render inherited" data-toggle="collapse" data-target=".method_render .collapse" title="public">
 <h2>Returns the renderer's web page.</h2>
-<pre>render() </pre>
+<pre>render(boolean $textOnly<code> = false</code>) : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$textOnly</h4>
+<code>boolean</code><p>whether to render text or HTML</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_renderText"></a><div class="element clickable method public method_renderText inherited" data-toggle="collapse" data-target=".method_renderText .collapse" title="public">
+<h2>Returns the renderer's web page as text only.</h2>
+<pre>renderText() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is used by the command-line interface.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
 </div>
 <a id="method__render"></a><div class="element clickable method protected method__render inherited" data-toggle="collapse" data-target=".method__render .collapse" title="protected">
 <h2>Internal function for returning the renderer's web page.</h2>
-<pre>_render() </pre>
+<pre>_render(boolean $textOnly) : string</pre>
 <div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$textOnly</h4>
+<code>boolean</code><p>whether to render text or HTML</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
 </div>
 <a id="method_getStyle"></a><div class="element clickable method protected method_getStyle inherited" data-toggle="collapse" data-target=".method_getStyle .collapse" title="protected">
 <h2>Returns a simple stylesheet.</h2>
@@ -177,7 +216,7 @@ the configuration's validity.</p></div>
 </div>
 <a id="method_analyzeConfiguration"></a><div class="element clickable method private method_analyzeConfiguration " data-toggle="collapse" data-target=".method_analyzeConfiguration .collapse" title="private">
 <h2>Returns a configuration analysis.</h2>
-<pre>analyzeConfiguration(\FeaturePhp\Model\Configuration $configuration) </pre>
+<pre>analyzeConfiguration(\FeaturePhp\Model\Configuration $configuration, boolean $textOnly) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -186,11 +225,16 @@ the configuration's validity.</p></div>
 <h4>$configuration</h4>
 <code>\FeaturePhp\Model\Configuration</code>
 </div>
+<div class="subelement argument">
+<h4>$textOnly</h4>
+<code>boolean</code><p>whether to render text or HTML</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
 <a id="method_analyzeModel"></a><div class="element clickable method private method_analyzeModel " data-toggle="collapse" data-target=".method_analyzeModel .collapse" title="private">
 <h2>Returns a model analysis.</h2>
-<pre>analyzeModel(\FeaturePhp\Model\Model $model) </pre>
+<pre>analyzeModel(\FeaturePhp\Model\Model $model, boolean $textOnly) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -199,10 +243,35 @@ the configuration's validity.</p></div>
 <h4>$model</h4>
 <code>\FeaturePhp\Model\Model</code>
 </div>
+<div class="subelement argument">
+<h4>$textOnly</h4>
+<code>boolean</code><p>whether to render text or HTML</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
 <h3>
 <i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_accentColor"> </a><div class="element clickable property protected property_accentColor" data-toggle="collapse" data-target=".property_accentColor .collapse" title="protected">
+<h2>accent color for text only rendering</h2>
+<pre>$accentColor : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>"\033[1;33m"</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_defaultColor"> </a><div class="element clickable property protected property_defaultColor" data-toggle="collapse" data-target=".property_defaultColor .collapse" title="protected">
+<h2>default color for text only rendering</h2>
+<pre>$defaultColor : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"><code>"\033[0m"</code></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
 <a id="property_configuration"> </a><div class="element clickable property private property_configuration" data-toggle="collapse" data-target=".property_configuration .collapse" title="private">
 <h2>the configuration that will be analyzed</h2>
 <pre>$configuration : \FeaturePhp\Model\Configuration</pre>
@@ -230,7 +299,7 @@ the configuration's validity.</p></div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
-            generated on 2017-12-13T09:13:42+01:00.<br></footer></div>
+            generated on 2017-12-27T17:47:01+01:00.<br></footer></div>
 </div>
 </body>
 </html>

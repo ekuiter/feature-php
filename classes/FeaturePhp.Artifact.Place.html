@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>feature-php » \FeaturePhp\Exporter\DownloadZipExporterException</title>
+<title>feature-php » \FeaturePhp\Artifact\Place</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -59,29 +59,93 @@
 <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
 </div>
 </div>
-<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list"></ul>
+<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list">
+<li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct() :: Creates a place."><span class="description">Creates a place.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_getFilePath" title="getFilePath() :: Returns the place's file path."><span class="description">Returns the place's file path.</span><pre>getFilePath()</pre></a></li>
+<li class="method public "><a href="#method_getSummary" title="getSummary() :: Returns a summary of the place."><span class="description">Returns a summary of the place.</span><pre>getSummary()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="property protected "><a href="#property_filePath" title="$filePath() :: "><span class="description">the described file</span><pre>$filePath</pre></a></li></ul>
+</li>
+</ul>
 </div>
 <div class="span8">
-<a xmlns:php="http://php.net/xsl" id="\FeaturePhp\Exporter\DownloadZipExporterException"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
+<a xmlns:php="http://php.net/xsl" id="\FeaturePhp\Artifact\Place"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
 <li>
 <a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/FeaturePhp.html">FeaturePhp</a></li>
 <li>
-<span class="divider">\</span><a href="../namespaces/FeaturePhp.Exporter.html">Exporter</a>
+<span class="divider">\</span><a href="../namespaces/FeaturePhp.Artifact.html">Artifact</a>
 </li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/FeaturePhp.Exporter.DownloadZipExporterException.html">DownloadZipExporterException</a>
+<span class="divider">\</span><a href="../classes/FeaturePhp.Artifact.Place.html">Place</a>
 </li>
 </ul>
 <div xmlns:php="http://php.net/xsl" class="element class">
-<p class="short_description">Exception thrown from the DownloadZipExporter class.</p>
+<p class="short_description">A place is a locatable part of an artifact.</p>
 <div class="details">
-<div class="long_description"></div>
+<div class="long_description"><p>A place describes part of an <a href="../classes/FeaturePhp.Artifact.Artifact.html">\FeaturePhp\Artifact\Artifact</a> and is included
+in a <a href="../classes/FeaturePhp.Artifact.TracingLink.html">\FeaturePhp\Artifact\TracingLink</a> to provide feature traceability.</p></div>
 <table class="table table-bordered"><tr>
 <th>package</th>
 <td><a href="../packages/Default.html">Default</a></td>
 </tr></table>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct " data-toggle="collapse" data-target=".method___construct .collapse" title="public">
+<h2>Creates a place.</h2>
+<pre>__construct(string $filePath) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filePath</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_getFilePath"></a><div class="element clickable method public method_getFilePath " data-toggle="collapse" data-target=".method_getFilePath .collapse" title="public">
+<h2>Returns the place's file path.</h2>
+<pre>getFilePath() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getSummary"></a><div class="element clickable method public method_getSummary " data-toggle="collapse" data-target=".method_getSummary .collapse" title="public">
+<h2>Returns a summary of the place.</h2>
+<pre>getSummary() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_filePath"> </a><div class="element clickable property protected property_filePath" data-toggle="collapse" data-target=".property_filePath .collapse" title="protected">
+<h2>the described file</h2>
+<pre>$filePath : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
 </div>
 </div>
 </div>
