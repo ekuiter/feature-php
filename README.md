@@ -6,10 +6,10 @@ implementing feature-oriented software product lines.
 
 It can be used to:
 
-- analyze [FeatureIDE](https://featureide.github.io/) feature models and
-  configurations (*domain analysis*)
-- implement features using the following variability mechanisms (*domain
-  implementation*):
+- analyze and validate [FeatureIDE](https://featureide.github.io/) feature
+  models and configurations (*domain analysis*)
+- implement and trace features using the following variability mechanisms
+  (*domain implementation*):
   - runtime variability for PHP code
   - build-system-like copying of files and directories
   - preprocessor-like template and chunk systems
@@ -25,37 +25,39 @@ or [ekuiter/feature-model-viz](https://github.com/ekuiter/feature-model-viz).)
 
 ### Requirements
 
-To use feature-php, PHP 5.3 is required with the SimpleXML extension. The DOM
-extension and
-[ekuiter/feature-schema](https://github.com/ekuiter/feature-schema) is used for
-validating XML data and the zip extension is needed for exporting products as
-ZIP files. [nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) is used for
-feature- and aspect-oriented programming.
+To use feature-php, the following is required:
+
+- PHP >= 5.3
+- the libxml and SimpleXML extensions (most servers have these)
+
+Also recommended are:
+
+- the DOM extension (for validating XML data)
+- the ZIP extension (for exporting products as ZIP files)
+
+feature-php also depends on some Composer packages:
+
+- [ekuiter/feature-schema](https://github.com/ekuiter/feature-schema) for
+  validating feature models and configurations
+- [nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) for feature- and
+  aspect-oriented programming
 
 ### Usage
 
-Create a `composer.json` file in your project directory if you don't have one
-yet. Add the package to the `require` section:
+**Check out the [User Guide](GUIDE.md) for installation and usage.**
 
-```
-{
-    "require": {
-        "ekuiter/feature-php": "dev-master"
-    }
-}
-```
+For a quick start, you can also
 
-Then run `composer install` in your project directory.
-
-For a quick start, look at the example below (or try
-[ekuiter/feature-web](https://github.com/ekuiter/feature-web)).
-
-You can also run the command-line interface with `vendor/bin/feature-php`.
+- look at the [example](#example) below
+- try [ekuiter/feature-web](https://github.com/ekuiter/feature-web)
+- run the command-line interface with `vendor/bin/feature-php`
 
 ### API Reference
 
-The API reference for feature-php can be found
-[here](http://ekuiter.github.io/feature-php). A good starting point is the
+**The API reference for feature-php can be found
+[here](http://ekuiter.github.io/feature-php).**
+
+A good starting point is the
 [ProductLine](http://ekuiter.github.io/feature-php/classes/FeaturePhp.ProductLine.ProductLine.html)
 class. If you want to learn about configuration files, have a look at the
 [ProductLine\Settings](http://ekuiter.github.io/feature-php/classes/FeaturePhp.ProductLine.Settings.html)
@@ -64,7 +66,7 @@ class.
 ### Example
 
 ```php
-<?
+<?php
 
 /*
  * This is a simple example for the usage of the feature-php library.

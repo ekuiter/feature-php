@@ -97,7 +97,7 @@ class ProductLine {
      */
     public function getProduct($configuration = null) {
         if (!$configuration)
-            $configuration = $this->defaultConfiguration;
+            $configuration = $this->getDefaultConfiguration();
         return new Product($this, $configuration);
     }
 
