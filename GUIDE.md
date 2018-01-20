@@ -810,8 +810,8 @@ feature in the product line settings in `productLine.json`:
 ```json
 {
     "aspect": {
-        "target": "database/include/AspectKernel.class.php",
-        "feature": "debug mode"
+        "target": "app/AspectKernel.class.php",
+        "feature": "debug"
     }
 }
 ```
@@ -829,7 +829,7 @@ if (class_exists("ApplicationAspectKernel"))
 ```
 
 For this to work, you also need to include [Go!
-AOP](https://github.com/goaop/framework) in the generated product, e.g. using
+AOP](https://github.com/goaop/framework) in the generated product, e.g. by using
 this Composer file in your artifact:
 
 ```json
