@@ -126,7 +126,7 @@ class RuntimeGenerator extends Generator {
             
             foreach (explode("\n", $content) as $idx => $line)
                 if (strstr($line, "$this->class::$this->getter")) {
-                    preg_match("/$this->class::$this->getter\(\"(.*?)\"\)/", $line, $matches);
+                    preg_match("/$this->class::$this->getter\(.*[\"'](.*?)[\"'].*\)/", $line, $matches);
                     try {
                         $feature = $productLine->getFeature($matches[1]);
                     } catch (fphp\Model\ModelException $e) {
