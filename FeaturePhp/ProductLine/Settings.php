@@ -65,30 +65,8 @@ class Settings extends fphp\Settings {
                     return is_string($dir) && is_dir($this->getPath($dir));
                 }));
 
-            foreach (scandir($artifactDirectory) as $entry) {
-                $entity = fphp\Helper\Path::join($artifactDirectory, $entry);
-                if (is_dir($entity) && !fphp\Helper\Path::isDot($entry) && in_array($this->get("artifactFile"), scandir($entity))) {
-                    $feature = $this->get("model")->getFeature($entry, true);
-                    if ($this->has($feature->getName(), $this->get("artifacts")))
-                        throw new fphp\SettingsException("there are multiple settings for \"{$feature->getName()}\"");
-
-                    $this->set("artifacts", $feature->getName(), new fphp\Artifact\Artifact(
-                        $feature,
-                        fphp\Artifact\Settings::fromFile(
-                            fphp\Helper\Path::join($entity, $this->get("artifactFile")))
-                    ));
-                }
-                if (is_file($entity))
-                    try {
-                        $feature = $this->get("model")->getFeature(pathinfo($entity)["filename"], true);
-                        if ($this->has($feature->getName(), $this->get("artifacts")))
-                            throw new fphp\SettingsException("there are multiple settings for \"{$feature->getName()}\"");
-
-                        $this->set("artifacts", $feature->getName(), new fphp\Artifact\Artifact(
-                            $feature, fphp\Artifact\Settings::fromFile($entity)
-                        ));
-                    } catch (fphp\Model\ModelException $e) {}
-            }
+            foreach (scandir($artifactDirectory) as $entry)
+                $this->processDirectoryEntry($artifactDirectory, $entry);
         }
 
         foreach ($this->get("model")->getFeatures() as $feature) {
@@ -115,6 +93,35 @@ class Settings extends fphp\Settings {
                     $this->get("generators", $fileGenerator)->getOptional("exclude", array()),
                     array($this->get("artifactFile"))));
         }
+    }
+
+    // recursively search the artifact directory, allowing the user to group features
+    private function processDirectoryEntry($artifactDirectory, $entry) {
+        $entity = fphp\Helper\Path::join($artifactDirectory, $entry);
+        // directory containing artifact file
+        if (is_dir($entity) && !fphp\Helper\Path::isDot($entry) && in_array($this->get("artifactFile"), scandir($entity))) {
+            $feature = $this->get("model")->getFeature($entry, true);
+            if ($this->has($feature->getName(), $this->get("artifacts")))
+                throw new fphp\SettingsException("there are multiple settings for \"{$feature->getName()}\"");
+
+            $this->set("artifacts", $feature->getName(), new fphp\Artifact\Artifact(
+                $feature,
+                fphp\Artifact\Settings::fromFile(
+                    fphp\Helper\Path::join($entity, $this->get("artifactFile")))
+            ));
+        } else if (is_dir($entity) && !fphp\Helper\Path::isDot($entry)) // recursively search subdirectory
+            foreach (scandir($entity) as $entry)
+                $this->processDirectoryEntry($entity, $entry);
+        else if (is_file($entity)) // artifact file
+            try {
+                $feature = $this->get("model")->getFeature(pathinfo($entity)["filename"], true);
+                if ($this->has($feature->getName(), $this->get("artifacts")))
+                    throw new fphp\SettingsException("there are multiple settings for \"{$feature->getName()}\"");
+
+                $this->set("artifacts", $feature->getName(), new fphp\Artifact\Artifact(
+                    $feature, fphp\Artifact\Settings::fromFile($entity)
+                ));
+            } catch (fphp\Model\ModelException $e) {}
     }
 }
 
