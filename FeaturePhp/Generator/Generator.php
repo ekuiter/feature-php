@@ -137,7 +137,10 @@ abstract class Generator {
             $this->tracingLinks = array();
             $this->_generateFiles();
         }
-        return array_merge(array($this->logFile), $this->files);
+        if ($this->settings->getOptional("logFile", false))
+            return array_merge(array($this->logFile), $this->files);
+        else
+            return $this->files;
     }
 
     /**

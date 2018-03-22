@@ -53,6 +53,10 @@ use \FeaturePhp as fphp;
  * - root (object)
  *   - filesIfSelected (array) - rules to add if the artifact's feature is selected
  *   - filesIfDeselected (array) - rules to add if the artifact's feature is deselected
+ *
+ * All generators additionally accept the following in the product line's generator settings:
+ * - root (object)
+ *   - logFile (bool) - whether to include a log file in the generated product
  */
 class Settings extends fphp\Settings {
     /**
