@@ -41,6 +41,21 @@ feature-php also depends on some Composer packages:
   validating feature models and configurations
 - [nikic/PHP-Parser](https://github.com/nikic/PHP-Parser) for feature- and
   aspect-oriented programming
+  
+To install the dependencies, create the following `composer.json` file:
+
+```json
+{
+    "minimum-stability": "dev",
+    "require": {
+        "ekuiter/feature-php": "dev-master"
+    }
+}
+```
+
+Then run `composer install` ([more information on
+Composer](https://getcomposer.org/). Refer to the [guide](GUIDE.md) for further
+information.
 
 ### Usage
 
@@ -64,6 +79,20 @@ class. If you want to learn about configuration files, have a look at the
 class.
 
 ### Example
+
+#### Command line interface
+
+After installing, run:
+
+```
+vendor/bin/feature-php --settings <productLine.json> --configuration <configuration.json>
+```
+
+in your project root to analyze a given configuration. For more information on
+the command-line interface, run `vendor/bin/feature-php` or refer to the
+[guide](GUIDE.md).
+
+#### Script usage
 
 ```php
 <?php
