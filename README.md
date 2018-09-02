@@ -54,7 +54,7 @@ To install the dependencies, create the following `composer.json` file:
 ```
 
 Then run `composer install` ([more information on
-Composer](https://getcomposer.org/). Refer to the [guide](GUIDE.md) for further
+Composer](https://getcomposer.org/)). Refer to the [guide](GUIDE.md) for further
 information.
 
 ### Usage
@@ -85,12 +85,15 @@ class.
 After installing, run:
 
 ```
-vendor/bin/feature-php --settings <productLine.json> --configuration <configuration.json>
+vendor/bin/feature-php --settings <productLine.json> --configuration <configuration.xml>
 ```
 
 in your project root to analyze a given configuration. For more information on
 the command-line interface, run `vendor/bin/feature-php` or refer to the
-[guide](GUIDE.md).
+[guide](GUIDE.md). To see example input files, see
+[uvr2web.json](https://github.com/ekuiter/uvr2web-spl/blob/master/spl/uvr2web.json)
+and
+[UVR1611.xml](https://github.com/ekuiter/uvr2web-spl/blob/master/spl/UVR1611.xml).
 
 #### Script usage
 
